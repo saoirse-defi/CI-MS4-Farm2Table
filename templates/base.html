@@ -34,11 +34,45 @@
 
 </head>
 <body>
+
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#!" class="brand-logo">Farm2Table</a> 
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="paintwork.html">Market</a></li>
+                <li><a href="streetart.html">Producers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+          <ul class="sidenav" id="mobile-demo">
+            <h2 class="brand-logo">Farm2Table/h2>
+            <h4>Visual Artist</h4>
+            <li><a href="paintwork.html">Market</a></li>
+            <li><a href="streetart.html">Producers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+    </div>
    
     <header class="container"></header>
 
     {% if messages %}
     <div class="message-container"></div>
+    {% endif %}
+
+    {% block page_header %}
+    {% endblock %}
+
+    <div class="container">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+
+    {% block post_js %}
     {% endblock %}
     
 </body>
