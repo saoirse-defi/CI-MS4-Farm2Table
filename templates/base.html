@@ -15,6 +15,7 @@
     {% block corecss %}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% endblock %}
 
@@ -23,7 +24,6 @@
 
     {% block corejs %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="https://kit.fontawesome.com/a805a6e313.js" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     {% endblock %}
 
@@ -35,7 +35,18 @@
 </head>
 <body>
 
-    <div class="navbar-fixed">
+        <ul id="dropdown1" class="dropdown-content">
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser%}
+                <li><a href="#!">Product Management</a></li>
+            {% endif %}
+              <li><a href="#!">My Profile</a></li>
+              <li><a href="{% url 'account_logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'account_signup' %}">Register</a></li>
+            <li><a href="{% url 'account_login' %}">Login</a></li>
+          {% endif %}
+        </ul>
         <nav>
             <div class="nav-wrapper">
               <a href="#!" class="brand-logo">Farm2Table</a> 
@@ -44,6 +55,21 @@
                 <li><a href="paintwork.html">Market</a></li>
                 <li><a href="streetart.html">Producers</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="" class="dropdown-button" data-activates="dropdown1">My Account<i class="material-icons-right">arrow_drop_down</i></a></li>
+                <li>
+                  <a>
+                    <div class="text-center">
+                      <div><i class="material-icons">cart</i></div>
+                      <p>
+                        {% if grand_total %}
+                          ${{ grand_total|floatformat:2}}
+                        {% else %}
+                          $0.00
+                        {% endif %}
+                      </p>
+                    </div>
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -55,7 +81,6 @@
             <li><a href="streetart.html">Producers</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
-    </div>
    
     <header class="container"></header>
 
