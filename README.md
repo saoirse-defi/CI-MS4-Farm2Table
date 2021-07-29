@@ -1,104 +1,377 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome saoirse-defi,
+# Code Institute, Milestone 4: Farm2Table
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+## Introduction
 
-## Gitpod Reminders
+Over the past decade, the world has truly become a global economy. Global supply chain expansion has provided unparalleled choice for the consumer. In relation to the food industry, the term 'out of season' has become a thing of the past. No longer do we have to wait until the summer months to enjoy berries or winter for citrus fruits. With the popularity of grocery chains such as Lidl & Aldi, locally sourced fruit & vegetables are being phased out for cheaper produce which is normally shipped halfway across the globe. To endure this expedition, the produce is harvested well before it has reached maturity and ripened in shipping containers by the use of 'controlled environments'. This produce tends to turn bad very quickly due to this unnatural journey, sometimes within 48 hours of purchase causing massive food wastage. Most of us have lost the connection to the food we eat.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+With my final milestone project for Code Institute, I will attempt to tackle this problem within our society. My goals is to get Ireland eating locally & in season again by creating a marketplace to connect local producers with consumers. My project Farm2Table aims to reduce the friction associated with sourcing local produce by having all local producers of fruit & veg in one marketplace. This environment will inspire competition between producers, allowing the consumers to easily find the best price for their local fruit & veg.
 
-`python3 -m http.server`
+### Notes for Assessment Team
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
+### Future Features
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+This section will outline potential features which I would like to implement in the future.
 
-A blue button should appear to click: _Make Public_,
+* Loyalty point system through a native cryptocurrency
+* 
 
-Another blue button should appear to click: _Open Browser_.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Considerations
 
-To log into the Heroku toolbelt CLI:
+### Use Cases
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## UX
 
-------
+### Project Goals
 
-## Release History
+The goal of this project is to get Ireland eating locally again by creating a marketplace where fruit & vegetable producers will post listings of their produce. This format will increase competition between the farmers as consumers can compare prices directly. Payment will be taken through the application in order to reduce friction once the customer goes to collect their order or has it delivered. 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### User Goals
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Developer & Business Goals
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+This section will outline goals set out by application creator both in relation to how they would like to develop as a software engineer & their financial goals as regards to the website.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+#### Developer Goals
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+#### Business Goals
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+Currently, I have identified 3 possible streams of income this project would be able to generate. 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+* A small fee will be applied to each purchase made within the application for connecting the producer with the consumer & processing payment between the 2 parties.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+* Producers will have the ability to purchase premium Farm2Table memberships giving them access to additional features, such as being highlighted on the front page of the website, ad-free storefronts.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+* Advertising revenue will be generated from the web traffic on the application.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### User Stories
 
-------
+|User Type |I want to be able to...  | So that I can... |
+| :--- | :--- | :--- |
+|Seller|Add my listing to a marketplace|I can attract orders from a larger number of customers|
+|Seller|Display product information|Allow the consumer to make an informed purchase|
+|Seller|Post a photo of the produce|Entice customers to purchase my produce|
+|Seller|Update listings|Change product descriptions, quantities, availability or pricing|
+|Seller|Delete listings|Remove items that are no longer for sale|
+|Seller|Receive reviews from consumers|See areas at which I can improve upon|
+|Seller|Display my reviews to the end user|Encourage new users to choose me over my competitors|
+|Seller|See the pricing of other producers|Regulate my pricing accordingly|
+|Seller|Update listings|Change product descriptions, availability or pricing|
+|Seller|Provide delivery options to the customer|Avoid the customer having to collect the order|
+|  |  |  |
+|Buyer|To view all listings in one marketplace|Find the best price or closest producer|
+|Buyer|View individual product details|Make an informed purchase|
+|Buyer|Easily view the total of my purchases|Control how much I am spending|
+|Buyer|To view my previous orders|Compare current pricing or to review my spending|
+|Buyer|Sort marketplace listings by category|Search for exactly the type of product I want|
+|Buyer|Sort marketplace listings by price|Find the best price|
+|Buyer|Sort marketplace listings by a number of categories simultaneously|Exclude product types that I'm not searching for|
+|Buyer|Pay for my order within the application|Avoid payment upon collection|
+|Buyer|Adjust the quantity of items within my shopping bag||
+|Buyer|View order confirmation after checkout||
+|Buyer|View the seller location before checkout||
+|  |  |  |
+|Site User|Easily register an account|Have a profile in order to start placing orders|
+|Site User|Easily log in/logout|Access my profile|
+|Site User|Change my password|Recover access to my account in case I get locked out|
+|Site User|Receive an email confirmation after registration|Verify that my registration was successful|
+|Site User|Have a personalised user profile|View my previous orders|
+|Site User|Easily make or receive secure payments|Place orders within the application|
+|Site User|Navigate through the website easily|Increase my productivity|
+|  |  |  |
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
+1. As a user of this web application I want:
+    * A clean and enjoyable UX, everything should be where I want it.
+    * Fonts that are legible but something a bit different to the norm.
+    * Little to no load times when the website first starts or has to complete a process.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+2. As somebody looking to advertise on this website I would like:
+    * Content that is family friendly and not provocative, so our brand doesn't become tarnished.
+    * Heavy user traffic in order to get our brand in front of as many eyeballs as possible.
+    * Fast load times to ensure impatient users don't leave the site.
 
-**How will this affect me?**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Design Choices
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+#### Favicon
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+I really enjoy this favicon which was sourced from [Favicon.cc](https://www.favicon.cc/?action=icon&file_id=636006)
 
-**So….?**
+![Favicon](static/favicon.ico)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+#### Responsive Front-End Framework
 
-**Can I opt out?**
+For this project, I decided to use the Materialize framework which is build on the principles of material design.
+After completing the project using this new framework, I can safely say that I prefer it more than Bootstrap which I have used on my previous 2 milestone projects.
+It appears to provide more feedback to the user when they are navigating throughout the web application while remaining responsive on most devices.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+#### Icons
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+All icons for this application have been sourced from [Google Fonts](https://fonts.google.com/icons) collected from the Material Icons library. As the designer of the web application, the selection of the icons must be done in line with other successful applications. 
 
-**Anything more?**
+##### Favourite Icon
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+##### Edit Icon
 
----
+##### Delete Icon
 
-Happy coding!
+
+#### Fonts
+
+
+##### Varela Round
+
+
+#### Colours
+
+
+##### Materialize Button
+
+The colour of the buttons throughout the site is unchanged as it is the primary button colour for the Materialize framework. During the design process, I noticed that this shade of blue complemented the teal hue of the navbar.
+
+
+## Key Frontend Design Elements
+
+This section will outline the key elements within this application giving descriptions on the purpose of each element.
+
+
+### Error Handling
+
+#### Flash Messages
+
+
+#### API Exceptions
+
+
+#### Other Low Level Exceptions
+
+Other low level exceptions such as client-side errors (4xx) or server-side errors (5xx) will also be handled, describing to the user which error occurred. The user will also have an option to either return to their homepage or the login page depending on their credentials. 
+
+
+#### Lottie Player Animations
+
+Lottie provides lightweight animation hosting which provides significantly smaller footprint than conventional animations.
+
+
+## Wireframes
+
+
+### User Interaction
+
+
+## Implementation
+
+This section will outline the technologies & processes used in the design & implementation of this application.
+
+### Materialize Framework
+
+For this project, the frontend framework I decided to use was Materialize. In my previous 2 milestone projects, I chose Bootstrap for the frontend, but I can now safely say that I much prefer the look of Materialize.
+As it is based on the principles of material design, all elements just seem that little bit sharper and current.
+
+
+#### CRUD Operations
+
+One of the main goals of this milestone project was to integrate a database within our application and use it to it's full potential. CRUD in computer programming is an acronym which stands for create, read, update & delete. This covers the 4 main operations of a database. Within this section I will go over how I implemented each of these operations.
+
+##### Create Operation
+
+
+##### Read Operation
+
+
+##### Update Operation
+
+
+##### Delete Operation
+
+
+
+#### Flask
+
+Flask is a web application framework written in Python based on the Werkzeug toolkit & the Jinja2 templating language. During my development of this application is when I noticed the usefulness of flask, getting to experiment with the different flask libraries. Jinja templating also opened a lot of doors for me as a web developer when managing repeated pre-defined data.
+
+
+### Modules
+
+
+## Performance
+
+#### Image Resizing & Compression
+
+Due to the nature of the application, no image compression was needed as all design elements are from the Materialize framework. No images were used in the making of this application.
+
+
+#### Lottie Player Animations
+
+By using the Lottie animation player, we can bring beautiful animations into our application without having to worry about file size and hence performance. I have used a single hosted Lottie animation on the error.html page.
+
+
+###### Autoprefixing
+
+The CSS style rules have been [Autoprefixed](https://autoprefixer.github.io/) to maintain uniformity of style rules across all browsers.
+
+
+## Testing
+
+### User Testing
+
+As the application began to take shape with all major components in place, the user testing could commence. This was done by reviewing each component line by line to ensure that the code works as intended. If an edit was to be made, the developer made sure to the changes were reflected correctly on the frontend.
+
+### Mobile Testing
+
+
+### Application Testing
+
+
+## Bugs Discovered
+
+
+## Dependencies
+
+This section will cover all software dependencies needed to run this application.
+
+
+## Deployment
+
+### Github Pages Deployment Procedure
+
+This project was developed using Gitpod, committed to git and pushed to Github using the built-in function with Gitpod.
+
+To deploy this page from Github pages from its Github repository, the following steps were taken.
+
+1. Log into Github.
+2. From the list of repositories on the screen, select saoirse-defi/milestone1-bad-arts-1.0.
+3. From the menu items near the top of the page, select Settings.
+4. Scroll down to the Github Pages section.
+5. Under source click the drop-down menu labelled None and select Master Branch.
+6. On selecting Master Branch, the page is automatically refreshed, the website is now deployed.
+   
+At the moment of submitting this milestone project, the default branch is version1.2 which is the latest version.
+
+
+#### How to run this project locally:
+
+To clone this project into Gitpod you will need:
+1. A Github account
+2. Use the Chrome browser
+
+Then follow these steps:
+1. Install the Gitpod browser extensions for Chrome
+2. After installation, restart the browser
+3. Log into Gitpod with your Gitpod account
+4. Navigate to the Github project repository
+5. Click the green 'Gitpod' button in the top right corner of the repository
+6. This will trigger a new Gitpod workspace to be created from the code in Github where you can work locally
+
+
+To work on the code within a local IDE such as VScode:
+1. Follow this link to the Github repository
+2. Under the repository name, click 'clone' or 'download'
+3. In the clone with the https section, copy the clone URL for the repository
+4. In your local IDE, open the terminal
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type 'git clone', and then paste the URL copied in step 3
+
+git clone https://www.Github.com/USERNAME/REPOSITORY
+
+7. Press enter. Your local clone will be created.
+
+Further reading and troubleshooting on cloning a repository can be found here [Github](https://docs.Github.com/en/free-pro-team@latest/Github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+
+### Django Deployment Procedure
+
+#### How to create a Django project
+
+Follow these steps:
+1. Once in a new project in Gitpod, enter "django-admin startproject projectname ." into the terminal
+2. Create a git ignore file using "touch .gitignore" in the terminal and add "*.sqlite3 *.pyc __pycache__" to it
+3. 
+
+### Heroku Deployment Procedure
+
+#### How to run your project on Heroku
+
+Follow these steps:
+1. Create a virtual environment with pipenv and install Flask and Gunicorn
+2. Create a “Procfile” and write the following code "touch Procfile" in the command line
+3. Create “runtime.txt” and write the following code "touch runtime.txt" in the command line
+4. Create a folder named “app” and enter the folder
+5. Create a python file, “main.py” and enter the sample code below
+
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def home_view():
+        return "<h1>Welcome to Geeks for Geeks</h1>
+
+6. Get back to the previous directory “eflask”.Create a file“wsgi.py” and insert the following code
+
+from app.main import app
+if __name__ == "__main__":
+        app.run()
+
+7. Run the vitual environment write "pipenv shell" in the command line.
+8. Initialize an empty repo, add the files in the repo and commit all the changes
+9. Login to heroku CLI using "heroku login"
+10.  Create a unique name for your Web app, write "heroku create hashboard"
+11. Push your code from local to the heroku remote using "git push heroku master"
+
+
+#### How to create a MongoDB database
+
+1. Create a MongoDB Atlas account [here](https://www.mongodb.com/cloud)
+2. Log into your MongoDB Atlas account 
+3. Create a free, shared cluster by selecting your preferred provider, stick to the free tier
+4. Name your cluster and click create to deploy your cluster
+5. Add your connection IP address to the IP access list
+6. Create a new database user for your cluster
+7. Install PyMongo within your flask application, check version to see if installed correctly
+8. Provide a connection method & a configured connection string to MongoDB Atlas
+9. Import MongoClient from PyMongo within flask
+10. Insert a command within flask that specifies a client is for connecting to your cluster
+11. Create a new database within your cluster
+12. Create a new collection for your database
+13. Create a new document to add to your collection
+
+
+## Credit
+
+[Materialize Framework Documentation](https://materializecss.com/)
+
+[HTML Element fade-out](https://stackoverflow.com/questions/1911290/make-div-text-disappear-after-5-seconds-using-jquery#1911308)
+
+[Etherscan API Documentation](https://etherscan.io/apis)
+
+[Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
+
+[Jinja Documentation](https://jinja.palletsprojects.com/en/3.0.x/)
+
+[Werkzeug Documentation](https://werkzeug.palletsprojects.com/en/2.0.x/)
+
+[Ethereum Documentation](https://ethereum.org/en/)
+
+[Mongo DB Documentation](https://docs.mongodb.com/)
+
+[Python Docstrings](https://www.geeksforgeeks.org/python-docstrings/)
+
+[Pylint Error Help](https://learn.adafruit.com/improve-your-code-with-pylint/pylint-errors)
+
+[Heroku Documentation](https://devcenter.heroku.com/categories/python-support)
+
+[Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet)
+
+[Displaying Information to the user efficiently](https://www.youtube.com/watch?v=Ox9MW9Z8srE&list=PLOPo1bGrV4htxbQCS3CPZ59O1kpPdE7PK)
+
+
+
+
