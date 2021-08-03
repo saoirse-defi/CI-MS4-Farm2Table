@@ -17,6 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="static/css/base.css">
     {% endblock %}
 
     {% block extra_css %}
@@ -34,55 +35,65 @@
 
 </head>
 <body>
-
-        <ul id="dropdown1" class="dropdown-content">
-          {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser%}
-                <li><a href="#!">Product Management</a></li>
-            {% endif %}
-              <li><a href="#!">My Profile</a></li>
-              <li><a href="{% url 'account_logout' %}">Logout</a></li>
-          {% else %}
-            <li><a href="{% url 'account_signup' %}">Register</a></li>
-            <li><a href="{% url 'account_login' %}">Login</a></li>
-          {% endif %}
-        </ul>
-        <nav>
-            <div class="nav-wrapper">
-              <a href="#!" class="brand-logo">Farm2Table</a> 
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="paintwork.html">Market</a></li>
-                <li><a href="streetart.html">Producers</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="" class="dropdown-button" data-activates="dropdown1">My Account<i class="material-icons-right">arrow_drop_down</i></a></li>
-                <li>
-                  <a>
-                    <div class="text-center">
-                      <div><i class="material-icons">cart</i></div>
-                      <p>
-                        {% if grand_total %}
-                          ${{ grand_total|floatformat:2}}
-                        {% else %}
-                          $0.00
-                        {% endif %}
-                      </p>
+    <header class="container responsive">
+      {% include 'includes/main-nav.html' %}
+      <div class="row">
+          <div class="col s4 m12">
+              <a href="{% url 'home' %}" class="">
+                  <h2>Farm2Table</h2>
+              </a>
+          </div>
+          <div class="col s4 m12">
+              <form method="GET" action="">
+                <div class="form-group">
+                    <div class="form-control">
+                        <input type="text" id="search-nav" name="search-nav" placeholder="Start searching for the freshest produce"/>
+                        <button class="waves-effect waves-light btn-small" type="submit">
+                            <span class="material-icons-outlined">search</span>
+                        </button>
                     </div>
-                  </a>
+                </div>
+              </form>
+          </div>
+          <div class="col s4 m12">
+            <a class='dropdown-nav btn' href='#' data-target='dropdown1'>Account Settings</a>
+            <ul id='dropdown1' class='dropdown-content'>
+                <li>
+                    <a class='dropdown-nav-dropdown btn' href='#' data-target='dropdown2'>
+                        <span class="material-icons-outlined">account_circle</span>
+                        <p>My Account</p>
+                    </a>
+                    <div id="dropdown2" class="dropdown-content">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <a href="">Product Management</a>
+                            {% endif %}
+                            <a href="">My Profile</a>
+                            <a href="{% url 'account_logout' %}">Logout</a>
+                        {% else %}
+                        <a href="{% url 'account_signup' %}">Resgister</a>
+                        <a href="{% url 'account_login' %}">Login</a> 
+                        {% endif %}
+                    </div>
                 </li>
-              </ul>
-            </div>
-          </nav>
-        
-          <ul class="sidenav" id="mobile-demo">
-            <h2 class="brand-logo">Farm2Table/h2>
-            <h4>Visual Artist</h4>
-            <li><a href="paintwork.html">Market</a></li>
-            <li><a href="streetart.html">Producers</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-   
-    <header class="container"></header>
+                <li>
+                    <a href="#!">
+                        <div class="center-align">
+                            <div><span class="material-icons-outlined">shopping_cart</span></div>
+                            <p>
+                                {% if grand_total %}
+                                    ${{ grand_total|floatformat:2 }}
+                                {% else %}
+                                    0.00 Euro
+                                {% endif %}
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+          </div>
+      </div>
+    </header>
 
     {% if messages %}
     <div class="message-container"></div>
