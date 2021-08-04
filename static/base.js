@@ -1,2 +1,3 @@
-$('.dropdown-nav').dropdown();
-$('.dropdown-nav-dropdown').dropdown();
+$( document ).ready(function() {
+    $('.dropdown-trigger').dropdown();
+});
