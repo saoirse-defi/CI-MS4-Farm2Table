@@ -38,7 +38,7 @@
 </head>
 <body>
     <header class="container responsive">
-      <div class="row">
+      <div class="row" id="navbar-row">
           <div class="col s12 m4">
               <a href="{% url 'home' %}" class="">
                   <h2>Farm2Table</h2>
@@ -47,10 +47,10 @@
           <div class="col s12 m4">
               <form method="GET" action="">
                 <div class="form-group">
-                    <div class="form-control">
+                    <div class="form-control input-field" id="navbar-search">
                         <input type="text" id="search-nav" name="search-nav" placeholder="Start searching for the freshest produce"/>
                         <button class="waves-effect waves-light btn-small" type="submit">
-                            <span class="material-icons-outlined">search</span>
+                            <i class="material-icons-outlined">search</i>
                         </button>
                     </div>
                 </div>
@@ -61,24 +61,31 @@
                 <span class="material-icons-outlined">account_circle</span>
             </a>
             <ul id='dropdown1' class='dropdown-content'>
-                <li>
-                    <a class='dropdown-trigger btn-small' href='#' data-target='dropdown2'>
-                        <span class="material-icons-outlined">account_circle</span>
-                        <p>My Account</p>
-                    </a>
-                    <div id="dropdown2" class="dropdown-content">
-                        {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                                <a href="">Product Management</a>
-                            {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <li>
+                            <a href="">Product Management</a>
+                        </li>
+                    {% endif %}
+                        <li>
                             <a href="">My Profile</a>
+                        </li>
+                        <li>
                             <a href="{% url 'account_logout' %}">Logout</a>
-                        {% else %}
+                        </li>
+                {% else %}
+                    <li>
                         <a href="{% url 'account_signup' %}">Resgister</a>
+                    </li>
+                    <li>
                         <a href="{% url 'account_login' %}">Login</a> 
-                        {% endif %}
-                    </div>
-                </li>
+                    </li>
+                {% endif %}
+            </ul>
+            <a class='dropdown-trigger btn-small' href='#' data-target='shopping-cart-dropdown'>
+                <span class="material-icons-outlined">shopping_cart</span>
+            </a>
+            <ul class="dropdown-content" id="shopping-cart-dropdown">
                 <li>
                     <a href="#!">
                         <div class="center-align">
@@ -95,6 +102,14 @@
                 </li>
             </ul>
           </div>
+      </div>
+      <div class="row" id="categories-row">
+        {% include 'includes/main-nav.html' %}
+      </div>
+      <div class="row center" id="deliver-banner">
+        <div class="col m12 black">
+            <h4 style="color: white;">Free delivery on order over ${{ free_shipping_threshold }}</h4>
+        </div>
       </div>
     </header>
 

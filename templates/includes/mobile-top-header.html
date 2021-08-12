@@ -1,0 +1,63 @@
+<li>
+    <a class="show-on-medium-and-down" id="mobile-search" data-target="mobile-search-dropdown"></a>
+    <div id="mobile-search-dropdown">
+        <form method="GET" action="">
+            <div class="form-group">
+                <div class="form-control input-field" id="navbar-search">
+                    <input type="text" id="search-nav" name="search-nav" placeholder="Start searching for the freshest produce"/>
+                    <button class="waves-effect waves-light btn-small" type="submit">
+                        <i class="material-icons-outlined">search</i>
+                    </button>
+                </div>
+            </div>
+          </form>
+    </div>
+</li>
+<li>
+    <a class='dropdown-trigger btn-small show-on-medium-and-down' href='#' data-target='mobile-account-dropdown'>
+        <span class="material-icons-outlined">account_circle</span>
+    </a>
+    <ul id='mobile-account-dropdown' class='dropdown-content'>
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+                <li>
+                    <a href="">Product Management</a>
+                </li>
+            {% endif %}
+                <li>
+                    <a href="">My Profile</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_logout' %}">Logout</a>
+                </li>
+        {% else %}
+            <li>
+                <a href="{% url 'account_signup' %}">Resgister</a>
+            </li>
+            <li>
+                <a href="{% url 'account_login' %}">Login</a> 
+            </li>
+        {% endif %}
+    </ul>
+</li>
+<li>
+    <a class='dropdown-trigger btn-small show-on-medium-and-down' href='#' data-target='mobile-shopping-cart-dropdown'>
+        <span class="material-icons-outlined">shopping_cart</span>
+    </a>
+    <ul class="dropdown-content" id="mobile-shopping-cart-dropdown">
+        <li>
+            <a href="#!">
+                <div class="center-align">
+                    <div><span class="material-icons-outlined">shopping_cart</span></div>
+                    <p>
+                        {% if grand_total %}
+                            ${{ grand_total|floatformat:2 }}
+                        {% else %}
+                            0.00 Euro
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</li>
