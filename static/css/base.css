@@ -6,9 +6,17 @@ body{
   
 }
 
+#navbar-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+#navbar-search{
+    display: flex;
+}
 
 @media (min-width: 992px) {
     .container{
-        max-width: 80%;
+        max-width: 90%;
     }
 }
