@@ -10,10 +10,48 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="overlay"></div>
+<div class="container responsive">
     <div class="row">
         <div class="col">
-            {{ products }}
+            <h2>Products</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="product-container col">
+            <div class="row"></div>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col">
+                        <div class="card">
+                            {% if product.image %}
+                            <a href="">
+                                <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <p>{{ product.name }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>${{ product.price }}</p>
+                                        {% if product.rating %}
+                                            <p><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</p>
+                                        {% else %}
+                                            <p>No Rating</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
