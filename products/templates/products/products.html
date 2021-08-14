@@ -25,11 +25,11 @@
                     <div class="col">
                         <div class="card">
                             {% if product.image %}
-                            <a href="">
+                            <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                             {% else %}
-                            <a href="">
+                            <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             </a>
                             {% endif %}
@@ -41,9 +41,9 @@
                                     <div class="col">
                                         <p>${{ product.price }}</p>
                                         {% if product.rating %}
-                                            <p><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</p>
+                                            <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
                                         {% else %}
-                                            <p>No Rating</p>
+                                            <small>No Rating</small>
                                         {% endif %}
                                     </div>
                                 </div>
