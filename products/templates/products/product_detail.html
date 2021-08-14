@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container responsive">
+    <div class="row">
+        <div class="col">
+            <div class="image-container">
+                {% if product.image %}
+                <a href="" target="_blank">
+                    <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+                {% else %}
+                <a href="">
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="product-details">
+                <p>{{ product.name }}</p>
+                <p>{{ product.price }}</p>
+                {% if product.rating %}
+                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                {% else %}
+                    <small>No Rating</small>
+                {% endif %}
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
