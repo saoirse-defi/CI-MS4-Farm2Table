@@ -57,10 +57,10 @@
               </form>
           </div>
           <div class="col s12 m4">
-            <a class='dropdown-trigger btn-small' href='#' data-target='dropdown1'>
+            <a class='dropdown-trigger btn-small' href='#' data-target='user-dropdown'>
                 <span class="material-icons-outlined">account_circle</span>
             </a>
-            <ul id='dropdown1' class='dropdown-content'>
+            <ul id='user-dropdown' class='dropdown-content'>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
                         <li>
