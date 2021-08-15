@@ -15,6 +15,11 @@
     <div class="row">
         <div class="col">
             <h2>Products</h2>
+            {% for c in current_categories %}
+            <a href="{% url 'products' %}?category={{ c.name }}">
+                <span class="new badge" data-badge-caption="{{ c.friendly_name }}"></span>
+            </a>
+            {% endfor %}
         </div>
     </div>
     <div class="row">
@@ -40,6 +45,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <p>${{ product.price }}</p>
+                                        {% if product.category %}
+                                        <small>
+                                            <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                                <span class="material-icons-outlined">local_offer</span>{{ product.category.friendly_name }}
+                                            </a>
+                                        </small>
+                                        {% endif %}
+                                        <br>
                                         {% if product.rating %}
                                             <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
                                         {% else %}
