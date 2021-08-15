@@ -2,19 +2,30 @@
   <nav>
     <ul>
       <li>
-        <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>All Products</a>
-        <ul class="dropdown-content" id="category-dropdown">
+        <a class='dropdown-trigger btn-small' href='#' data-target='sorting-dropdown'>All Products</a>
+        <ul class="dropdown-content" id="sorting-dropdown">
           <li>
-            <a href="">By Location</a>
+            <a href="{% url 'products' %}?sort=location&direction=asc">By Location</a>
           </li>
           <li>
-            <a href="">By Category</a>
-          </li>
-          <li>
-            <a href="">By Price</a>
+            <a href="{% url 'products' %}?sort=price&direction=asc">By Price</a>
           </li>
           <li>
             <a href="{% url 'products' %}">All Products</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
+        <ul class="dropdown-content" id="category-dropdown">
+          <li>
+            <a href="{% url 'products' %}?category=berries">Berries</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=fruits">Fruits</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=vegetables">Vegetables</a>
           </li>
         </ul>
       </li>
