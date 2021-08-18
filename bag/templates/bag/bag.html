@@ -32,6 +32,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Subtotal</th>
+                            <th scope="col">Remove</th>
                         </tr>
                     </thead>
                     {% for item in bag_items %}
@@ -54,10 +55,21 @@
                             <p>{{ item.product.price }}</p>
                         </td>
                         <td>
-                            <p>{{ item.product.quantity }}</p>
+                            <p>{% if item.quantity.items_by_size %}
+                                {% for key in item.quantity.items_by_size %}
+                                    {% if key == item.size %}
+                                       {{ item.quantity.items_by_size }}
+                                    {% endif %}
+                                {% endfor %}
+                               {% endif %}
+                            </p>
+                            <p>{{ item.quantity.items_by_size }}</p>
                         </td>
                         <td>
                             <p>{{ item.product.price }}</p>
+                        </td>
+                        <td>
+                            <a class="remove-item" id="remove_{{ item.item_id }}" data-size="{{ item.size }}"><span class="material-icons-outlined">delete</span></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -97,4 +109,22 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    $('.remove-item').click(function(e){
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('size');
+        var url = `/bag/remove/${itemId}`;
+        var data = {'csrfmiddelwaretoken': csrfToken, 'size': size};
+
+        $.post(url, data)
+         .done(function(){
+             location.reload();
+         })
+    })
+</script>
 {% endblock %}
