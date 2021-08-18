@@ -20,6 +20,9 @@
     <div class="row">
         <div class="col">
             {% if bag_items %}
+                {{bag_items}}
+                <br><br>
+                {{request.session.bag}}
             <div class="table">
                 <table class="table">
                     <thead>
@@ -44,6 +47,7 @@
                         {% endif %}
                         <td>
                             <p><strong>{{ item.product.name }}</strong></p>
+                            <p><strong>Size: </strong>{% if item.product.has_sizes %}{{item.size }}{% else %}N/A{% endif %}</p>
                             <p>SKU: {{ item.product.sku|upper }}</p>
                         </td>
                         <td>
