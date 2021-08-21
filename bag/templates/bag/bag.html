@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block page_header %}
 <div class="container">
@@ -27,13 +28,12 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Product Image</th>
                             <th scope="col">Product Info</th>
-                            <th scope="col"></th>
+                            <th scope="col">Size</th>
                             <th scope="col">Price</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Subtotal</th>
-                            <th scope="col">Adjust</th>
-                            <th scope="col">Remove</th>
                         </tr>
                     </thead>
                     {% for item in bag_items %}
@@ -48,26 +48,13 @@
                         </td>
                         {% endif %}
                         <td>
-                            <p><strong>{{ item.product.name }}</strong></p>
-                            <p><strong>Size: </strong>{% if item.product.has_sizes %}{{item.size }}{% else %}N/A{% endif %}</p>
-                            <p>SKU: {{ item.product.sku|upper }}</p>
+                            <p>{{ item.product.name }}</p>
                         </td>
                         <td>
-                            <p>{{ item.product.price }}</p>
+                            <p>{% if item.product.has_sizes %}{{ item.size }}g{% else %}No size{% endif %}</p>
                         </td>
                         <td>
-                            <p>{% if item.quantity.items_by_size %}
-                                {% for key in item.quantity.items_by_size %}
-                                    {% if key == item.size %}
-                                       {{ item.quantity.items_by_size }}
-                                    {% endif %}
-                                {% endfor %}
-                               {% endif %}
-                            </p>
-                            <p>{{ item.quantity.items_by_size }}</p>
-                        </td>
-                        <td>
-                            <p>{{ item.product.price }}</p>
+                            <p>€{{ item.product.price }}</p>
                         </td>
                         <td>
                             <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
@@ -78,22 +65,31 @@
                                 {% if item.product.has_sizes %}
                                 <input type="hidden" name="product_size" value="{{ item.size }}">
                                 {% endif %}
-                                <button class="btn" type="submit">Change</button>
+                                <button class="btn-sm" type="submit">Change</button>
                             </form>
                         </td>
                         <td>
-                            <a class="remove-item" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></a>
+                            €{{ item.product.price|calc_subtotal:item.quantity|calc_total_with_size:item.size}}
+                        </td>
+                        <td>
+                            <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.item_id %}">
+                                {% csrf_token %}
+                                {% if item.product.has_sizes %}
+                                <input type="hidden" name="product_size" value="{{ item.size }}">
+                                {% endif %}
+                                <button class="remove-item" id="remove_{{ item.item_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td>
-                            <h6><strong>Bag Total: {{ total|floatformat:2 }} Euro</strong></h6>
-                            <h6>Delivery: {{ delivery|floatformat:2 }}</h6>
-                            <h4><strong>Grand Total: {{ grand_total|floatformat:2 }}</strong></h4>
+                            <h6><strong>Bag Total: €{{ total|floatformat:2 }} Euro</strong></h6>
+                            <h6>Delivery: €{{ delivery|floatformat:2 }}</h6>
+                            <h4><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
                             {% if free_delivery_delta > 0 %}
                             <p>
-                                You could get free delivery by spending just <strong>{{ free_delivery_delta }} Euro</strong> more!
+                                You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
                             </p>
                             {% endif %}
                         </td>
@@ -127,7 +123,7 @@
 {% block postloadjs %}
 {{ block.super }}
 <script>
-    $('.update-link').click(function(e){
+    /* $('.update-link').click(function(e){
         var form = $(this).prev('.update-form');
         form.submit();
     })
@@ -143,6 +139,6 @@
          .done(function(){
              location.reload();
          })
-    })
+    })*/
 </script>
 {% endblock %}
