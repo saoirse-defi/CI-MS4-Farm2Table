@@ -44,7 +44,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col">
-                                        <p>${{ product.price }}</p>
+                                        <p>€{{ product.price }}</p>
                                         {% if product.category %}
                                         <small>
                                             <a href="{% url 'products' %}?category={{ product.category.name }}">

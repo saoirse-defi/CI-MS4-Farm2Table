@@ -29,7 +29,7 @@
         <div class="col">
             <div class="product-details">
                 <p>{{ product.name }}</p>
-                <p>{{ product.price }}</p>
+                <p>€{{ product.price }}</p>
                 {% if product.category %}
                 <small>
                     <a href="{% url 'products' %}?category={{ product.category.name }}">
@@ -52,11 +52,11 @@
                         <div class="col-s12">
                             <p><strong>Size:</strong></p>
                             <select class="form-control" name="product_size" id="id_product_size">
-                                <option value="250g">250g</option>
-                                <option value="500g">500g</option>
-                                <option value="750g">750g</option>
-                                <option value="1kg">1kg</option>
-                                <option value="2kg">2kg</option>
+                                <option value="250">250g</option>
+                                <option value="500">500g</option>
+                                <option value="750">750g</option>
+                                <option value="1000">1kg</option>
+                                <option value="2000">2kg</option>
                             </select>
                         </div>
                         {% endif %}
