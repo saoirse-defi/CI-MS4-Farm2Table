@@ -1,6 +1,17 @@
 from django import forms
 from .models import Order
 
+from crispy_forms.helper import FormHelper
+
+
+class TestForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super(TestForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -10,9 +21,10 @@ class OrderForm(forms.ModelForm):
                   'street_address2', 'town',
                   'county', 'postcode', 'country')
 
-    
     def __init__(self, *args, **kwargs):
-        """Adds placeholders and classes, remove auto-gen labels and sets autofocus on first field."""
+        """Adds placeholders and classes,
+            remove auto-gen labels and sets
+            autofocus on first field."""
 
         super().__init__(*args, **kwargs)
         placeholders = {
