@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+
+    #other
+    'crispy_forms',
+    'crispy_forms_materialize',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +64,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'farm2table.urls'
 
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,14 +77,17 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # allauth requires this
+                'django.template.context_processors.request',  # allauth requires this
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
             ],
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = ('django.contrib.messages.context_processors.messages',)
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
