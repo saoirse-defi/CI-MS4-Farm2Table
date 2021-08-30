@@ -33,6 +33,10 @@ body{
     cursor: pointer;
 }
 
+.stripe-style-input{
+
+}
+
 @media (min-width: 992px) {
     .container{
         max-width: 90%;
