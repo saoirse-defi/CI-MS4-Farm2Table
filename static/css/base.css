@@ -25,6 +25,12 @@ body{
     z-index: -1;
 }
 
+.container{
+    margin: 0 10px 0 10px;
+    max-width: 1280px;
+    width: 90%;
+}
+
 #id_product_size{
     display: block;
 }
@@ -37,7 +43,7 @@ body{
 
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .container{
         max-width: 90%;
     }
