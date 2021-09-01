@@ -1,15 +1,15 @@
 /* Logic taken from Stripe documentation */
+    console.log("TEST STRING");
+    console.log(client_secret);
 
-document.addEventListener('DOMContentLoaded', async () => {
-    var stripe_public_key = $("#id_stripe_public_key").text().slice(1, -1);
+    var stripe_public_key = $('#id_stripe_public_key').text().slice(1, -1);
     var client_secret = $('#id_client_secret').text().slice(1, -1);
     var stripe = Stripe(stripe_public_key);
     var elements = stripe.elements();
     var form = document.getElementById('payment-form');
     var card = elements.create('card');
     card.mount('#card-element');
-});
-
+/*
 card.addEventListener('change', function(event){
     var errorDiv = document.getElementById('card-errors');
     if(event.error){
@@ -48,3 +48,5 @@ form.addEventListener('submit', function(event) {
   });
 });
 
+
+ */
