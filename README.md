@@ -32,6 +32,29 @@ The goal of this project is to get Ireland eating locally again by creating a ma
 
 ### User Goals
 
+The user base of this application is split into 2 groups, buyers and sellers. Therefore, it is essential to be mindful of specific needs of both types of user.
+
+#### User Goals (Seller)
+
+For this application to be successful we will need to onboard as many fruit & vegetable producers across the country.
+
+In order for a seller to be willing to join our app, they will need:
+
+* 
+
+#### User Goals (Customer)
+
+The target audience for this application will be users over the age of 25. This is due to the fact that they are generally more concerned about the source/quality of their produce & have access to more discretionary income. Users of the application will be in search of the highest quality fruit & vegetables at the most affordable price.
+
+As a user of this application, I need:
+
+* A central marketplace where I can browse different producers.
+* The ability to filter the marketplace to only show sellers within my vicinity.
+* Ways to identify how local producers compare to one another in order to make an informed purchase.
+* A clean UX that is easy to navigate while also remaining fresh and exciting.
+* A quick and simple way to create an account with little to no friction.
+* The ability to make purchases using my credit/debit card.
+* To be able to quickly identify which sellers can deliver to my area.
 
 
 ### Developer & Business Goals
