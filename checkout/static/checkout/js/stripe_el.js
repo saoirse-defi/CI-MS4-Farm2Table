@@ -40,10 +40,8 @@ form.addEventListener('submit', function(event) {
     }).then(function(result){
         if(result.error){
             var errorDiv = document.getElementById('card-errors');
-            var html = `<span class="material-icons-outlined" style='color: #dc3545'>
-                        close
-                    </span>
-                    <span style='color: #dc3545'>${result.error.message}</span>`;
+            var html = `<span class="material-icons-outlined" style='color: #dc3545'>close</span>
+                        <span style='color: #dc3545'>${result.error.message}</span>`;
             $(errorDiv).html(html);
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
@@ -52,7 +50,7 @@ form.addEventListener('submit', function(event) {
                 form.submit();
             }
         }
-    })
+    });
 
     stripe.createToken(card).then(function(result) {
         if(result.error){
