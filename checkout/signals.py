@@ -8,11 +8,11 @@ from .models import OrderLineItem
 def update_on_save(sender, instance, created, **kwargs):
     """Updates order today on lineitem update."""
 
-    instance.order.update_total()
+    instance.order_number.update_total()
 
 
 @receiver(post_delete, sender=OrderLineItem)
 def update_on_delete(sender, instance, **kwargs):
     """Update order total on lineitem delete."""
 
-    instance.order.update_total()
+    instance.order_number.update_total()
