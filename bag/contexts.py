@@ -24,7 +24,8 @@ def bag_contents(request):
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
-                total += quantity * product.price
+                size_count = int(size) // 250  # product sizes are measured in 250g increments
+                total += (quantity * product.price * size_count)  # total is now correct
                 product_count += quantity
                 bag_items.append({
                     'item_id': item_id,

@@ -99,7 +99,7 @@ def remove_from_bag(request, item_id):
             if not bag[item_id]['items_by_size']:
                 bag.pop(item_id)
             messages.success(request, f'Removed {product.name} {size}g from your shopping bag')
-            
+
         else:
             bag.pop(item_id)
             messages.success(request, f'Removed {product.name} from your  shopping bag')
@@ -107,7 +107,7 @@ def remove_from_bag(request, item_id):
         request.session['bag'] = bag
 
         HttpResponse(status=200)
-        
+
         return redirect(reverse('view_bag'))
     except Exception:
         return HttpResponse(status=500)
