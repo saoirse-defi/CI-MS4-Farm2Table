@@ -17,7 +17,7 @@ class Order(models.Model):
     town = models.CharField(max_length=40, null=False, blank=False)
     county = models.CharField(max_length=20, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
-    street_address2 = models.CharField(max_length=80, blank=False)
+    street_address2 = models.CharField(max_length=80, blank=True, default="")
     date = models.DateField(auto_now_add=True)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
@@ -50,7 +50,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order_number = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=False, blank=True)
+    product_size = models.CharField(max_length=4, null=False, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     line_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
