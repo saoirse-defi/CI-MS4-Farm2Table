@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 
@@ -14,7 +14,7 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    if method == 'POST':
+    if request.method == 'POST':
         bag = request.session.get('bag', {})
         form_data = {
             'full_name': request.POST['full_name'],
@@ -43,22 +43,22 @@ def checkout(request):
                     else:
                         for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
-                                order=order,
+                                order_number=order,
                                 product=product,
                                 quantity=quantity,
-                                product_size=size
+                                product_size=size,
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, (
-                        "Unfortunately one of your selected products wasn't found in our database. "
-                        "Please contact us for assistance."
+                    messages.error(request,
+                                   "Unfortunately one of your selected products wasn't found in our database. "
+                                   "Please contact us for assistance."
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
-                    
+
             request.session['save_info'] = 'save_info' in request.POST
-            return redirect(reverse('checkout_success'), args=[order.order_number])
+            return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, "There was an error with your form. Please double check your information.")
     else:
