@@ -8,6 +8,16 @@
     border: 1px solid #000;
 }
 
+select,
+select option{
+    color:black;
+}
+
+select:invalid,
+select option[value=""]{
+    color: grey !important;
+}
+
 #card-errors{
     min-height: fit-content;
 }
