@@ -15,20 +15,30 @@ body{
     display: flex;
 }
 
-.overlay{
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: white;
-    z-index: -1;
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
 }
 
 .container{
     margin: 0 10px 0 10px;
     max-width: 1280px;
     width: 90%;
+}
+
+.logo-font {
+    text-transform: uppercase;
+    margin-bottom: 0px;
+}
+
+.login-form-container{
+    display: flex;
+    justify-content: center;
 }
 
 #id_product_size{

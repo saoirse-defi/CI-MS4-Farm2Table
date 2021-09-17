@@ -1,13 +1,16 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% load account %}
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
 
-{% block content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
+{% block inner_content %}
+<hr>
+<h3 class="logo-font">{% trans "Email Confirmation" %}</h3>
+<hr>
 
 {% if confirmation %}
 
@@ -17,6 +20,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
+{% form|crispy_forms_tags %}
     <button type="submit">{% trans 'Confirm' %}</button>
 </form>
 
