@@ -193,10 +193,13 @@
     </div>
     <div class="row">
         <div class="col s12 l7 right">
-            <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn-small">
-                <span class="material-icons-outlined">card_giftcard</span>
-                <span>Check out our latest deals!</span>
-            </a>
+            {% if from_profile %}
+            {% else %}
+                <a href="{% url 'profile' %}" class="btn-small">
+                    <span class="material-icons-outlined">chevron_left</span>
+                    <span>Back to profile</span>
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
