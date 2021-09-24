@@ -1,0 +1,1 @@
+Farm2Table order confirmation {{ order.order_number }}
