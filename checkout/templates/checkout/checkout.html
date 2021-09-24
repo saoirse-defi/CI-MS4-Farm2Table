@@ -70,7 +70,7 @@
                 <div class="submit-button">
                     <p class="small">
                         <span class="material-icons-outlined">credit_card</span>
-                        <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                        <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
                     </p>
                     <a href="{% url 'view_bag' %}" class="btn-small">
                         <span class="material-icons-outlined">chevron_left</span>
@@ -112,7 +112,7 @@
                             <p>Qty: {{ item.quantity }}</p>
                         </div>
                         <div class="col s2">
-                            <p>${{ item.product.price|calc_subtotal:item.quantity }}</p>
+                            <p>€{{ item.product.price|calc_subtotal:item.quantity }}</p>
                         </div>
                     </div>
                 {% endfor %}
@@ -125,9 +125,9 @@
                         <p>Grand Total:</p>
                     </div>
                     <div class="col s2">
-                        <p>${{ total|floatformat:2 }}</p>
-                        <p>${{ delivery|floatformat:2 }}</p>
-                        <p><strong>${{ grand_total|floatformat:2 }}</strong></p>
+                        <p>€{{ total|floatformat:2 }}</p>
+                        <p>€{{ delivery|floatformat:2 }}</p>
+                        <p><strong>€{{ grand_total|floatformat:2 }}</strong></p>
                     </div>
                 </div>
         </div>
