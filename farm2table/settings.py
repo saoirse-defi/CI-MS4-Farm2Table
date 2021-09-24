@@ -39,9 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'farm2table',
     'home',
     'products',
@@ -49,6 +46,10 @@ INSTALLED_APPS = [
     'checkout',
     'profile',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
     #other
     'crispy_forms',
     'crispy_forms_materialize',
