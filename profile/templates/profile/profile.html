@@ -9,7 +9,7 @@
 {% block page_header %}
 <div class="container">
     <div class="row">
-        <div class="col"
+        <div class="col"></div>
     </div>
 </div>
 {% endblock %}
@@ -25,15 +25,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12 l6">
+        <div class="col s12 l5">
             <p>Delivery Information:</p>
             <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <a class="btn-small">Update Info</a>
+                <button class="btn-small" type="submit">Save</button>
             </form>
         </div>
-        <div class="col s12 l6">
+        <div class="col s12 l7">
             <p>Order History:</p>
             <div class="order-history table-responsive">
                 <table class="table">
@@ -61,6 +61,7 @@
                                             Size {{item.product.size|upper}}
                                         {% endif %}{{item.product.name}} x{{item.quantity}}
                                     </li>
+                                    {% endfor %}
                                 </ul>
                             </td>
                             <td>${{ order.grand_total }}</td>
