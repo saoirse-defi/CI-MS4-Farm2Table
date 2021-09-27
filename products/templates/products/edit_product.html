@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bag_tools %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container responsive">
+    <div class="row">
+        <div class="col s12 l6">
+            <hr>
+            <h2>Product Management</h2>
+            <h5>Edit a product from your marketplace.</h5>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 l6">
+            <form method="POST" action="{% url 'edit_product' product.id %}" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="right">
+                    <a class="btn-small black" href="{% url 'products' %}">Cancel</a>
+                    <button class="btn-small black" type="submit">Edit Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}
