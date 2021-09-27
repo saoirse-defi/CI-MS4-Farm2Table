@@ -41,11 +41,11 @@
                     <tr>
                         {% if item.product.image %}
                         <td>
-                            <img class="img-responsive" src="{{ item.product.image.url }}">
+                            <img class="img-responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                         </td>
                         {% else %}
                         <td>
-                            <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png">
+                            <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                         </td>
                         {% endif %}
                         <td>
