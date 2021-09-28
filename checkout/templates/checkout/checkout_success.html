@@ -20,13 +20,77 @@
     <div class="row">
         <div class="col s12">
             <hr>
-            <h2>Thank You!</h2>
+            <div class="row">
+                <div class="col s6">
+                    <h2>Thank You!</h2>
+                </div>
+                <div class="col s6">
+                    {% if from_profile %}
+                        <a href="{% url 'profile' %}" class="btn-small">
+                            <span class="material-icons-outlined">chevron_left</span>
+                            <span>Back to profile</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'products' %}" class="btn btn-black rounded-0 my-2">
+                            <span class="icon mr-2">
+                                <i class="fas fa-gifts"></i>
+                            </span>
+                            <span class="text-uppercase">Now check out the latest deals!</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            
             <hr>
             <p>Your order confirmation details are outlined below. A confirmation email will be sent to <strong>{{order.email}}</strong>.</p>
         </div>
     </div>
     <div class="row">
-        <div class="col s12 l6">
+        <div class="col s12 l4">
+            <div class="order-confirmation-wrapper">
+                <div class="row">
+                    <div class="col">
+                        <small class="text-muted">Order Info:</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m4">
+                        <p><strong>Order Number</strong></p>
+                    </div>
+                    <div class="col s12 m8 right">
+                        <p class="mb-0">{{ order.order_number }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m4">
+                        <p><strong>Order Date</strong></p>
+                    </div>
+                    <div class="col s12 m8 right">
+                        <p class="mb-0">{{ order.date }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <small class="text-muted">Order Details:</small>
+                    </div>
+                </div>
+
+                {% for item in order.lineitems.all %}
+                <div class="row">
+                    <div class="col s12 m4">
+                        <p class><strong>{{ item.product.name }}{% if item.product_size %} Weight: {{ item.product_size|upper }}g{% endif %}</strong></p>
+                    </div>
+                    <div class="col s12 m8 right">
+                        <p class="small mb-0">{{ item.quantity }} @ ${{ item.product.price }} each</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col s12 l4">
             <div class="row">
                 <div class="col">
                     <small class="text-muted">Delivering To:</small>
@@ -110,7 +174,8 @@
                     <p class="mb-0">{{ order.phone_number }}</p>
                 </div>
             </div>
-
+        </div>
+        <div class="col s12 l4">
             <div class="row">
                 <div class="col">
                     <small class="text-muted">Billing Info:</small>
@@ -144,50 +209,6 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 l6">
-            <div class="order-confirmation-wrapper">
-                <div class="row">
-                    <div class="col">
-                        <small class="text-muted">Order Info:</small>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 m4">
-                        <p><strong>Order Number</strong></p>
-                    </div>
-                    <div class="col s12 m8 right">
-                        <p class="mb-0">{{ order.order_number }}</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 m4">
-                        <p><strong>Order Date</strong></p>
-                    </div>
-                    <div class="col s12 m8 right">
-                        <p class="mb-0">{{ order.date }}</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <small class="text-muted">Order Details:</small>
-                    </div>
-                </div>
-
-                {% for item in order.lineitems.all %}
-                <div class="row">
-                    <div class="col s12 m4">
-                        <p class><strong>{{ item.product.name }}{% if item.product_size %} Weight: {{ item.product_size|upper }}g{% endif %}</strong></p>
-                    </div>
-                    <div class="col s12 m8 right">
-                        <p class="small mb-0">{{ item.quantity }} @ ${{ item.product.price }} each</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
     </div>
     <div class="row">
        <div class="col s12"></div>
@@ -195,10 +216,16 @@
     <div class="row">
         <div class="col s12 l7 right">
             {% if from_profile %}
-            {% else %}
                 <a href="{% url 'profile' %}" class="btn-small">
                     <span class="material-icons-outlined">chevron_left</span>
                     <span>Back to profile</span>
+                </a>
+            {% else %}
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
+                    <span class="icon mr-2">
+                        <i class="fas fa-gifts"></i>
+                    </span>
+                    <span class="text-uppercase">Now check out the latest deals!</span>
                 </a>
             {% endif %}
         </div>
