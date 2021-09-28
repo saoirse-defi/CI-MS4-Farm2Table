@@ -6,6 +6,21 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import ProductForm
 
+# Custom Decorators
+
+
+def superuser_required(func):
+    def wrapper(request, *args, **kwargs):
+        if not request.user.is_superuser:
+            messages.error(request, 'Sorry only store owners can do that.')
+            return redirect(reverse('products'))
+        else:
+            return func(request)
+    return wrapper
+
+
+# Product Views
+
 
 def all_products(request):
     """ A view to handle all products """
@@ -69,6 +84,8 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@login_required
+@superuser_required
 def add_product(request):
     """ Add a product to the store. """
     if request.method == 'POST':
@@ -90,6 +107,7 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_product(request, product_id):
     """ Edits an existing product the profile has created. """
     product = get_object_or_404(Product, pk=product_id)
@@ -113,6 +131,7 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
     product = get_object_or_404(Product, pk=product_id)
