@@ -36,7 +36,7 @@
                         {% else %}
                             {{ field }}
                         {% endif %}
-                    {% endfor %}
+                {% endfor %}
                 <div class="right">
                     <a class="btn-small black" href="{% url 'products' %}">Cancel</a>
                     <button class="btn-small black" type="submit">Edit Product</button>
@@ -48,4 +48,11 @@
 {% endblock %}
 
 {% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+    $('#new-image').change(function(){
+        var file = $('#new-image')[0].files[0];
+        $('#filename').text(`Image name will be set to ${file.name}`)
+    });
+    </script>
 {% endblock %}
