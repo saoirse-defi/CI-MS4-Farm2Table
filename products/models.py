@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from profile.models import UserProfile
 
 
 class Category(models.Model):
@@ -15,6 +17,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    seller = models.ForeignKey(User, null=False, blank=False, default=None, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)

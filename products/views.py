@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Product, Category
 from .forms import ProductForm
+from profile.models import UserProfile
 
 # Custom Decorators
 
@@ -85,13 +86,15 @@ def product_detail(request, product_id):
 
 
 @login_required
-@superuser_required
+#@superuser_required
 def add_product(request):
     """ Add a product to the store. """
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            product = form.save(commit=False)
+            product.seller_id = request.user.id
+            product.save()
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:

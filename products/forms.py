@@ -6,14 +6,14 @@ from .models import Product, Category
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('category', 'has_sizes', 'rating', 'sku')
+        exclude = ('seller', 'category', 'has_sizes', 'rating', 'sku')
 
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileUnit)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
-            'price': 'Price per 500g'
+            'price': 'Price per 500g' # not working
         }
 
         self.fields['name'].widget.attrs['autofocus'] = True

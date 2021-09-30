@@ -44,7 +44,7 @@
                     <small>No Rating</small>
                 {% endif %}
 
-                {% if request.user.is_superuser %}
+                {% if product.seller == request.user %}
                     <small>
                         <a class="btn-small" href="{% url 'edit_product' product.id %}">Edit</a>
                         <a class="btn-small red" href="{% url 'delete_product' product.id %}">Delete</a>
