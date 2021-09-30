@@ -49,7 +49,7 @@
               <form method="GET" action="{% url 'products' %}">
                 <div class="form-group">
                     <div class="form-control input-field" id="navbar-search">
-                        <input type="text" id="search-nav" name="search-nav" placeholder="Start searching for the freshest produce"/>
+                        <input type="text" id="q" name="q" placeholder="Start searching for the freshest produce"/>
                         <button class="waves-effect waves-light btn-small" type="submit">
                             <i class="material-icons-outlined">search</i>
                         </button>
@@ -146,6 +146,11 @@
     {% block postloadjs %}
 
     {% endblock %}
+    <script>
+        $(document).ready(function() {
+            $('select').formSelect();
+        });
+    </script>
     
 </body>
 </html>

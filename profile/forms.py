@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserProfile
+from localflavor.ie.forms import IECountySelect
 
 
 class UserProfileForm(forms.ModelForm):
@@ -23,6 +24,7 @@ class UserProfileForm(forms.ModelForm):
         }
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
+        #self.fields['county'] = IECountySelect()
 
         for field in self.fields:
             if field != 'default_country':
@@ -31,5 +33,5 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-            self.fields[field].widget.attrs['placeholder'] = False
+        self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+        self.fields[field].label = False
