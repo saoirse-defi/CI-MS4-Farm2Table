@@ -5,7 +5,7 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user', )
+        exclude = ('user', 'is_seller')
 
     def __init__(self, *args, **kwargs):
         """Adds placeholders and classes,
