@@ -29,7 +29,9 @@
             <p>Delivery Information:</p>
             <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {% for field in form %}
+                    {{ field | as_crispy_field }}
+                {% endfor %}
                 <button class="btn-small" type="submit">Save</button>
             </form>
         </div>
