@@ -10,10 +10,9 @@ from django_countries.fields import CountryField
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default
-    delivery information and order history
+    delivery information and order history.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_seller = models.BooleanField(default=False, null=False, blank=False)
     default_phone_number = models.CharField(max_length=20,
                                             null=True, blank=True)
     default_street_address1 = models.CharField(max_length=80,
@@ -31,6 +30,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class SellerProfile(UserProfile):
+    organic = models.BooleanField(default=False, null=False, blank=False)
+    seller_town = models.CharField(max_length=40,
+                                    null=True, blank=True)
+    seller_county = models.CharField(max_length=40,
+                                    null=True, blank=True)
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
 
 
 @receiver(post_save, sender=User)

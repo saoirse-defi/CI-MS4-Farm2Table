@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profile/css/profile.css' %}"/>
+    <link rel="stylesheet" href="{% static 'profile/static/css/profile.css' %}"/>
 {% endblock %}
 
 {% block page_header %}
@@ -16,11 +16,12 @@
 
 {% block content %}
 <div class="overlay"></div>
+{% if profile.is_seller %}
 <div class="container responsive">
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font">My Profile</h2>
+            <h2 class="logo-font">{{profile.user}}'s Profile</h2>
             <hr>
         </div>
     </div>
@@ -47,11 +48,11 @@
                             <th>Order Total</th>
                         </tr>
                     </thead>
-                    <tbody>`
+                    <tbody>
                         {% for order in orders %}
                         <tr>
                             <td>
-                                <a href="{% url 'order_history' order.order_number|truncatechars:6 %}"
+                                <a href="{% url 'order_history' order.order_number %}"
                                 title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
                             </td>
                             <td>{{ order.date }}</td>
@@ -75,6 +76,68 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="container responsive">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font">{{profile.user}}'s Profile</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l5">
+            <p>Delivery Information:</p>
+            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ field | as_crispy_field }}
+                {% endfor %}
+                <button class="btn-small" type="submit">Save</button>
+            </form>
+        </div>
+        <div class="col s12 l7">
+            <p>Order History:</p>
+            <div class="order-history table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Number</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Order Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'order_history' order.order_number %}"
+                                title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
+                            </td>
+                            <td>{{ order.date }}</td>
+                            <td>
+                                <ul>
+                                    {% for item in order.lineitems.all %}
+                                    <li class="small">
+                                        {% if item.product.has_sizes %}
+                                            Size {{item.product.size|upper}}
+                                        {% endif %}{{item.product.name}} x{{item.quantity}}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>${{ order.grand_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block postloadjs %}
