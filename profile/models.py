@@ -41,8 +41,8 @@ class SellerProfile(UserProfile):
                                     null=True, blank=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default="")
     image = OptimizedImageField(optimized_image_output_size=(400, 300),
-                                optimized_image_resize_method='cover')
-    
+                                optimized_image_resize_method='cover', null=True, blank=True)
+
 
 
 @receiver(post_save, sender=User)

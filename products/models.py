@@ -30,7 +30,7 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = OptimizedImageField(optimized_image_output_size=(300, 300),
-                                optimized_image_resize_method='thumbnail')
+                                optimized_image_resize_method='thumbnail', null=True, blank=True)
 
     def __str__(self):
         return self.name
