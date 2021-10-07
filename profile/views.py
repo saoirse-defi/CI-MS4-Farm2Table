@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -12,9 +12,7 @@ from products.models import Product
 def profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
-
-    products = Product.objects.all()
-    
+    orders = get_list_or_404(profile.orders.all()) 
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -26,7 +24,6 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    orders = profile.orders.all()
     template = "profile/profile.html"
     context = {
         'form': form,
