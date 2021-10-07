@@ -15,6 +15,10 @@ body{
     display: flex;
 }
 
+.desktop-only-item a{
+    width: 100px;
+}
+
 .overlay {
 	height: 100%;
 	width: 100%;
