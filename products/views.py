@@ -141,3 +141,15 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, f'{product.name} has been removed from the marketplace.')
     return redirect(reverse('products'))
+
+
+def seller_product_management(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    products = Product.objects.all()
+
+    template = 'products/seller-product-management.html'
+    context = {
+        'profile': profile,
+        'products': products,
+    }
+    return render(request, template, context)
