@@ -105,6 +105,27 @@
                     </a>
                 </li>
             </ul>
+            <a class="modal-trigger" href="#modal1">Modal</a>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Shopping Cart</h4>
+                  <a href="{% url 'view_bag' %}">
+                    <div class="center-align">
+                        <p>
+                            {% if grand_total %}
+                            €{{ grand_total|floatformat:2 }}
+                            {% else %}
+                            €0.00
+                            {% endif %}
+                        </p>
+                    </div>
+                  </a>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'view_bag' %}">Cart</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+              </div>
           </div>
       </div>
       <div class="row" id="categories-row">

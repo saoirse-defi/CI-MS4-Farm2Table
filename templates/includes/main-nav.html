@@ -2,6 +2,38 @@
   <nav>
     <ul>
       <li>
+        <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
+        <ul class="dropdown-content" id="category-dropdown">
+          <li>
+            <a href="{% url 'products' %}?category=fruit">Fruits</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=vegetables">Vegetables</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=berries">Berries</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=herbs">Herbs</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=meat">Red Meat</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=poultry">Poultry</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=fowl">Fowl</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=fish">Fish</a>
+          </li>
+          <li>
+            <a href="{% url 'products' %}?category=seafood">Shellfish</a>
+          </li>
+        </ul>
+      </li>
+      <li>
         <a class='dropdown-trigger btn-small' href='#' data-target='sorting-dropdown'>All Products</a>
         <ul class="dropdown-content" id="sorting-dropdown">
           <li>
@@ -15,19 +47,32 @@
           </li>
         </ul>
       </li>
-      <li>
-        <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
-        <ul class="dropdown-content" id="category-dropdown">
-          <li>
-            <a href="{% url 'products' %}?category=berries">Berries</a>
-          </li>
-          <li>
-            <a href="{% url 'products' %}?category=fruit">Fruits</a>
-          </li>
-          <li>
-            <a href="{% url 'products' %}?category=vegetables">Vegetables</a>
-          </li>
-        </ul>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=fruit">Fruits</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=vegetables">Vegetables</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=berries">Berries</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=herbs">Herbs</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=meat">Red Meat</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=poultry">Poultry</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=fowl">Fowl</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=fish">Fish</a>
+      </li>
+      <li class="desktop-only-item">
+        <a class="btn-small" href="{% url 'products' %}?category=seafood">Shellfish</a>
       </li>
     </ul>
   </nav>
