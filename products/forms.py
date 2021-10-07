@@ -13,10 +13,10 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
-            'price': 'Price per 500g',
+            'price': 'Price per 250g',
             'name': 'Product Name',
             'description': 'Write a short description of your product...',
-            'image_url': 'Image URL'
+            'image_url': 'Image URL',
         }
 
         self.fields['name'].widget.attrs['autofocus'] = True

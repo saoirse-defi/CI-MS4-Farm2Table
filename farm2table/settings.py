@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'localflavor',
-    
+    'image_optimizer',
+
     #other
     'crispy_forms',
     'crispy_forms_materialize',
@@ -69,6 +70,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'farm2table.urls'
 
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+OPTIMIZED_IMAGE_METHOD = 'pillow'
 
 TEMPLATES = [
     {

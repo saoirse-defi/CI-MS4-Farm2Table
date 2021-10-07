@@ -41,6 +41,11 @@ body{
     justify-content: center;
 }
 
+.card{
+    width: 300px;
+    height: 450px;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
