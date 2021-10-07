@@ -46,6 +46,18 @@ body{
     height: 450px;
 }
 
+.admin-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#product-detail-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
@@ -143,5 +155,11 @@ body{
 @media (min-width: 1200px) {
     .container{
         max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only-item{
+        display: none;
     }
 }

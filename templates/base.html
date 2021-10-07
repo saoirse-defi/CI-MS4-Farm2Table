@@ -65,7 +65,7 @@
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
                         <li>
-                            <a href="{% url 'add_product' %}">Product Management</a>
+                            <a href="{% url 'seller_product_management' %}">Product Management</a>
                         </li>
                     {% endif %}
                         <li>

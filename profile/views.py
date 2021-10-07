@@ -12,7 +12,7 @@ from products.models import Product
 def profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
-    orders = get_list_or_404(profile.orders.all()) 
+    orders = Order.objects.all()
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
