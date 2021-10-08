@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profile',
+    'store',
 
     'allauth',
     'allauth.account',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     #other
     'crispy_forms',
     'crispy_forms_materialize',
+    'django_iban',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTH_USER_MODEL = 'profile.Buyer'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

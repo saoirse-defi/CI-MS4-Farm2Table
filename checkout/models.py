@@ -16,11 +16,12 @@ class Order(models.Model):
                                      on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='buyers')
-    seller = models.ForeignKey(SellerProfile,
+    seller = models.ForeignKey(SellerProfile,  # needs SellerProfile to work before it will get added
                                on_delete=models.CASCADE,
                                null=True, blank=True,
                                related_name='sellers')
-    rating = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    rating = models.DecimalField(max_digits=3, decimal_places=2,
+                                 null=True, blank=True)
     full_name = models.CharField(max_length=254, null=False, blank=False)
     email = models.EmailField(max_length=54, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
