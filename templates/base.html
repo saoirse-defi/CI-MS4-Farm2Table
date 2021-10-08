@@ -75,14 +75,14 @@
                             <a href="{% url 'add_product' %}">Create a Listing</a>
                         </li>
                         <li>
-                            <a href="{% url 'account_logout' %}">Logout</a>
+                            <a href="{% url 'logout' %}">Logout</a>
                         </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'account_signup' %}">Register</a>
+                        <a href="{% url 'signup' %}">Register</a>
                     </li>
                     <li>
-                        <a href="{% url 'account_login' %}">Login</a> 
+                        <a href="{% url 'login' %}">Login</a>
                     </li>
                 {% endif %}
             </ul>
