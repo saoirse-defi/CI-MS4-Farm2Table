@@ -1,11 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from image_optimizer.fields import OptimizedImageField
-
 from django_countries.fields import CountryField
-
 
 
 class UserProfile(models.Model):
@@ -44,6 +42,18 @@ class SellerProfile(UserProfile):
                                 optimized_image_resize_method='cover',
                                 null=True, blank=True)
 
+
+class County(models.Model):
+    verbose_name_plural = 'Counties'
+
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
 
 
 @receiver(post_save, sender=User)
