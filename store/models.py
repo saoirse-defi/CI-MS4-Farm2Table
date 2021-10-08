@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
@@ -5,12 +6,13 @@ from django.dispatch import receiver
 from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
 
+
 # Create your models here.
 
 
 class Store(models.Model):
-    store_id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    store_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, null=True, blank=False, default=None, on_delete=models.CASCADE)
     name = models.CharField(max_length=254)
     email = models.CharField(max_length=254)
     phone_number = models.CharField(max_length=20,

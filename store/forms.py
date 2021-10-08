@@ -6,8 +6,8 @@ from django_iban.fields import IBANField
 
 from .models import Store
 from profile.models import County
-from localflavor.ie.forms import (IECountySelect, 
-                                  EircodeField, 
+from localflavor.ie.forms import (IECountySelect,
+                                  EircodeField,
                                   IE_COUNTY_CHOICES)
 
 
@@ -17,26 +17,20 @@ User = get_user_model()
 class StoreRegisterForm(forms.ModelForm):
     class Meta:
         model = Store
-        exclude = ('iban', 'organic',)
+        exclude = ('iban', 'user', 'rating', 'organic', 'street_address2')
 
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
     phone_number = forms.CharField(label='Phone')
     street_address1 = forms.CharField()
-    street_address2 = forms.CharField()
     town = forms.CharField()
     county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
     postcode = EircodeField()
-    organic = forms.BooleanField()
-    IBANField(enforce_database_constraint=True, unique=True)
-
 
     def clean(self, *args, **kwargs):
         counties = County.objects.all()
         friendly_counties = [(c.id, c.get_friendly_name()) for c in counties]
         self.fields['county'].choices = friendly_counties
-
-        self.fields['organic'].initial = False
 
         email = self.cleaned_data.get('email')
         email_qs = User.objects.filter(email=email)
