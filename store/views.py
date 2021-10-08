@@ -10,11 +10,11 @@ from .forms import StoreRegisterForm
 @login_required
 def create_store(request):
     if request.method == 'POST':
-        form = StoreRegisterForm(request.POST, request.FILES)
+        form = StoreRegisterForm(request.POST)
         if form.is_valid():
             store = form.save()
             messages.success(request, 'Store Organisation Created!')
-            return redirect(reverse('store', args=[store.id]))
+            return redirect('/')
         else:
             messages.error(request, 'Organisation creation failed, please check form details.')
     else:

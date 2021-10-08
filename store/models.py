@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
-from django_iban.fields import IBANField
 
 # Create your models here.
 
@@ -32,5 +31,8 @@ class Store(models.Model):
                                 optimized_image_resize_method='cover',
                                 null=True, blank=True)
     organic = models.BooleanField(default=False, null=False, blank=False)
-    iban = IBANField(enforce_database_constraint=True, unique=True)
+    iban = models.CharField(max_length=64, null=True, blank=True)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return self.name

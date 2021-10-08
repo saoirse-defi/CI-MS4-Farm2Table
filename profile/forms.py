@@ -76,8 +76,6 @@ class UserProfileForm(forms.ModelForm):
             'default_postcode': 'Eircode',
         }
 
-        # county_choices = County.objects.all()
-
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
 
         #for field in self.fields:
