@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profile/static/css/store.css' %}"/>
+{% endblock %}
+
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container responsive">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font">{{store.name}}'s Dashboard</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l5">
+            <p>Personal Information:</p>
+            <a class="waves-effect waves-light btn-small modal-trigger" href="#organic-seller-request">Become Certified Organic</a>
+            <div id="organic-seller-request" class="modal">
+                <!--Enter organic request form here-->
+            </div>
+            <div class="store-details">
+                <h5><small>Email: </small>{{ store.user }}</h5>
+                <h5><small>Phone: </small>{{ store.phone_number }}</h5>
+                <h5><small>Address: </small>{{ store.street_address1 }}</h5>
+                <h5><small>Town: </small>{{ store.town }}</h5>
+                <h5><small>County: </small>{{ store.county }}</h5>
+                <h5><small>Eircode: </small>{{ store.postcode }}</h5>
+            </div>
+        </div>
+        <div class="col s12 l7">
+            <p>Order History:</p>
+            <div class="order-history table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Number</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Order Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            {% if order.user_profile == profile.user %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'order_history' order.order_number %}"
+                                        title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
+                                    </td>
+                                    <td>{{ order.date }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for item in order.lineitems.all %}
+                                            <li class="small">
+                                                {% if item.product.has_sizes %}
+                                                    Size {{item.product.size|upper}}
+                                                {% endif %}{{item.product.name}} x{{item.quantity}}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>${{ order.grand_total }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+
+    
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_el.js' %}"></script>
+{% endblock %}

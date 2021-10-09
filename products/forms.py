@@ -7,7 +7,7 @@ from .models import Product, Category
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('seller', 'has_sizes', 'rating', 'sku')
+        exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
 
     image = forms.ImageField(label='Image', required=False, 
                              widget=CustomClearableFileUnit)
@@ -40,7 +40,7 @@ class ProductForm(forms.ModelForm):
             self.fields[field].label = False
 
         categories = Category.objects.all()
-        friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
+        friendly_names = [(c.category_id, c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = friendly_names
         for field_name, field in self.fields.items():

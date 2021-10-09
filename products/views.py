@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import ProductForm
 from profile.models import UserProfile
+from store.models import Store
 
 # Custom Decorators
 
@@ -17,6 +18,18 @@ def superuser_required(func):
             return redirect(reverse('products'))
         else:
             return func(request)
+    return wrapper
+
+
+def store_required(func):
+    def wrapper(request, *args, **kwargs):
+        stores = Store.objects.all()
+        for store in stores:
+            if store.user == request.user:
+                return func(request)
+            else:
+                messages.error(request, "Only store owners can create & sell products.")
+                return redirect(reverse('products'))
     return wrapper
 
 
@@ -85,18 +98,20 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+#@store_required
 @login_required
 #@superuser_required
 def add_product(request):
     """ Add a product to the store. """
+    store = get_object_or_404(Store, user=request.user)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
-            product.seller_id = request.user.id
+            product.seller_store = store
             product.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            return redirect('/')
         else:
             messages.error(request,
                            'Failed to add product. Please ensure the form is valid.')

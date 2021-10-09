@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from image_optimizer.fields import OptimizedImageField
 
 from profile.models import UserProfile
+from store.models import Store
 
 
 class Category(models.Model):
@@ -21,9 +22,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    seller = models.ForeignKey(User, null=False, blank=False, default=None, on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    seller_store = models.ForeignKey(Store, null=True, blank=False, default=None, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     description = models.TextField()
     organic = models.BooleanField(default=False, null=False, blank=False)

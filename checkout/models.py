@@ -8,6 +8,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profile.models import UserProfile, SellerProfile
+from store.models import Store
 
 
 class Order(models.Model):
@@ -16,10 +17,10 @@ class Order(models.Model):
                                      on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='buyers')
-    seller = models.ForeignKey(SellerProfile,  # needs SellerProfile to work before it will get added
-                               on_delete=models.CASCADE,
-                               null=True, blank=True,
-                               related_name='sellers')
+    seller_store = models.ForeignKey(Store,
+                                     on_delete=models.CASCADE,
+                                     null=True, blank=True,
+                                     related_name='sellers')
     rating = models.DecimalField(max_digits=3, decimal_places=2,
                                  null=True, blank=True)
     full_name = models.CharField(max_length=254, null=False, blank=False)

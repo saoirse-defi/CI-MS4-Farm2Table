@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .forms import StoreRegisterForm
 from profile.models import UserProfile
+from .models import Store
 
 # Create your views here.
 
@@ -30,5 +31,12 @@ def create_store(request):
     return render(request, template, context)
 
 
-def view_store(request):
-    store = get_object_or_404(UserProfile, user=request.user)
+def view_store(request, store_id):
+    store = get_object_or_404(Store, pk=store_id)
+
+    template = 'store/store.html'
+    context = {
+        'store': store,
+    }
+    return render(request, template, context)
+
