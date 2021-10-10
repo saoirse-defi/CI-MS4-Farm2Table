@@ -31,18 +31,6 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class SellerProfile(UserProfile):
-    organic = models.BooleanField(default=False, null=False, blank=False)
-    seller_town = models.CharField(max_length=40,
-                                    null=True, blank=True)
-    seller_county = models.CharField(max_length=40,
-                                    null=True, blank=True)
-    rating = models.DecimalField(max_digits=3, decimal_places=2, default="")
-    image = OptimizedImageField(optimized_image_output_size=(400, 300),
-                                optimized_image_resize_method='cover',
-                                null=True, blank=True)
-
-
 class County(models.Model):
     verbose_name_plural = 'Counties'
 

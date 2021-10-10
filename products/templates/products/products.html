@@ -31,11 +31,11 @@
                     <div class="col">
                         <div class="card">
                             {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
+                            <a href="{% url 'product_detail' product.sku %}">
                                 <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                             {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
+                            <a href="{% url 'product_detail' product.sku %}">
                                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             </a>
                             {% endif %}

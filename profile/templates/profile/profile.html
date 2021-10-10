@@ -27,6 +27,11 @@
     <div class="row">
         <div class="col s12 l5">
             <p>Personal Information:</p>
+            {% if store %}
+                <a class="waves-effect waves-light btn-small" href="{% url 'view_store' store.store_id %}">Sales Dashboard</a>
+            {% else %}
+                <a class="waves-effect waves-light btn-small" href="{% url 'create_store' %}">Start Selling</a>
+            {% endif %}
             <a class="waves-effect waves-light btn-small modal-trigger" href="#edit-personal-details">Edit Profile</a>
             <div id="edit-personal-details" class="modal">
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">

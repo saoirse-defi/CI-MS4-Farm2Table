@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
@@ -13,6 +13,7 @@ from .models import UserProfile
 from .forms import UserProfileForm, UserLoginForm, UserRegisterForm
 from checkout.models import Order
 from products.models import Product
+from store.models import Store
 
 
 def login_view(request):
@@ -22,7 +23,7 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect('/')
+        return redirect(reverse('profile'))
 
     context = {
         'form': form,
@@ -39,7 +40,7 @@ def signup_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
-        return redirect('/')
+        return redirect(reverse('profile'))
 
     context = {
         'form': form,
@@ -56,7 +57,12 @@ def logout_view(request):
 def profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
+    stores = Store.objects.all()
     orders = Order.objects.all()
+
+    for store in stores:
+        if store.user == request.user:
+            my_store = store
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -72,6 +78,7 @@ def profile(request):
     context = {
         'form': form,
         'orders': orders,
+        'store': store,
         'on_profile_page': True,
         'profile': profile,
     }
