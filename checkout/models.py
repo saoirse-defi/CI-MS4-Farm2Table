@@ -7,7 +7,7 @@ from farm2table import settings
 from django_countries.fields import CountryField
 
 from products.models import Product
-from profile.models import UserProfile, SellerProfile
+from profile.models import UserProfile
 from store.models import Store
 
 

@@ -58,10 +58,10 @@
                             <p>€{{ item.product.price }}</p>
                         </td>
                         <td>
-                            <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+                            <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.product_id %}">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item-id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}"/>
+                                    <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item-id="{{ item.product_id }}" id="id_qty_{{ item.product_id }}"/>
                                 </div>
                                 {% if item.product.has_sizes %}
                                 <input type="hidden" name="product_size" value="{{ item.size }}">
@@ -73,12 +73,12 @@
                             €{{ item.product.price|calc_subtotal:item.quantity|calc_total_with_size:item.size}}
                         </td>
                         <td>
-                            <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.item_id %}">
+                            <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.product_id %}">
                                 {% csrf_token %}
                                 {% if item.product.has_sizes %}
                                 <input type="hidden" name="product_size" value="{{ item.size }}">
                                 {% endif %}
-                                <button class=" btn-small remove-item" id="remove_{{ item.item_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
+                                <button class=" btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
                             </form>
                         </td>
                     </tr>

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'checkout',
     'profile',
     'store',
+    'wishlist',
 
     'allauth',
     'allauth.account',

@@ -29,7 +29,7 @@ def store_required(func):
                 return func(request)
             else:
                 messages.error(request, "Only store owners can create & sell products.")
-                return redirect(reverse('products'))
+                return redirect(reverse('profile'))
     return wrapper
 
 
@@ -98,25 +98,29 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-#@store_required
+@store_required
 @login_required
 #@superuser_required
 def add_product(request):
     """ Add a product to the store. """
-    store = get_object_or_404(Store, user=request.user)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.seller_store = store
-            product.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect('/')
-        else:
-            messages.error(request,
-                           'Failed to add product. Please ensure the form is valid.')
-    else:
-        form = ProductForm()
+    stores = Store.objects.all()
+
+    for store in stores:
+        if store.user == request.user:
+            my_store = store
+            if request.method == 'POST':
+                form = ProductForm(request.POST, request.FILES)
+                if form.is_valid():
+                    product = form.save(commit=False)
+                    product.seller_store = my_store
+                    product.save()
+                    messages.success(request, 'Successfully added product!')
+                    return redirect(reverse('product_detail', args=[product.sku, ]))
+                else:
+                    messages.error(request,
+                                   'Failed to add product. Please ensure the form is valid.')
+            else:
+                form = ProductForm()
 
     template = 'products/add_product.html'
     context = {
