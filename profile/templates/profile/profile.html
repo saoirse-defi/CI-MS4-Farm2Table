@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col s12 l5">
             <p>Personal Information:</p>
-            {% if store %}
+            {% if store is not None %}
                 <a class="waves-effect waves-light btn-small" href="{% url 'view_store' store.store_id %}">Sales Dashboard</a>
             {% else %}
                 <a class="waves-effect waves-light btn-small" href="{% url 'create_store' %}">Start Selling</a>
@@ -71,7 +71,7 @@
                     </thead>
                     <tbody>
                         {% for order in orders %}
-                            {% if order.user_profile == profile.user %}
+                            {% if order.user_profile == profile %}
                                 <tr>
                                     <td>
                                         <a href="{% url 'order_history' order.order_number %}"

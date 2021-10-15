@@ -57,12 +57,14 @@ def logout_view(request):
 def profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
-    stores = Store.objects.all()
-    orders = Order.objects.all()
 
-    for store in stores:
-        if store.user == request.user:
-            my_store = store
+    try:
+        store = Store.objects.get(user=request.user)
+    except Exception as e:
+        store = None
+        print(e)
+
+    orders = Order.objects.all()
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
