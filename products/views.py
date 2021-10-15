@@ -21,7 +21,7 @@ def superuser_required(func):
     return wrapper
 
 
-def store_required(func):
+def store_required(func): # not working properly
     def wrapper(request, *args, **kwargs):
         stores = Store.objects.all()
         for store in stores:
@@ -98,7 +98,7 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-@store_required
+#@store_required
 @login_required
 #@superuser_required
 def add_product(request):
