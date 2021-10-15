@@ -58,7 +58,7 @@
                             <p>€{{ item.product.price }}</p>
                         </td>
                         <td>
-                            <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.product_id %}">
+                            <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.product.sku %}">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item-id="{{ item.product_id }}" id="id_qty_{{ item.product_id }}"/>
@@ -73,7 +73,7 @@
                             €{{ item.product.price|calc_subtotal:item.quantity|calc_total_with_size:item.size}}
                         </td>
                         <td>
-                            <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.product_id %}">
+                            <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.product.sku %}">
                                 {% csrf_token %}
                                 {% if item.product.has_sizes %}
                                 <input type="hidden" name="product_size" value="{{ item.size }}">
