@@ -98,7 +98,7 @@
                 {% for item in bag_items %}
                     <div class="row">
                         <div class="col s2">
-                            <a href="{% url 'product_detail' item.product.id %}">
+                            <a href="{% url 'product_detail' item.product.sku %}">
                                 {% if item.product.image %}
                                     <img src="{{ item.product.image.url }}" alt="{{ product.name }}">
                                 {% else %}
