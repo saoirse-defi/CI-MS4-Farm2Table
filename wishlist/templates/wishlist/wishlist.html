@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-responsive">
+    <div class="row">
+        {{ wishlist_all }}
+
+        {{ my_wishlist }}
+    </div>
+    <div class="row">
+        {% for item in my_wishlist %}
+            <div class="col">
+                <div class="card">
+                    {% if item.product.image %}
+                    <a href="{% url 'product_detail' item.product.sku %}">
+                        <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'product_detail' item.product.sku %}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <p>{{ item.product.name }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <p>€{{ item.product.price }}</p>
+                                {% if item.product.category %}
+                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
+                                    <span class="new badge black" data-badge-caption="{{ item.product.category.friendly_name }}"></span>
+                                </a>
+                                {% endif %}
+                                <br>
+                                {% if item.product.rating %}
+                                    <small><span class="material-icons-outlined">star</span>{{ item.product.rating }} / 5</small>
+                                {% else %}
+                                    <small>No Rating</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

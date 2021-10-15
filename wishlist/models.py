@@ -11,5 +11,5 @@ class Wishlist(models.Model):
     user = models.ForeignKey(UserProfile, null=False, blank=False, default=None, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
 
-    def __str__(self):
+    def __uuid__(self):
         return self.wishlist_id

@@ -13,6 +13,9 @@
 <div class="overlay"></div>
 <div class="container responsive">
     <div class="row">
+        <a class="btn-small wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">Add To Wishlist</a>
+    </div>
+    <div class="row">
         <div class="col">
             <div class="image-container">
                 {% if product.image %}
