@@ -84,6 +84,45 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <h3>Active Listings</h3>
+        {% for product in products %}
+            {% if product.seller_store == store %}
+            <div class="card">
+                {% if product.image %}
+                <a href="{% url 'product_detail' product.sku %}">
+                    <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+                {% else %}
+                <a href="{% url 'product_detail' product.sku %}">
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                </a>
+                {% endif %}
+                <div class="card-body">
+                    <p>{{ product.name }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <p>€{{ product.price }}</p>
+                            {% if product.category %}
+                            <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
+                            </a>
+                            {% endif %}
+                            <br>
+                            {% if product.rating %}
+                                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                            {% else %}
+                                <small>No Rating</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 
