@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from .forms import StoreRegisterForm
 from profile.models import UserProfile
 from .models import Store
+from checkout.models import Order
+from products.models import Product
 
 # Create your views here.
 
@@ -25,7 +27,7 @@ def create_store(request):
             store.user = request.user
             store.save()
             messages.success(request, 'Store Organisation Created!')
-            return redirect(reverse('view_store', args=[_store.store_id, ]))
+            return redirect(reverse('view_store', args=[store.store_id, ]))
         else:
             messages.error(request, 'Organisation creation failed, please check form details.')
     else:
@@ -41,11 +43,14 @@ def create_store(request):
 def view_store(request, store_id):
     store = get_object_or_404(Store, pk=store_id)
     orders = Order.objects.all()
+    products = Product.objects.all()
 
     template = 'store/store.html'
     context = {
         'store': store,
         'orders': orders,
+        'products': products,
     }
     return render(request, template, context)
+
 
