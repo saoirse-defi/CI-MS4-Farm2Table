@@ -40,10 +40,12 @@ def create_store(request):
 
 def view_store(request, store_id):
     store = get_object_or_404(Store, pk=store_id)
+    orders = Order.objects.all()
 
     template = 'store/store.html'
     context = {
         'store': store,
+        'orders': orders,
     }
     return render(request, template, context)
 
