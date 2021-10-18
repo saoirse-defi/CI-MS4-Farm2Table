@@ -106,8 +106,7 @@
             <div class="row">
                 <p>Active Listings</p>
                 <div class="container" id="seller-listings-grid">
-                {% for product in products %}
-                    {% if product.seller_store == store %}
+                {% for product in store_products %}
                     <div class="card" id="listing-card">
                         {% if product.image %}
                         <a href="{% url 'product_detail' product.sku %}">
@@ -140,7 +139,6 @@
                             </div>
                         </div>
                     </div>
-                    {% endif %}
                 {% endfor %}
             </div>
         </div>

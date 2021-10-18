@@ -46,11 +46,15 @@ def view_store(request, store_id):
     products = Product.objects.all()
 
     store_orders = []
+    store_products = []
 
     for order in orders:
         if order.seller_store == store:
             store_orders.append(order)
 
+    for product in products:
+        if product.seller_store == store:
+            store_products.append(product)
 
     template = 'store/store.html'
     context = {
