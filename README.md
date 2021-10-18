@@ -184,8 +184,19 @@ Other low level exceptions such as client-side errors (4xx) or server-side error
 
 Lottie provides lightweight animation hosting which provides significantly smaller footprint than conventional animations.
 
+## Django App Structure
 
-## Wireframes
+#### Profile App
+
+#### Store App
+
+#### Profile App
+
+#### Wishlist App
+
+#### Bag App
+
+#### Checkout App
 
 
 ### User Interaction
@@ -200,6 +211,19 @@ This section will outline the technologies & processes used in the design & impl
 For this project, the frontend framework I decided to use was Materialize. In my previous 2 milestone projects, I chose Bootstrap for the frontend, but I can now safely say that I much prefer the look of Materialize.
 As it is based on the principles of material design, all elements just seem that little bit sharper and current.
 
+### Database Design
+
+#### UserProfile Model
+
+#### Store Model
+
+#### Product Model
+
+#### Wishlist Model
+
+#### Order Model
+
+#### Order Line Item Model
 
 #### CRUD Operations
 
@@ -395,6 +419,8 @@ if __name__ == "__main__":
 
 [Displaying Information to the user efficiently](https://www.youtube.com/watch?v=Ox9MW9Z8srE&list=PLOPo1bGrV4htxbQCS3CPZ59O1kpPdE7PK)
 
+
+## Wireframes
 
 
 
