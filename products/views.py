@@ -35,10 +35,19 @@ def store_required(func): # not working properly
 
 # Product Views
 
-
 def all_products(request):
     """ A view to handle all products """
 
+    products = Product.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'products/products.html', context)
+
+
+def product_search(request):
     products = Product.objects.all()
     query = None
     categories = None
@@ -78,7 +87,7 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'products': products,
+        'products':products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
