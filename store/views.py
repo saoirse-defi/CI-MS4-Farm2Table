@@ -45,11 +45,26 @@ def view_store(request, store_id):
     orders = Order.objects.all()
     products = Product.objects.all()
 
+    if request.method == 'POST':
+        form = StoreRegisterForm(request.POST, instance=store)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Seller profile updated successfully.")
+        else:
+            messages.error(request, 'Seller profile Update Failed: Please ensure the form is valid.')
+    else:
+        form = StoreRegisterForm(instance=store)
+
+    #if request.method == 'POST':
+     #   obj, created = Store.update_or_create(image=request.POST.get('image'))
+      #  obj.save()
+
     template = 'store/store.html'
     context = {
         'store': store,
         'orders': orders,
         'products': products,
+        'form': form,
     }
     return render(request, template, context)
 
