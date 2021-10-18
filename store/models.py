@@ -29,6 +29,7 @@ class Store(models.Model):
                                    null=True, blank=True)
     postcode = models.CharField(max_length=20,
                                         null=True, blank=True)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = OptimizedImageField(optimized_image_output_size=(400, 300),
                                 optimized_image_resize_method='cover',
                                 null=True, blank=True)
