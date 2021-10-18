@@ -17,8 +17,14 @@ def create_store(request):
     if request.method == 'POST':
         stores = Store.objects.all()
         form = StoreRegisterForm(request.POST)
+        users = UserProfile.objects.all()
+
+        for user in users:
+            if user.user == request.user:
+                current_user = user
+
         for _store in stores:
-            if _store.user == request.user:
+            if _store.user == current_user:
                 messages.error(request, 'Organisation creation failed, you can only have 1 store linked to each account.')
                 return redirect(reverse('view_store', args=[_store.store_id, ]))
 
@@ -96,7 +102,7 @@ def local_producers(request):
     for store in stores:
         if store.county == profile.default_county:
             local_stores.append(store)
-    
+
     template = 'store/local_producers.html'
     context = {
         'profile': profile,
