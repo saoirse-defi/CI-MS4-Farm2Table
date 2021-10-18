@@ -6,13 +6,15 @@ from django.dispatch import receiver
 from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
 
+from profile.models import UserProfile
+
 
 # Create your models here.
 
 
 class Store(models.Model):
     store_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, null=True, blank=False, default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, null=True, blank=False, default=None, on_delete=models.CASCADE)
     name = models.CharField(max_length=254)
     email = models.CharField(max_length=254)
     phone_number = models.CharField(max_length=20,
