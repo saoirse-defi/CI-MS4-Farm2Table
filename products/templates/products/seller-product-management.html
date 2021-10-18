@@ -20,6 +20,9 @@
     <div class="row">
         <div class="product-container col">
             <div class="row">
+                {% if products|length == 0 %}
+                <h3>Your Store Currently Has No Items.</h3>
+                {% endif %}
                 {% for product in products %}
                     {% if product.seller_store == my_store %}
                     <div class="col">
