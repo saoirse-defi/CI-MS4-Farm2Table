@@ -4,7 +4,9 @@
       <li>
         <a class='dropdown-trigger btn-small' href='#' data-target='sorting-dropdown'>All Products</a>
         <ul class="dropdown-content" id="sorting-dropdown">
-          <li href="{% url 'local_producers' %}">Producers Near Me</li>
+          <li>
+            <a href="{% url 'local_producers' %}">Producers Near Me</a>
+          </li>
           <li>
             <a href="{% url 'products' %}?sort=location&direction=asc">By Location</a>
           </li>

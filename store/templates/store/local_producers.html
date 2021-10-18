@@ -15,12 +15,12 @@
     <div class="row">
         <div class="local-seller-container col">
             <div class="row">
-                {% for store in local_stores%}
+                {% for store in local_stores %}
                     <div class="col">
                         <div class="card">
-                            {% if store.image %}
+                            {% if store.image_url %}
                             <a href="{% url 'view_store' store.store_id %}">
-                                <img class="card-img responsive" src="{{ store.image.url }}" alt="{{ store.name }}">
+                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
                             </a>
                             {% else %}
                             <a href="{% url 'view_store' store.store_id %}">
