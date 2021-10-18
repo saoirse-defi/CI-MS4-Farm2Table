@@ -34,7 +34,7 @@
             {% endif %}
             <a class="waves-effect waves-light btn-small modal-trigger" href="#edit-personal-details">Edit Profile</a>
             <div id="edit-personal-details" class="modal">
-                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                <form action="{% url 'edit_profile' %}" method="POST" id="profile-update-form">
                     <div class="modal-content">
                         <h4>Edit Profile</h4>
                         <p>These delivery details will be used in your next order!</p>

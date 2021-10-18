@@ -23,7 +23,7 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect(reverse('profile'))
+        return redirect(reverse('view_profile'))
 
     context = {
         'form': form,
@@ -40,7 +40,7 @@ def signup_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
-        return redirect(reverse('profile'))
+        return redirect(reverse('view_profile'))
 
     context = {
         'form': form,
@@ -48,29 +48,58 @@ def signup_view(request):
     return render(request, "profile/signup.html", context)
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
 @login_required
-def profile(request):
+def view_profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
+    form = UserProfileForm(instance=profile)
+    users = UserProfile.objects.all()
+
+    for user in users:
+        if user.user == request.user:
+            current_user = user
 
     try:
-        store = Store.objects.get(user=request.user)
+        store = Store.objects.get(user=current_user)
     except Exception as e:
         store = None
         print(e)
 
     orders = Order.objects.all()
+    profile_orders = []
+
+    for order in orders:
+        if order.user_profile == profile:
+            profile_orders.append(order)
+
+    template = "profile/profile.html"
+    context = {
+        'profile_orders': profile_orders,
+        'store': store,
+        'on_profile_page': True,
+        'profile': profile,
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_profile(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, "Profile updated successfully.")
+            return redirect(reverse('view_profile'))
         else:
             messages.error(request, 'Profile Update Failed: Please ensure the form is valid.')
     else:
@@ -79,9 +108,6 @@ def profile(request):
     template = "profile/profile.html"
     context = {
         'form': form,
-        'orders': orders,
-        'store': store,
-        'on_profile_page': True,
         'profile': profile,
     }
 
