@@ -69,3 +69,20 @@ def view_store(request, store_id):
     return render(request, template, context)
 
 
+def local_producers(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    stores = Store.objects.all()
+
+    local_stores = []
+
+    for store in stores:
+        if store.county == profile.default_county:
+            local_stores.append(store)
+    
+    template = 'store/local_producers.html'
+    context = {
+        'profile': profile,
+        'local_stores': local_stores,
+    }
+    return render(request, template, context)
