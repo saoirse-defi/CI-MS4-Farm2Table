@@ -162,6 +162,10 @@ body{
     justify-content: center;
 }
 
+#listing-card{
+    
+}
+
 
 @media (min-width: 1200px) {
     .container{
