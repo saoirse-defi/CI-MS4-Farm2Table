@@ -28,30 +28,16 @@
                 </a>
                 {% endif %}
             </div>
-            {% if product.seller == request.user %}  <!--Only the ad creator has access to edit & delete-->
-                <div class="admin-btn-container">
-                    <small>
-                        <a class="btn-small" href="{% url 'edit_product' product.sku %}">
-                            <span class="material-icons-outlined">edit</span>
-                        </a>
-                        <a class="btn-small red" href="{% url 'delete_product' product.sku %}">
-                            <span class="material-icons-outlined">delete_outline</span>
-                        </a>
-                    </small>
-                </div>
-            {% endif %}
         </div>
         <div class="col s12 m4">
             <div class="product-details">
                 <p>{{ product.name }}</p>
                 <p>€{{ product.price }}</p>
-                {% if product.category %}
                 <small>
                     <a href="{% url 'products' %}?category={{ product.category.name }}">
                         <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
                     </a>
                 </small>
-                {% endif %}
                 <br>
                 {% if product.rating %}
                     <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
@@ -63,18 +49,18 @@
                     {% csrf_token %}
                     <div class="row">
                         {% with product.has_sizes as s %}
-                        {% if s %}
-                        <div class="col s12">
-                            <p><strong>Size:</strong></p>
-                            <select class="form-control" name="product_size" id="id_product_size">
-                                <option value="250">250g</option>
-                                <option value="500">500g</option>
-                                <option value="750">750g</option>
-                                <option value="1000">1kg</option>
-                                <option value="2000">2kg</option>
-                            </select>
-                        </div>
-                        {% endif %}
+                            {% if s %}
+                            <div class="col s12">
+                                <p><strong>Size:</strong></p>
+                                <select class="form-control" name="product_size" id="id_product_size">
+                                    <option value="250">250g</option>
+                                    <option value="500">500g</option>
+                                    <option value="750">750g</option>
+                                    <option value="1000">1kg</option>
+                                    <option value="2000">2kg</option>
+                                </select>
+                            </div>
+                            {% endif %}
                         <div class="col s12">
                             <p>Quantity:</p>
                             <div class="form-group">
