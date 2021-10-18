@@ -16,7 +16,6 @@
 
 {% block content %}
 <div class="overlay"></div>
-{% if store.user == request.user %}
 <div class="container responsive">
     <div class="row">
         <div class="col">
@@ -28,14 +27,14 @@
     <div class="row">
         <div class="col s12 l5">
             <p>Personal Information:</p>
-            {% if store.image %}
-                <img src="{{ store.image }}" alt="{{ store.name }}"/>
+            {% if store.image_url %}
+                <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 125px; width: 125px;"/>
             {% else %}
             <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
             {% endif %}
             <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Profile</a>
             <div id="store-image-upload" class="modal">
-                <form action="{% url 'view_store' store.store_id %}" method="POST" id="store-update-form">
+                <form action="{% url 'edit_store' store.store_id %}" method="POST" id="store-update-form">
                     <div class="modal-content">
                         <h4>Edit Store Profile</h4>
                         <p>These details will be accessible by all users.</p>
@@ -53,13 +52,7 @@
                     </div>
                 </form>
             </div>
-            {% if store.user == request.user %}
-                <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
-            {% endif %}
-            <a class="waves-effect waves-light btn-small modal-trigger" href="#organic-seller-request">Verify Organic</a>
-            <div id="organic-seller-request" class="modal">
-                <!--Enter organic request form here-->
-            </div>
+            <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
             <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a>
             <div id="store-details" class="modal">
                 <h4>{{ store.name }}'s Contact Details</h4>
@@ -85,8 +78,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for order in orders %}
-                                {% if order.seller_profile == store %}
+                            {% for order in store_orders %}
                                     <tr>
                                         <td>
                                             <a href="{% url 'order_history' order.order_number %}"
@@ -106,7 +98,6 @@
                                         </td>
                                         <td>${{ order.grand_total }}</td>
                                     </tr>
-                                {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
@@ -155,50 +146,6 @@
         </div>
     </div>
 </div>
-{% else %}
-    <h2>You are not the store owner</h2>
-    <div class="container">
-        <div class="row">
-            {% for product in products %}
-                    {% if product.seller_store == store %}
-                    <div class="card" id="listing-card">
-                        {% if product.image %}
-                        <a href="{% url 'product_detail' product.sku %}">
-                            <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                        {% else %}
-                        <a href="{% url 'product_detail' product.sku %}">
-                            <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                        </a>
-                        {% endif %}
-                        <div class="card-body">
-                            <p>{{ product.name }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col">
-                                    <p>€{{ product.price }}</p>
-                                    {% if product.category %}
-                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                        <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
-                                    </a>
-                                    {% endif %}
-                                    <br>
-                                    {% if product.rating %}
-                                        <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
-                                    {% else %}
-                                        <small>No Rating</small>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-        </div>
-    </div>
-{% endif %}
-
 {% endblock %}
 
 {% block postloadjs %}

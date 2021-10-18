@@ -19,6 +19,9 @@ class StoreRegisterForm(forms.ModelForm):
         model = Store
         exclude = ('iban', 'user', 'rating', 'organic', 'street_address2')
 
+    image = forms.ImageField(label='Image', required=False,
+                             widget=CustomClearableFileUnit)
+
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
     phone_number = forms.CharField(label='Phone')
