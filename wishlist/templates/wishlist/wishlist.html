@@ -15,6 +15,7 @@
     <div class="row">
         {% if my_wishlist|length == 0 %}
         <h3>Your wishlist is empty.</h3>
+        <a class="btn-small" href="{% url 'products' %}">Browse Products</a>
         {% endif %}
         {% for item in my_wishlist %}
             <div class="col">
