@@ -92,8 +92,11 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    store = get_object_or_404(Store, pk=product.seller_store.store_id)
+
     context = {
         'product': product,
+        'store': store,
     }
     return render(request, 'products/product_detail.html', context)
 
