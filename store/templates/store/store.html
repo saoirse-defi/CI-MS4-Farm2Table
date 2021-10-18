@@ -27,7 +27,9 @@
     <div class="row">
         <div class="col s12 l5">
             <p>Personal Information:</p>
-            <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
+            {% if store.user == request.user %}
+                <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
+            {% endif %}
             <a class="waves-effect waves-light btn-small modal-trigger" href="#organic-seller-request">Become Certified Organic</a>
             <div id="organic-seller-request" class="modal">
                 <!--Enter organic request form here-->
