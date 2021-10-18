@@ -14,27 +14,30 @@
 <div class="container responsive">
     <div class="row">
         <div class="col">
-            <h2>{{profile.user}}'s Store</h2>
+            <h2>{{ my_store.name }}'s Store</h2>
         </div>
     </div>
     <div class="row">
         <div class="product-container col">
             <div class="row">
                 {% for product in products %}
-                    {% if product.seller == profile.user %}
+                    {% if product.seller_store == my_store %}
                     <div class="col">
                         <div class="card">
                             {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
+                            <a href="{% url 'product_detail' product.sku %}">
                                 <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                             {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
+                            <a href="{% url 'product_detail' product.sku %}">
                                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             </a>
                             {% endif %}
                             <div class="card-body">
                                 <p>{{ product.name }}</p>
+                                <a class="btn-small" href="{% url 'delete_product' product.sku %}">
+                                    <span class="material-icons-outlined">delete</span>
+                                </a>
                             </div>
                             <div class="card-footer">
                                 <div class="row">

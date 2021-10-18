@@ -163,12 +163,16 @@ def delete_product(request, product_id):
 
 
 def seller_product_management(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
+    stores = Store.objects.all()
     products = Product.objects.all()
+
+    for store in stores:
+        if store.user == request.user:
+            my_store = store
 
     template = 'products/seller-product-management.html'
     context = {
-        'profile': profile,
+        'my_store': my_store,
         'products': products,
     }
     return render(request, template, context)
