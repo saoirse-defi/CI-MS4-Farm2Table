@@ -50,7 +50,7 @@ def signup_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/')
+    return redirect('login')
 
 
 @login_required
