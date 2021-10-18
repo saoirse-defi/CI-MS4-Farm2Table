@@ -156,6 +156,13 @@ body{
 
 }
 
+#seller-listings-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
 @media (min-width: 1200px) {
     .container{
         max-width: 90%;
