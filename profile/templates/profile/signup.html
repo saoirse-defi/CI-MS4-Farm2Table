@@ -18,6 +18,7 @@
 <div class="overlay"></div>
 <div class="container-responsive">
     <h1>Register</h1>
+    <span>Already have an account? <a class="btn-small" href="{% url 'login' %}">Login</a></span>
     <form method="POST">
         {% csrf_token %}
         {% for field in form %}
