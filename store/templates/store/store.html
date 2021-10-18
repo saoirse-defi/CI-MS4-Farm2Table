@@ -16,6 +16,7 @@
 
 {% block content %}
 <div class="overlay"></div>
+{% if store.user == request.user %}
 <div class="container responsive">
     <div class="row">
         <div class="col">
@@ -41,7 +42,11 @@
                     </div>
                     {% csrf_token %}
                     {% for field in form %}
-                        {{ field | as_crispy_field }}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
                     {% endfor %}
                     <div class="modal-footer">
                         <button class="btn-small" type="submit">Save</button>
@@ -51,7 +56,7 @@
             {% if store.user == request.user %}
                 <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
             {% endif %}
-            <a class="waves-effect waves-light btn-small modal-trigger" href="#organic-seller-request">Become Certified Organic</a>
+            <a class="waves-effect waves-light btn-small modal-trigger" href="#organic-seller-request">Verify Organic</a>
             <div id="organic-seller-request" class="modal">
                 <!--Enter organic request form here-->
             </div>
@@ -67,87 +72,133 @@
             </div>
         </div>
         <div class="col s12 l7">
-            <p>Order History:</p>
-            <div class="order-history table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Order Number</th>
-                            <th>Date</th>
-                            <th>Items</th>
-                            <th>Order Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orders %}
-                            {% if order.seller_profile == store %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'order_history' order.order_number %}"
-                                        title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
-                                    </td>
-                                    <td>{{ order.date }}</td>
-                                    <td>
-                                        <ul>
-                                            {% for item in order.lineitems.all %}
-                                            <li class="small">
-                                                {% if item.product.has_sizes %}
-                                                    Size {{item.product.size|upper}}
-                                                {% endif %}{{item.product.name}} x{{item.quantity}}
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
-                                    <td>${{ order.grand_total }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <div class="row">
+                <p>Order History:</p>
+                <div class="order-history table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                {% if order.seller_profile == store %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'order_history' order.order_number %}"
+                                            title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
+                                        </td>
+                                        <td>{{ order.date }}</td>
+                                        <td>
+                                            <ul>
+                                                {% for item in order.lineitems.all %}
+                                                <li class="small">
+                                                    {% if item.product.has_sizes %}
+                                                        Size {{item.product.size|upper}}
+                                                    {% endif %}{{item.product.name}} x{{item.quantity}}
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td>${{ order.grand_total }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <p>Active Listings</p>
+                <div class="container" id="seller-listings-grid">
+                {% for product in products %}
+                    {% if product.seller_store == store %}
+                    <div class="card" id="listing-card">
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.sku %}">
+                            <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'product_detail' product.sku %}">
+                            <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        </a>
+                        {% endif %}
+                        <div class="card-body">
+                            <p>{{ product.name }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <p>€{{ product.price }}</p>
+                                    {% if product.category %}
+                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                        <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
+                                    </a>
+                                    {% endif %}
+                                    <br>
+                                    {% if product.rating %}
+                                        <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                                    {% else %}
+                                        <small>No Rating</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
-    <div class="row">
-        <h3>Active Listings</h3>
-        <div class="container" id="seller-listings-grid">
-        {% for product in products %}
-            {% if product.seller_store == store %}
-            <div class="card">
-                {% if product.image %}
-                <a href="{% url 'product_detail' product.sku %}">
-                    <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
-                </a>
-                {% else %}
-                <a href="{% url 'product_detail' product.sku %}">
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                </a>
-                {% endif %}
-                <div class="card-body">
-                    <p>{{ product.name }}</p>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col">
-                            <p>€{{ product.price }}</p>
-                            {% if product.category %}
-                            <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
-                            </a>
-                            {% endif %}
-                            <br>
-                            {% if product.rating %}
-                                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
-                            {% else %}
-                                <small>No Rating</small>
-                            {% endif %}
+</div>
+{% else %}
+    <h2>You are not the store owner</h2>
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+                    {% if product.seller_store == store %}
+                    <div class="card" id="listing-card">
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.sku %}">
+                            <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="{% url 'product_detail' product.sku %}">
+                            <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        </a>
+                        {% endif %}
+                        <div class="card-body">
+                            <p>{{ product.name }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <p>€{{ product.price }}</p>
+                                    {% if product.category %}
+                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                        <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
+                                    </a>
+                                    {% endif %}
+                                    <br>
+                                    {% if product.rating %}
+                                        <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                                    {% else %}
+                                        <small>No Rating</small>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            {% endif %}
-        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+        </div>
     </div>
-</div>
+{% endif %}
+
 {% endblock %}
 
 {% block postloadjs %}
