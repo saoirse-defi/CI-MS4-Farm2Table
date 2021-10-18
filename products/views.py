@@ -87,7 +87,7 @@ def product_search(request):
     current_sorting = f'{sort}_{direction}'
 
     context = {
-        'products':products,
+        'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
@@ -133,6 +133,9 @@ def add_product(request):
                                    'Failed to add product. Please ensure the form is valid.')
             else:
                 form = ProductForm()
+        else:
+            messages.error(request, 'Only store owners can create products!')
+            return redirect(reverse('view_profile'))
 
     template = 'products/add_product.html'
     context = {
@@ -174,12 +177,20 @@ def delete_product(request, product_id):
     return redirect(reverse('products'))
 
 
+@login_required
 def seller_product_management(request):
     stores = Store.objects.all()
     products = Product.objects.all()
+    users = UserProfile.objects.all()
+
+    for user in users:
+        if user.user == request.user:
+            current_user = user
+
+    my_store = []
 
     for store in stores:
-        if store.user == request.user:
+        if store.user == current_user:
             my_store = store
 
     template = 'products/seller-product-management.html'
