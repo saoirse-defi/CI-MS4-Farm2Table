@@ -27,6 +27,27 @@
     <div class="row">
         <div class="col s12 l5">
             <p>Personal Information:</p>
+            {% if store.image %}
+                <img src="{{ store.image }}" alt="{{ store.name }}"/>
+            {% else %}
+            <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+            {% endif %}
+            <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Profile</a>
+            <div id="store-image-upload" class="modal">
+                <form action="{% url 'view_store' store.store_id %}" method="POST" id="store-update-form">
+                    <div class="modal-content">
+                        <h4>Edit Store Profile</h4>
+                        <p>These details will be accessible by all users.</p>
+                    </div>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field | as_crispy_field }}
+                    {% endfor %}
+                    <div class="modal-footer">
+                        <button class="btn-small" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
             {% if store.user == request.user %}
                 <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
             {% endif %}
@@ -88,6 +109,7 @@
     </div>
     <div class="row">
         <h3>Active Listings</h3>
+        <div class="container" id="seller-listings-grid">
         {% for product in products %}
             {% if product.seller_store == store %}
             <div class="card">
