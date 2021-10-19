@@ -186,23 +186,73 @@ Lottie provides lightweight animation hosting which provides significantly small
 
 ## Django App Structure
 
+This section of the documentation will outline the function behind each self-contained Django application.
+
+#### Farm2Table App
+
+URLs for each Django app
+Settings.py
+
 #### Profile App
+
+User Login Form
+User Reg Form
+UserProfile Model
+Login
+Signup
+View Profile
+Order History
 
 #### Store App
 
-#### Profile App
+Store Model
+County Model
+Store reg form
+Local Producers
+View Store
+Edit Store
+
+#### Products App
+
+Category Model
+Product Model
+Product creation form
+Product Search
+Product Details
+Seller Product Management
 
 #### Wishlist App
 
+Wishlist Model
+View Wishlist
+Add to wishlist
+Delete from wishlist
+
 #### Bag App
+
+No Models
+View Bag
+Adjust Bag
+Add to Bag
+Remove from Bag
 
 #### Checkout App
 
+Order Model
+OrderLineItem Model
+Order Form
+View Checkout
+Cache Checkout Data
+Webhooks
 
-### User Interaction
+#### Media App
+
+Stores Images
+
+## User Interaction
 
 
-## Implementation
+### Implementation
 
 This section will outline the technologies & processes used in the design & implementation of this application.
 
