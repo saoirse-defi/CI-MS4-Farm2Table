@@ -25,8 +25,9 @@ class Store(models.Model):
                                                null=True, blank=True)
     town = models.CharField(max_length=40,
                                     null=True, blank=True)
-    county = models.CharField(max_length=80,
-                                      null=True, blank=True)
+    county = models.ForeignKey('store.County',
+                               on_delete=models.SET_NULL,
+                               null=True, blank=True)
     country = CountryField(blank_label='Country',
                                    null=True, blank=True)
     postcode = models.CharField(max_length=20,
@@ -41,3 +42,16 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class County(models.Model):
+    verbose_name_plural = 'Counties'
+
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name

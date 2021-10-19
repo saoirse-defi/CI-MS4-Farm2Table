@@ -30,7 +30,7 @@ def create_store(request):
 
         if form.is_valid():
             store = form.save(commit=False)
-            store.user = request.user
+            store.user = current_user
             store.save()
             messages.success(request, 'Store Organisation Created!')
             return redirect(reverse('view_store', args=[store.store_id, ]))
@@ -91,6 +91,7 @@ def edit_store(request, store_id):
         'store':store,
     }
     return render(request, template, context)
+
 
 def local_producers(request):
     profile = get_object_or_404(UserProfile, user=request.user)
