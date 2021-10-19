@@ -116,9 +116,14 @@ def product_detail(request, product_id):
 def add_product(request):
     """ Add a product to the store. """
     stores = Store.objects.all()
+    users = UserProfile.objects.all()
+
+    for user in users:
+        if user.user == request.user:
+            current_user = user
 
     for store in stores:
-        if store.user == request.user:
+        if store.user == current_user:
             my_store = store
             if request.method == 'POST':
                 form = ProductForm(request.POST, request.FILES)

@@ -5,8 +5,9 @@ from django.contrib.auth import (
 )
 from django.forms.widgets import Select
 
-from .models import UserProfile, County
-from localflavor.ie.forms import IECountySelect, EircodeField, IE_COUNTY_CHOICES
+from .models import UserProfile
+from store.models import County
+from localflavor.ie.forms import EircodeField
 
 
 User = get_user_model()
@@ -34,7 +35,6 @@ class UserLoginForm(forms.Form):
 class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     password = forms.CharField(widget=forms.PasswordInput)
-    #password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -42,7 +42,6 @@ class UserRegisterForm(forms.ModelForm):
             'username',
             'email',
             'password',
-            #'password2',
         ]
 
     def clean(self, *args, **kwargs):
@@ -61,6 +60,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
+
+    county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
 
     def __init__(self, *args, **kwargs):
         """Adds placeholders and classes,
