@@ -1,18 +1,16 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
-    get_user_model,
     login,
     logout,
 )
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
 from .models import UserProfile
 from .forms import UserProfileForm, UserLoginForm, UserRegisterForm
 from checkout.models import Order
-from products.models import Product
 from store.models import Store
 
 
@@ -101,7 +99,9 @@ def edit_profile(request):
             messages.success(request, "Profile updated successfully.")
             return redirect(reverse('view_profile'))
         else:
-            messages.error(request, 'Profile Update Failed: Please ensure the form is valid.')
+            messages.error(request,
+                           'Profile Update Failed: '
+                           'Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
 

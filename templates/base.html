@@ -162,11 +162,11 @@
                     M.toast({html: success_html, displayLength:2000});
                 </script>
             {% elif message.tags == 'info'%}
-                <script>M.toast({html: "{{message}}", classes: 'blue', displayLength:2000});</script>
+                <script>M.toast({html: "{{message}}", classes: 'blue', displayLength:4000});</script>
             {% elif message.tags == 'warning'%}
-                <script>M.toast({html: "{{message}}", classes: 'orange', displayLength:10000});</script>
+                <script>M.toast({html: "{{message}}", classes: 'orange', displayLength:4000});</script>
             {% elif message.tags == 'error'%}
-                <script>M.toast({html: "{{message}}", classes: 'red', displayLength:10000});</script>
+                <script>M.toast({html: "{{message}}", classes: 'red', displayLength:4000});</script>
             {% endif %}
         {% endfor %}
     {% endif %}

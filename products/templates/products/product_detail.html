@@ -19,13 +19,9 @@
         <div class="col s12 m4">
             <div class="image-container">
                 {% if product.image_url %}
-                <a href="" target="_blank">
-                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 225px; height: 225px;">
-                </a>
+                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 250px; height: 250px;">
                 {% else %}
-                <a href="">
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 225px; height: 225px;">
-                </a>
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 250px; height: 250px;">
                 {% endif %}
             </div>
         </div>
