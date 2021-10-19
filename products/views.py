@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 
 from .models import Product, Category
@@ -21,14 +22,15 @@ def superuser_required(func):
     return wrapper
 
 
-def store_required(func): # not working properly
+def store_required(func):  # not working properly
     def wrapper(request, *args, **kwargs):
         stores = Store.objects.all()
         for store in stores:
             if store.user == request.user:
                 return func(request)
             else:
-                messages.error(request, "Only store owners can create & sell products.")
+                messages.error(request,
+                               "Only store owners can create & sell products.")
                 return redirect(reverse('profile'))
     return wrapper
 
@@ -110,9 +112,9 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-#@store_required
+# @store_required
 @login_required
-#@superuser_required
+# @superuser_required
 def add_product(request):
     """ Add a product to the store. """
     stores = Store.objects.all()
@@ -132,10 +134,12 @@ def add_product(request):
                     product.seller_store = my_store
                     product.save()
                     messages.success(request, 'Successfully added product!')
-                    return redirect(reverse('product_detail', args=[product.sku, ]))
+                    return redirect(reverse(
+                                    'product_detail', args=[product.sku, ]))
                 else:
                     messages.error(request,
-                                   'Failed to add product. Please ensure the form is valid.')
+                                   'Failed to add product.'
+                                   'Please ensure the form is valid.')
             else:
                 form = ProductForm()
         else:
@@ -160,7 +164,9 @@ def edit_product(request, product_id):
             messages.success(request, 'Product successfully updated!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, f'Failed to update {product.name}, please ensure the form is valid.')
+            messages.error(request,
+                           f'Failed to update {product.name},'
+                           'please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -178,7 +184,8 @@ def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    messages.success(request, f'{product.name} has been removed from the marketplace.')
+    messages.success(request,
+                     f'{product.name} has been removed from the marketplace.')
     return redirect(reverse('products'))
 
 

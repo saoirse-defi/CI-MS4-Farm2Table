@@ -5,6 +5,7 @@ from .models import Product, Category
 
 
 class ProductForm(forms.ModelForm):
+    """ Form for store owners to create product listings. """
     class Meta:
         model = Product
         exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
@@ -40,8 +41,9 @@ class ProductForm(forms.ModelForm):
             self.fields[field].label = False
 
         categories = Category.objects.all()
-        friendly_names = [(c.category_id, c.get_friendly_name()) for c in categories]
+        friendly_names = [(c.category_id,
+                           c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = friendly_names
-        for field_name, field in self.fields.items():
+        for field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded'
