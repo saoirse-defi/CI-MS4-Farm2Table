@@ -5,6 +5,8 @@ from django.dispatch import receiver
 from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
 
+import store.models
+
 
 class UserProfile(models.Model):
     """
@@ -20,8 +22,9 @@ class UserProfile(models.Model):
                                                null=True, blank=True)
     default_town = models.CharField(max_length=40,
                                     null=True, blank=True)
-    default_county = models.CharField(max_length=80,
-                                      null=True, blank=True)
+    default_county = models.ForeignKey('store.County',
+                                       on_delete=models.SET_NULL,
+                                       null=True, blank=True)
     default_country = CountryField(blank_label='Country',
                                    null=True, blank=True)
     default_postcode = models.CharField(max_length=20,
@@ -29,19 +32,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-class County(models.Model):
-    verbose_name_plural = 'Counties'
-
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
 
 
 @receiver(post_save, sender=User)

@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from image_optimizer.fields import OptimizedImageField
 
-from profile.models import UserProfile
 from store.models import Store
 
 

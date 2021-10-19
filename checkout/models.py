@@ -18,7 +18,7 @@ class Order(models.Model):
                                      null=True, blank=True,
                                      related_name='buyers')
     seller_store = models.ForeignKey(Store,
-                                     on_delete=models.CASCADE,
+                                     on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='sellers')
     rating = models.DecimalField(max_digits=3, decimal_places=2,
