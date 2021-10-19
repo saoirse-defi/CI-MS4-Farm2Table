@@ -18,13 +18,13 @@
     <div class="row">
         <div class="col s12 m4">
             <div class="image-container">
-                {% if product.image %}
+                {% if product.image_url %}
                 <a href="" target="_blank">
-                    <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 225px; height: 225px;">
                 </a>
                 {% else %}
                 <a href="">
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 225px; height: 225px;">
                 </a>
                 {% endif %}
             </div>
@@ -83,8 +83,8 @@
         <div class="col s12 m4">
             <div class="seller-details">
                 <h5>Seller Details</h5>
-                {% if store.image %}
-                    <img src="{{ store.image }}" alt="{{store.name}}" style="width:42px;height:42px;border:0;"/>
+                {% if store.image_url %}
+                    <img src="{{ store.image_url }}" alt="{{store.name}}" style="width:42px;height:42px;border:0;"/>
                 {% else %}
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}" style="width:42px;height:42px;border:0;">
                 {% endif %}

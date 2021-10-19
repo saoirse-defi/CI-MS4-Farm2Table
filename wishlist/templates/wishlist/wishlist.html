@@ -20,13 +20,13 @@
         {% for item in my_wishlist %}
             <div class="col">
                 <div class="card">
-                    {% if item.product.image %}
+                    {% if item.product.image_url %}
                     <a href="{% url 'product_detail' item.product.sku %}">
-                        <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <img class="card-img responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
                     </a>
                     {% else %}
                     <a href="{% url 'product_detail' item.product.sku %}">
-                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
                     </a>
                     {% endif %}
                     <div class="card-body">
