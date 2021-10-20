@@ -2,18 +2,32 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from .forms import StoreRegisterForm
 from profile.models import UserProfile
-from .models import Store
+from .models import Store, County
 from checkout.models import Order
 from products.models import Product
 
 # Create your views here.
 
 
+def all_stores(request):
+    """ A view to handle all products """
+
+    stores = Store.objects.all()
+
+    context = {
+        'stores': stores,
+    }
+
+    return render(request, 'store/all_stores.html', context)
+
+
 @login_required
 def create_store(request):
+    """ Allows user to create sales organisation. """
     if request.method == 'POST':
         stores = Store.objects.all()
         form = StoreRegisterForm(request.POST)
@@ -25,8 +39,12 @@ def create_store(request):
 
         for _store in stores:
             if _store.user == current_user:
-                messages.error(request, 'Organisation creation failed, you can only have 1 store linked to each account.')
-                return redirect(reverse('view_store', args=[_store.store_id, ]))
+                messages.error(request,
+                               'Organisation creation failed, '
+                               'you can only have 1 store linked '
+                               'to each account.')
+                return redirect(reverse('view_store',
+                                        args=[_store.store_id, ]))
 
         if form.is_valid():
             store = form.save(commit=False)
@@ -35,7 +53,8 @@ def create_store(request):
             messages.success(request, 'Store Organisation Created!')
             return redirect(reverse('view_store', args=[store.store_id, ]))
         else:
-            messages.error(request, 'Organisation creation failed, please check form details.')
+            messages.error(request, 'Organisation creation failed, '
+                           'please check form details.')
     else:
         form = StoreRegisterForm()
 
@@ -81,7 +100,8 @@ def edit_store(request, store_id):
             messages.success(request, "Seller profile updated successfully.")
             return redirect(reverse('view_store', args=[store.store_id, ]))
         else:
-            messages.error(request, 'Seller profile Update Failed: Please ensure the form is valid.')
+            messages.error(request, 'Seller profile Update Failed: '
+                           'Please ensure the form is valid.')
     else:
         form = StoreRegisterForm(instance=store)
 
@@ -94,19 +114,53 @@ def edit_store(request, store_id):
 
 
 def local_producers(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
-
+    users = UserProfile.objects.all()
     stores = Store.objects.all()
-
     local_stores = []
 
+    for user in users:
+        if user.user == request.user:
+            current_user = user
+
     for store in stores:
-        if store.county == profile.default_county:
+        if store.county == current_user.default_county:
             local_stores.append(store)
 
     template = 'store/local_producers.html'
     context = {
-        'profile': profile,
+        'current_user': current_user,
         'local_stores': local_stores,
     }
+    return render(request, template, context)
+
+
+def store_search(request):
+    all_stores = Store.objects.all()
+    counties = County.objects.all()
+    query = None
+    stores = []
+
+    if request.GET:
+        if 'county' in request.GET:
+            query = request.GET['county']
+
+            #for county in counties:
+             #   if county.name == query:
+              #      current_county_name = county.name
+
+            #for store in all_stores:
+             #   if store.county == query:
+              #      stores.append(store)
+
+            queries = Q(name__icontains=query)
+            all_stores = all_stores.filter(queries)
+
+    template = 'store/all_stores.html'
+
+    context = {
+        'all_stores': all_stores,
+        'search_term': query,
+        'counties': counties,
+    }
+
     return render(request, template, context)
