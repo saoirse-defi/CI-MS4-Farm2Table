@@ -88,6 +88,8 @@ def product_search(request):
 
     current_sorting = f'{sort}_{direction}'
 
+    template = 'products/products.html'
+
     context = {
         'products': products,
         'search_term': query,
@@ -95,7 +97,7 @@ def product_search(request):
         'current_sorting': current_sorting,
     }
 
-    return render(request, 'products/products.html', context)
+    return render(request, template, context)
 
 
 def product_detail(request, product_id):
