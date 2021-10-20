@@ -39,7 +39,90 @@
 </head>
 <body>
     <header class="container responsive">
-      <div class="row" id="navbar-row">
+      <div class="row">  
+        <nav>
+            <div class="nav-wrapper">
+                <a href="{% url 'home' %}" class="brand-logo">THEVEGTABLE</a>
+                <a href="#" data-target="mobile-menu" class="sidenav-trigger">
+                    <span class="material-icons-outlined">menu</span>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <li>
+                                <a href="{% url 'seller_product_management' %}">Product Management</a>
+                            </li>
+                        {% endif %}
+                            <li>
+                                <a href="{% url 'view_profile' %}">My Profile</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'wishlist' %}">My Wishlist</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            <li>
+                                <a class='dropdown-trigger btn-small' href='#' data-target='shopping-cart-dropdown'>
+                                    <span class="material-icons-outlined">shopping_cart</span>
+                                </a>
+                                <ul class="dropdown-content" id="shopping-cart-dropdown">
+                                    <li>
+                                        <a href="{% url 'view_bag' %}">
+                                            <div class="center-align">
+                                                <div><span class="material-icons-outlined">shopping_cart</span></div>
+                                                <p>
+                                                    {% if grand_total %}
+                                                    €{{ grand_total|floatformat:2 }}
+                                                    {% else %}
+                                                    €0.00
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'signup' %}">Register</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        <ul class="sidenav" id="mobile-menu">
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <li>
+                        <a href="{% url 'seller_product_management' %}">Product Management</a>
+                    </li>
+                {% endif %}
+                    <li>
+                        <a href="{% url 'view_profile' %}">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'wishlist' %}">My Wishlist</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'signup' %}">Register</a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+      <!--
+                <div class="row" id="navbar-row">
           <div class="col s12 m4">
               <a href="{% url 'home' %}">
                   <h2>Farm2Table</h2>
@@ -128,6 +211,7 @@
               </div>
           </div>
       </div>
+      -->
       <div class="row" id="categories-row">
         {% include 'includes/main-nav.html' %}
       </div>
@@ -141,7 +225,7 @@
     {% block page_header %}
     {% endblock %}
 
-    <div class="container">
+    <div class="container responsive">
         {% block content %}
         
         {% endblock %}
@@ -158,8 +242,69 @@
         {% for message in messages %}
             {% if message.tags == 'success'%}
                 <script>
-                    success_html = '<div class="toast"><div class="toast-header"><strong>Success</strong></div><div class="toast-body"><div class="row"><div class="col s12">{{ message }}<hr></div></div></div>{% if grand_total and not on_profile_page %}<p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p><div class="bag-notification-wrapper">{% for item in bag_items %}<div class="row"><div class="col s3 my-1">{% if item.product.img %}<img class="w-100" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">{% else %}<img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">{% endif %}</div><div class="col s9"><p class="my-0"><strong>{{ item.product.name }}</strong></p><p class="my-0 small">Size:{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p><p class="my-0 small text-muted">Qty: {{ item.quantity }}</p></div></div>{% endfor %}</div><div class="row"><div class="col s12"><strong><p class="mt-3 mb-1 text-black">Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:<span class="float-right">${{ total|floatformat:2 }}</span></p></strong>{% if free_delivery_delta > 0 %}<p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">Spend <strong>${{ free_delivery_delta }}</strong> more to get free next day delivery!</p>{% endif %}<a href="" class="btn btn-black btn-block rounded-0"><span class="text-uppercase">Go To Secure Checkout</span><span class="icon"><i class="fas fa-lock"></i></span></a></div></div>{% endif %}'
-                    M.toast({html: success_html, displayLength:2000});
+                    var html = '<div class="toast">'+
+                                '    <div class="row">'+
+                                '        <div class="col s12 toast-header">'+
+                                '            <strong>Success!</strong>'+
+                                '        </div>'+
+                                '    </div>'+
+                                '    <div class="row">'+
+                                '        <div class="col s12 toast-body bg-white">'+
+                                '            <div class="row">'+
+                                '                <div class="col s12">'+
+                                '                    {{ message }}'+
+                                '                    <hr class="mt-1 mb-3">'+
+                                '                </div>'+
+                                '            </div>'+
+                                '            {% if grand_total and not on_profile_page %}'+
+                                '            <p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p>'+
+                                '            <div class="bag-notification-wrapper">'+
+                                '                {% for item in bag_items %}'+
+                                '                <div class="row">'+
+                                '                    <div class="col s3 my-1">'+
+                                '                        {% if item.product.image_url %}'+
+                                '                            <img class="w-100" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">'+
+                                '                        {% else %}'+
+                                '                            <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">'+
+                                '                        {% endif %}'+
+                                '                    </div>'+
+                                '                    <div class="col s9">'+
+                                '                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>'+
+                                '                        <p class="my-0 small">Size:'+
+                                '                            {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>'+
+                                '                        <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>'+
+                                '                    </div>'+
+                                '                </div>'+
+                                '                {% endfor %}'+
+                                '            </div>'+
+                                '        </div>'+
+                                '    </div>'+
+                                '    <div class="row">'+
+                                '        <div class="col s12">'+
+                                '            <strong>'+
+                                '                <p class="mt-3 mb-1 text-black">'+
+                                '                    Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:'+
+                                '                    <span class="float-right">${{ total|floatformat:2 }}</span>'+
+                                '                </p>'+
+                                '            </strong>'+
+                                '            {% if free_delivery_delta > 0 %}'+
+                                '            <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">'+
+                                '                Spend <strong>${{ free_delivery_delta }}</strong> more to get free next day delivery!'+
+                                '            </p>'+
+                                '            {% endif %}'+
+                                '            <a href="#" class="btn btn-black btn-block rounded-0">'+
+                                '                <span class="text-uppercase">Checkout</span>'+
+                                '                <span class="icon">'+
+                                '                    <i class="fas fa-lock"></i>'+
+                                '                </span>'+
+                                '            </a>'+
+                                '        </div>'+
+                                '    </div>'+
+                                '</div>';
+	
+
+                    success_html = '<div class="toast"><div class="toast-header"><strong>Success</strong></div><div class="toast-body"><div class="row"><div class="col s12">{{ message }}<hr></div></div></div>{% if grand_total and not on_profile_page %}<p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p><div class="bag-notification-wrapper">{% for item in bag_items %}<div class="row"><div class="col s3 my-1">{% if item.product.image_url %}<img class="w-100" src="{{ item.product.image_url }}" alt="{{ item.product.name }} style="width:250px; height:250px;">{% else %}<img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">{% endif %}</div><div class="col s9"><p class="my-0"><strong>{{ item.product.name }}</strong></p><p class="my-0 small">Size:{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p><p class="my-0 small text-muted">Qty: {{ item.quantity }}</p></div></div>{% endfor %}</div><div class="row"><div class="col s12"><strong><p class="mt-3 mb-1 text-black">Total{% if free_delivery_delta > 0 %} (Exc. delivery){% endif %}:<span class="float-right">${{ total|floatformat:2 }}</span></p></strong>{% if free_delivery_delta > 0 %}<p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">Spend <strong>${{ free_delivery_delta }}</strong> more to get free next day delivery!</p>{% endif %}<a href="" class="btn btn-black btn-block rounded-0"><span class="text-uppercase">Checkout</span><span class="icon"><i class="fas fa-lock"></i></span></a></div></div>{% endif %}'
+                    M.toast({html: html, displayLength:4000});
                 </script>
             {% elif message.tags == 'info'%}
                 <script>M.toast({html: "{{message}}", classes: 'blue', displayLength:4000});</script>
@@ -168,14 +313,9 @@
             {% elif message.tags == 'error'%}
                 <script>M.toast({html: "{{message}}", classes: 'red', displayLength:4000});</script>
             {% endif %}
+            {% endif %}
         {% endfor %}
     {% endif %}
-
-    <script>
-        $(document).ready(function() {
-            $('select').formSelect();
-        });
-    </script>
     
 </body>
 </html>
