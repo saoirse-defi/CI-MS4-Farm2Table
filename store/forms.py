@@ -5,9 +5,7 @@ from products.widgets import CustomClearableFileUnit
 from django_iban.fields import IBANField
 
 from .models import Store, County
-from localflavor.ie.forms import (IECountySelect,
-                                  EircodeField,
-                                  IE_COUNTY_CHOICES)
+from localflavor.ie.forms import EircodeField
 
 
 User = get_user_model()
