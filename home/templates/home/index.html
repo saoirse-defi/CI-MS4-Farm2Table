@@ -17,8 +17,29 @@
         </div>
         <div class="col s12 m6">
             <h4>
-                <a href="{% url 'products' %}" class="btn">Shop Now</a>
+                <a href="{% url 'products' %}" class="btn">All Products</a>
             </h4>
+            <h4>
+                <a href="{% url 'all_stores' %}" class="btn">All Stores</a>
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <form method="GET" action="{% url 'store_search' %}">
+                <div class="form-group">
+                    <div class="form-control input-field" id="navbar-search">
+                        <select name="county" id="county">
+                            {% for county in counties %}
+                                <option>{{ county }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="waves-effect waves-light btn-small" type="submit">
+                            <i class="material-icons-outlined">search</i>
+                        </button>
+                    </div>
+                </div>
+              </form>
         </div>
     </div>
 </div>
