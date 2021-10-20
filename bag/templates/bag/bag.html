@@ -39,13 +39,13 @@
                     </thead>
                     {% for item in bag_items %}
                     <tr>
-                        {% if item.product.image %}
+                        {% if item.product.image_url %}
                         <td>
-                            <img class="img-responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            <img class="img-responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">
                         </td>
                         {% else %}
                         <td>
-                            <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                            <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">
                         </td>
                         {% endif %}
                         <td>
