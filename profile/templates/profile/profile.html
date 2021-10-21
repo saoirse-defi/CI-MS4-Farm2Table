@@ -18,25 +18,26 @@
 <div class="overlay"></div>
 <div class="container responsive">
     <div class="row">
-        <div class="col">
+        <div class="col s12 m5">
             <hr>
-            <h2 class="logo-font">{{profile.user}}'s Profile</h2>
+            <h4>{{profile.user}}'s Profile</h4>
             <hr>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s12 l5">
-            <p>Personal Information:</p>
+        <div class="col s12 m7">
             {% if store is not None %}
                 <a class="waves-effect waves-light btn-small" href="{% url 'view_store' store.store_id %}">Sales Dashboard</a>
             {% else %}
                 <a class="waves-effect waves-light btn-small" href="{% url 'create_store' %}">Start Selling</a>
             {% endif %}
             <a class="waves-effect waves-light btn-small modal-trigger" href="#edit-personal-details">Edit Profile</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l5">
             <div id="edit-personal-details" class="modal">
                 <form action="{% url 'edit_profile' %}" method="POST" id="profile-update-form">
                     <div class="modal-content">
-                        <h4>Edit Profile</h4>
+                        <h5>Edit Profile</h5>
                         <p>These delivery details will be used in your next order!</p>
                     </div>
                     {% csrf_token %}
@@ -49,12 +50,13 @@
                 </form>
             </div>
             <div class="profile-details">
-                <h5><small>Name: </small>{{ profile.user }}</h5>
-                <h5><small>Phone: </small>{{ profile.default_phone_number }}</h5>
-                <h5><small>Address: </small>{{ profile.default_street_address1 }}</h5>
-                <h5><small>Town: </small>{{ profile.default_town }}</h5>
-                <h5><small>County: </small>{{ profile.default_county }}</h5>
-                <h5><small>Eircode: </small>{{ profile.default_postcode }}</h5>
+                <h5>Delivery Information:</h5>
+                <p>Name: {{ profile.user}}</p>
+                <p>Phone: {{ profile.default_phone_number }}</p>
+                <p>Address: {{ profile.default_street_address1 }}</p>
+                <p>Town: {{ profile.default_town }}</p>
+                <p>County: {{ profile.default_county}}</p>
+                <p>Eircode: {{ profile.default_postcode }}</p>
             </div>
         </div>
         <div class="col s12 l7">
