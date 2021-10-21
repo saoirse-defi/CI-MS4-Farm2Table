@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col s12 center-align">
-            <h4>Find local produce near you</h4>
+            <h4>Find local producers near you</h4>
             <form method="GET" id="store-search-form">
                 {% csrf_token %}
                 {{ county_store_filter.form }}
@@ -32,27 +32,26 @@
             <div class="row">
                 {% for store in stores %}
                     <div class="col">
-                        <div class="card">
-                            {% if store.image_url %}
-                            <a href="{% url 'view_store' store.store_id %}">
-                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
-                            </a>
-                            {% else %}
-                            <a href="{% url 'view_store' store.store_id %}">
-                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
-                            </a>
-                            {% endif %}
-                            <div class="card-body">
-                                <p>{{ store.name }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>{{store.email}}</p>
+                        <a href="{% url 'view_store' store.store_id %}">
+                            <div class="card">
+                                {% if store.image_url %}
+                                    <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
+                                {% else %}
+                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <p>{{ store.name }}</p>
+                                    <p>{{store.email}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="col s12">
+                                        {% if store.organic %}
+                                            <span class="new badge" data-badge-caption="Organic"></span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
