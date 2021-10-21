@@ -32,11 +32,7 @@ def create_store(request):
     if request.method == 'POST':
         stores = Store.objects.all()
         form = StoreRegisterForm(request.POST)
-        users = UserProfile.objects.all()
-
-        for user in users:
-            if user.user == request.user:
-                current_user = user
+        current_user = UserProfile.objects.get(user=request.user)
 
         for _store in stores:
             if _store.user == current_user:
@@ -68,25 +64,14 @@ def create_store(request):
 
 def view_store(request, store_id):
     store = get_object_or_404(Store, pk=store_id)
-    orders = Order.objects.all()
-    products = Product.objects.all()
-
-    store_orders = []
-    store_products = []
-
-    for order in orders:
-        if order.seller_store == store:
-            store_orders.append(order)
-
-    for product in products:
-        if product.seller_store == store:
-            store_products.append(product)
+    store_orders = Order.objects.all().filter(seller_store=store)
+    store_products = Product.objects.all().filter(seller_store=store)
 
     template = 'store/store.html'
     context = {
         'store': store,
         'store_orders': store_orders,
-        'products': products,
+        'store_products': store_products,
     }
     return render(request, template, context)
 
@@ -115,17 +100,9 @@ def edit_store(request, store_id):
 
 
 def local_producers(request):
-    users = UserProfile.objects.all()
+    current_user = UserProfile.objects.get(user=request.user)
     stores = Store.objects.all()
-    local_stores = []
-
-    for user in users:
-        if user.user == request.user:
-            current_user = user
-
-    for store in stores:
-        if store.county == current_user.default_county:
-            local_stores.append(store)
+    local_stores = Store.objects.all().filter(county=current_user.default_county)
 
     template = 'store/local_producers.html'
     context = {

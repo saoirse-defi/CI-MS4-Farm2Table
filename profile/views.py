@@ -57,11 +57,7 @@ def view_profile(request):
     """Displays user profile."""
     profile = get_object_or_404(UserProfile, user=request.user)
     form = UserProfileForm(instance=profile)
-    users = UserProfile.objects.all()
-
-    for user in users:
-        if user.user == request.user:
-            current_user = user
+    current_user = UserProfile.objects.get(user=request.user)
 
     try:
         store = Store.objects.get(user=current_user)
@@ -69,16 +65,11 @@ def view_profile(request):
         store = None
         print(e)
 
-    orders = Order.objects.all()
-    profile_orders = []
-
-    for order in orders:
-        if order.user_profile == profile:
-            profile_orders.append(order)
+    orders = Order.objects.all().filter(user_profile=profile)
 
     template = "profile/profile.html"
     context = {
-        'profile_orders': profile_orders,
+        'orders': orders,
         'store': store,
         'on_profile_page': True,
         'profile': profile,

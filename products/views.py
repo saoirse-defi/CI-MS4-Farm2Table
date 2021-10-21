@@ -9,6 +9,7 @@ from .models import Product, Category
 from .forms import ProductForm
 from profile.models import UserProfile
 from store.models import Store
+from wishlist.models import Wishlist
 
 # Custom Decorators
 
@@ -42,6 +43,9 @@ def all_products(request):
     """ A view to handle all products """
 
     products = Product.objects.all()
+    current_user = UserProfile.objects.get(user=request.user)
+
+    current_wishlist = Wishlist.objects.all().filter(user=current_user)
 
     product_filter = ProductFilter(request.GET, queryset=products)
     products = product_filter.qs
@@ -49,6 +53,8 @@ def all_products(request):
     context = {
         'products': products,
         'product_filter': product_filter,
+        'current_wishlist': current_wishlist,
+        'current_user': current_user,
     }
 
     return render(request, 'products/products.html', context)
@@ -125,33 +131,24 @@ def product_detail(request, product_id):
 def add_product(request):
     """ Add a product to the store. """
     stores = Store.objects.all()
-    users = UserProfile.objects.all()
+    current_user = UserProfile.objects.get(user=request.user)
+    my_store = Store.objects.get(user=current_user)
 
-    for user in users:
-        if user.user == request.user:
-            current_user = user
-
-    for store in stores:
-        if store.user == current_user:
-            my_store = store
-            if request.method == 'POST':
-                form = ProductForm(request.POST, request.FILES)
-                if form.is_valid():
-                    product = form.save(commit=False)
-                    product.seller_store = my_store
-                    product.save()
-                    messages.success(request, 'Successfully added product!')
-                    return redirect(reverse(
-                                    'product_detail', args=[product.sku, ]))
-                else:
-                    messages.error(request,
-                                   'Failed to add product.'
-                                   'Please ensure the form is valid.')
-            else:
-                form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller_store = my_store
+            product.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse(
+                            'product_detail', args=[product.sku, ]))
         else:
-            messages.error(request, 'Only store owners can create products!')
-            return redirect(reverse('view_profile'))
+            messages.error(request,
+                           'Failed to add product.'
+                           'Please ensure the form is valid.')
+    else:
+        form = ProductForm()
 
     template = 'products/add_product.html'
     context = {
@@ -198,19 +195,9 @@ def delete_product(request, product_id):
 
 @login_required
 def seller_product_management(request):
-    stores = Store.objects.all()
     products = Product.objects.all()
-    users = UserProfile.objects.all()
-
-    for user in users:
-        if user.user == request.user:
-            current_user = user
-
-    my_store = []
-
-    for store in stores:
-        if store.user == current_user:
-            my_store = store
+    current_user = UserProfile.objects.get(user=request.user)
+    stores = Store.objects.get(user=current_user)
 
     template = 'products/seller-product-management.html'
     context = {

@@ -10,19 +10,12 @@ from products.models import Product
 
 
 def wishlist(request):
-
     profile = get_object_or_404(UserProfile, user=request.user)
-    wishlist_all = Wishlist.objects.all()
-    my_wishlist = []
-
-    for wishlist_item in wishlist_all:
-        if wishlist_item.user == profile:
-            my_wishlist.append(wishlist_item)
+    my_wishlist = Wishlist.objects.all().filter(user=profile)
 
     template = "wishlist/wishlist.html"
     context = {
         'my_wishlist': my_wishlist,
-        'wishlist_all': wishlist_all,
     }
 
     return render(request, template, context)
