@@ -12,6 +12,53 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        <div class="col s12 center-align">
+            <h4>Find local produce near you</h4>
+            <form method="GET" id="store-search-form">
+                {% csrf_token %}
+                {{ county_store_filter.form }}
+                <div class="form-group">
+                    <div class="form-control input-field" id="navbar-search">
+                        <button class="waves-effect waves-light btn-small" type="submit">
+                            <i class="material-icons-outlined">search</i>
+                        </button>
+                    </div>
+                </div>
+              </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="local-seller-container col">
+            <div class="row">
+                {% for store in stores %}
+                    <div class="col">
+                        <div class="card">
+                            {% if store.image_url %}
+                            <a href="{% url 'view_store' store.store_id %}">
+                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'view_store' store.store_id %}">
+                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <p>{{ store.name }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>{{store.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col s12 m6">
             <h1>The fight to take back our food is on!</h1>
         </div>
@@ -22,24 +69,6 @@
             <h4>
                 <a href="{% url 'all_stores' %}" class="btn">All Stores</a>
             </h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <form method="GET" action="{% url 'store_search' %}">
-                <div class="form-group">
-                    <div class="form-control input-field" id="navbar-search">
-                        <select name="county" id="county">
-                            {% for county in counties %}
-                                <option>{{ county }}</option>
-                            {% endfor %}
-                        </select>
-                        <button class="waves-effect waves-light btn-small" type="submit">
-                            <i class="material-icons-outlined">search</i>
-                        </button>
-                    </div>
-                </div>
-              </form>
         </div>
     </div>
 </div>

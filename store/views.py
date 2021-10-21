@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 
+from .filters import StoreFilter
 from .forms import StoreRegisterForm
 from profile.models import UserProfile
 from .models import Store, County
@@ -140,9 +141,15 @@ def store_search(request):
     query = None
     stores = []
 
-    if request.GET:
+    if request.GET.get('#store_search_form'):
         if 'county' in request.GET:
             query = request.GET['county']
+            result = Store.objects.filter(Q(name__icontains=query))
+
+
+    #if request.method == 'GET':
+     #   if 'county' in request.GET:
+      #      query = request.GET['county']
 
             #for county in counties:
              #   if county.name == query:
@@ -152,8 +159,8 @@ def store_search(request):
              #   if store.county == query:
               #      stores.append(store)
 
-            queries = Q(name__icontains=query)
-            all_stores = all_stores.filter(queries)
+            #queries = Q(name__icontains=query)
+            #all_stores = all_stores.filter(queries)
 
     template = 'store/all_stores.html'
 
@@ -161,6 +168,7 @@ def store_search(request):
         'all_stores': all_stores,
         'search_term': query,
         'counties': counties,
+        'result': result,
     }
 
     return render(request, template, context)

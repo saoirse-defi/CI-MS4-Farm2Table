@@ -13,8 +13,8 @@
 <div class="overlay"></div>
 <div class="container responsive">
     <div class="row">
-        <div class="col">
-            {% if current_categories %}
+        <div class="col s12">
+            {% if current_categories %} <!--Check to see if working-->
                 {% for c in current_categories %}
                 <h2>{{c.friendly_name}}</h2>
                 {% endfor %}
@@ -25,7 +25,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="product-container col">
+        <div class="col s12">
+            <form method="GET" id="store-search-form">
+                {% csrf_token %}
+                {{ product_filter.form }}
+                <button class="waves-effect waves-light btn-small" type="submit">
+                    <i class="material-icons-outlined">search</i>
+                </button>
+            </form>            
+        </div>
+        <div class="product-container col s12">
             <div class="row">
                 {% for product in products %}
                     <div class="col">

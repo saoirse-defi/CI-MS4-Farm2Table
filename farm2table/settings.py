@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_forms_materialize',
     'django_iban',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 
+from .filters import ProductFilter
 from .models import Product, Category
 from .forms import ProductForm
 from profile.models import UserProfile
@@ -42,8 +43,12 @@ def all_products(request):
 
     products = Product.objects.all()
 
+    product_filter = ProductFilter(request.GET, queryset=products)
+    products = product_filter.qs
+
     context = {
         'products': products,
+        'product_filter': product_filter,
     }
 
     return render(request, 'products/products.html', context)
