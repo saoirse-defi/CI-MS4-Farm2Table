@@ -15,31 +15,35 @@
     <div class="row">
         <div class="local-seller-container col">
             <div class="row">
-                {% for store in local_stores %}
-                    <div class="col">
-                        <div class="card">
-                            {% if store.image_url %}
-                            <a href="{% url 'view_store' store.store_id %}">
-                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
-                            </a>
-                            {% else %}
-                            <a href="{% url 'view_store' store.store_id %}">
-                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
-                            </a>
-                            {% endif %}
-                            <div class="card-body">
-                                <p>{{ store.name }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>{{store.email}}</p>
+                {% if not local_stores %}
+                    <h3>No producers in your county</h3>
+                {% else %}
+                    {% for store in local_stores %}
+                        <div class="col">
+                            <div class="card">
+                                {% if store.image_url %}
+                                <a href="{% url 'view_store' store.store_id %}">
+                                    <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'view_store' store.store_id %}">
+                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
+                                </a>
+                                {% endif %}
+                                <div class="card-body">
+                                    <p>{{ store.name }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>{{store.email}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
