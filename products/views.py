@@ -43,21 +43,28 @@ def all_products(request):
     """ A view to handle all products """
 
     products = Product.objects.all()
-    current_user = UserProfile.objects.get(user=request.user)
-
-    current_wishlist = Wishlist.objects.all().filter(user=current_user)
-
     product_filter = ProductFilter(request.GET, queryset=products)
     products = product_filter.qs
 
-    context = {
-        'products': products,
-        'product_filter': product_filter,
-        'current_wishlist': current_wishlist,
-        'current_user': current_user,
-    }
+    if request.user.is_authenticated:
+        current_user = UserProfile.objects.get(user=request.user)
+        current_wishlist = Wishlist.objects.all().filter(user=current_user)
 
-    return render(request, 'products/products.html', context)
+        context = {
+            'products': products,
+            'product_filter': product_filter,
+            'current_wishlist': current_wishlist,
+            'current_user': current_user,
+        }
+
+        return render(request, 'products/products.html', context)
+    else:
+        context = {
+            'products': products,
+            'product_filter': product_filter,
+        }
+
+        return render(request, 'products/products.html', context)
 
 
 def product_search(request):
@@ -197,11 +204,11 @@ def delete_product(request, product_id):
 def seller_product_management(request):
     products = Product.objects.all()
     current_user = UserProfile.objects.get(user=request.user)
-    stores = Store.objects.get(user=current_user)
+    store = Store.objects.get(user=current_user)
 
     template = 'products/seller-product-management.html'
     context = {
-        'my_store': my_store,
+        'store': store,
         'products': products,
     }
     return render(request, template, context)
