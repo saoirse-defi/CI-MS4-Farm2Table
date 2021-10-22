@@ -34,30 +34,25 @@
                 </button>
             </form>            
         </div>
+    </div>
+    <div class="row">
         <div class="product-container col s12">
-            <div class="row">
                 {% for product in products %}
-                    <div class="col">
+                    <a href="{% url 'product_detail' product.sku %}">
                         <div class="card">
                             {% if product.image_url %}
-                            <a href="{% url 'product_detail' product.sku %}">
-                                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 250px; height: 250px;">
-                            </a>
+                                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
                             {% else %}
-                            <a href="{% url 'product_detail' product.sku %}">
-                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 250px; height: 250px;">
-                            </a>
+                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}
                             <div class="card-body">
-                                <p>{{ product.name }}</p>
+                                <p class="center-align">{{ product.name }}</p>
                             </div>
                             <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <p>€{{ product.price }}</p>
+                                        <p class="center-align">€{{ product.price }}</p>
                                         {% if product.category %}
                                         <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                            <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
+                                            <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
                                         </a>
                                         {% endif %}
                                         <br>
@@ -66,13 +61,10 @@
                                         {% else %}
                                             <small>No Rating</small>
                                         {% endif %}
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
-            </div>
         </div>
     </div>
 </div>

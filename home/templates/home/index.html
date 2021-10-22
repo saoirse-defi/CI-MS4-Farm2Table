@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container responsive">
     <div class="row">
         <div class="col s12 center-align">
             <h4>Find local producers near you</h4>
@@ -28,34 +28,26 @@
         </div>
     </div>
     <div class="row">
-        <div class="local-seller-container col">
-            <div class="row">
+        <div class="local-seller-container col s12">
                 {% for store in stores %}
-                    <div class="col">
-                        <a href="{% url 'view_store' store.store_id %}">
-                            <div class="card">
-                                {% if store.image_url %}
-                                    <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
-                                {% else %}
-                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
-                                {% endif %}
-                                <div class="card-body">
-                                    <p>{{ store.name }}</p>
-                                    <p>{{store.email}}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="col s12">
-                                        {% if store.organic %}
-                                            <span class="new badge" data-badge-caption="Organic"></span>
-                                        {% endif %}
-                                    </div>
-                                </div>
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <div class="card">
+                            {% if store.image_url %}
+                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}">
+                            {% else %}
+                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}"> 
+                            {% endif %}
+                            <div class="card-body">
+                                <p class="center-align">{{ store.name }}</p>
                             </div>
-                        </a>
-                    </div>
+                            <div class="card-footer">
+                                    {% if store.organic %}
+                                        <span class="new badge green" data-badge-caption="Organic"></span>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </a>
                 {% endfor %}
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="col s12 m6">

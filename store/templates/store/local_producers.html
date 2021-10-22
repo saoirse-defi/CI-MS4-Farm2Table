@@ -13,38 +13,30 @@
 <div class="overlay"></div>
 <div class="container responsive">
     <div class="row">
-        <div class="local-seller-container col">
-            <div class="row">
-                {% if not local_stores %}
-                    <h3>No producers in your county</h3>
-                {% else %}
-                    {% for store in local_stores %}
-                        <div class="col">
-                            <div class="card">
-                                {% if store.image_url %}
-                                <a href="{% url 'view_store' store.store_id %}">
-                                    <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}" style="width: 200px; height: 200px;">
-                                </a>
-                                {% else %}
-                                <a href="{% url 'view_store' store.store_id %}">
-                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
-                                </a>
+        <div class="local-seller-container col s12">
+            {% if not local_stores %}
+                <h3>No producers in your county</h3>
+            {% else %}
+                {% for store in local_stores %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <div class="card">
+                            {% if store.image_url %}
+                                <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}">
+                            {% else %}
+                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <p class="center-align">{{ store.name }}</p>
+                            </div>
+                            <div class="card-footer">
+                                {% if store.organic %}
+                                <span class="new badge green" data-badge-caption="Organic"></span>
                                 {% endif %}
-                                <div class="card-body">
-                                    <p>{{ store.name }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p>{{store.email}}</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
