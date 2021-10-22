@@ -41,8 +41,8 @@ class ProductForm(forms.ModelForm):
             self.fields[field].label = False
 
         categories = Category.objects.all()
-        friendly_names = [(c.category_id,
-                           c.get_friendly_name()) for c in categories]
+        cat_choices = [(c.category_id,
+                           c.name) for c in categories]
 
-        self.fields['category'].choices = friendly_names
+        self.fields['category'].choices = cat_choices
 
