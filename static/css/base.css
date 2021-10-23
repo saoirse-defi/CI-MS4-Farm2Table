@@ -56,8 +56,11 @@ body{
 .store-card img{
     width: 250px;
     height: 250px;
+    margin-top: 10px;
     padding-top: 10px;
     border-radius: 50%;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .card{
