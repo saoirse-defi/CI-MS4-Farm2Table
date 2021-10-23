@@ -70,6 +70,22 @@ body{
     height: 250px;
 }
 
+.product-card{
+    width: 250px;
+    height: 400px;
+    border-radius: 25px;
+    background-color: #f2f3f4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-card img{
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
 .dashboard-product-card{
     width: 250px;
     height: 450px;
