@@ -58,7 +58,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user',)
 
-    county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
+    # county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
 
     def __init__(self, *args, **kwargs):
         """Adds placeholders and classes,
