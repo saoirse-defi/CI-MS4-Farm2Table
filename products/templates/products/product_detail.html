@@ -31,7 +31,7 @@
                 <p>€{{ product.price }}</p>
                 <small>
                     <a href="{% url 'products' %}?category={{ product.category.name }}">
-                        <span class="new badge black" data-badge-caption="{{ product.category.friendly_name }}"></span>
+                        <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
                     </a>
                 </small>
                 <br>

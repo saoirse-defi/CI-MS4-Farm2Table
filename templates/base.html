@@ -48,11 +48,6 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     {% if request.user.is_authenticated %}
-                        {% if request.user.is_superuser %}
-                            <li>
-                                <a href="{% url 'seller_product_management' %}">Sales Dashboard</a>
-                            </li>
-                        {% endif %}
                             <li>
                                 <a href="{% url 'view_profile' %}">My Profile</a>
                             </li>
