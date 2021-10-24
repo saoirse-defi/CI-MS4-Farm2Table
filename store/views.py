@@ -63,7 +63,12 @@ def create_store(request):
 
 
 def view_store(request, store_id):
-    current_user = UserProfile.objects.get(user=request.user)
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
+
     store = get_object_or_404(Store, pk=store_id)
     store_orders = Order.objects.all().filter(seller_store=store)
     store_products = Product.objects.all().filter(seller_store=store)
