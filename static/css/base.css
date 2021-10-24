@@ -45,11 +45,24 @@ body{
     justify-content: center;
 }
 
+.select-wrapper{
+    width: 25%;
+}
+
 .store-card{
     width: 275px;
     height: 375px;
-    border-radius: 25px;
+    border-radius: 8px;
     background-color: #f2f3f4;
+    border: 1px solid #e5e5e5;
+}
+
+.store-card:hover{
+    width: 275px;
+    height: 375px;
+    border-radius: 8px;
+    background-color: #f2f3f4;
+    border: 1px solid #e5e5e5;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -59,8 +72,7 @@ body{
     margin-top: 10px;
     padding-top: 10px;
     border-radius: 50%;
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.5);
+    
 }
 
 .card{

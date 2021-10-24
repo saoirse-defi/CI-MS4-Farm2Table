@@ -18,47 +18,25 @@
 <div class="overlay"></div>
     <div class="row">
         <div class="col s12 m3">
-                    {% if store.image_url %}
-                        <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
-                    {% else %}
-                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
-                    {% endif %}
+                {% if store.image_url %}
+                    <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
+                {% else %}
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+                {% endif %}
         </div>
-        <div class="col s12 m7 valign-wrapper">
-            <h4 class="logo-font">{{store.name}}'s Dashboard</h4>
+        <div class="col s12 m6 valign-wrapper">
+            <h4 class="logo-font">{{store.name}}'s Store</h4>
         </div>
-        <div class="col s12 m2">
-                    <a class="btn-small" href="{% url 'add_product' %}">Create a Listing</a>
-                    <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a>
-                    <div id="store-details" class="modal">
-                        <h4>{{ store.name }}'s Contact Details</h4>
-                        <h5><small>Email: </small>{{ store.user }}</h5>
-                        <h5><small>Phone: </small>{{ store.phone_number }}</h5>
-                        <h5><small>Address: </small>{{ store.street_address1 }}</h5>
-                        <h5><small>Town: </small>{{ store.town }}</h5>
-                        <h5><small>County: </small>{{ store.county }}</h5>
-                        <h5><small>Eircode: </small>{{ store.postcode }}</h5>
-                    </div>
-                    <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Profile</a>
-                    <div id="store-image-upload" class="modal">
-                        <form action="{% url 'edit_store' store.store_id %}" method="POST" id="store-update-form">
-                            <div class="modal-content">
-                                <h4>Edit Store Profile</h4>
-                                <p>These details will be accessible by all users.</p>
-                            </div>
-                            {% csrf_token %}
-                            {% for field in form %}
-                                {% if field.name != 'image' %}
-                                    {{ field | as_crispy_field }}
-                                {% else %}
-                                    {{ field }}
-                                {% endif %}
-                            {% endfor %}
-                            <div class="modal-footer">
-                                <button class="btn-small" type="submit">Save</button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="col s12 m3">
+            <div class="store-details">
+                <h5>Contact Details</h5>
+                <h6><small>Email: </small>{{ store.user }}</h6>
+                <h6><small>Phone: </small>{{ store.phone_number }}</h6>
+                <h6><small>Address: </small>{{ store.street_address1 }}</h6>
+                <h6><small>Town: </small>{{ store.town }}</h6>
+                <h6><small>County: </small>{{ store.county }}</h6>
+                <h6><small>Eircode: </small>{{ store.postcode }}</h6>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -144,8 +122,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-
-    
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
