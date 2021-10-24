@@ -63,17 +63,31 @@ def create_store(request):
 
 
 def view_store(request, store_id):
+    current_user = UserProfile.objects.get(user=request.user)
     store = get_object_or_404(Store, pk=store_id)
     store_orders = Order.objects.all().filter(seller_store=store)
     store_products = Product.objects.all().filter(seller_store=store)
 
-    template = 'store/store.html'
-    context = {
-        'store': store,
-        'store_orders': store_orders,
-        'store_products': store_products,
-    }
-    return render(request, template, context)
+    if store.user == current_user:
+        template = 'store/store.html'
+        context = {
+            'store': store,
+            'store_orders': store_orders,
+            'store_products': store_products,
+            'current_user':current_user,
+        }
+        return render(request, template, context)
+    else:
+        template = 'store/store_customer.html'
+        context = {
+            'store': store,
+            'store_orders': store_orders,
+            'store_products': store_products,
+            'current_user':current_user,
+        }
+        return render(request, template, context)
+
+    
 
 
 def edit_store(request, store_id):
