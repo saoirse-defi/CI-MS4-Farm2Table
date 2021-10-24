@@ -105,7 +105,7 @@
                 <p>Active Listings</p>
                 <div class="container" id="seller-listings-grid">
                 {% for product in store_products %}
-                    <div class="card" id="listing-card">
+                    <div class="product-card">
                         {% if product.image_url %}
                         <a href="{% url 'product_detail' product.sku %}">
                             <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
