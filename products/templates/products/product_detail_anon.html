@@ -25,20 +25,6 @@
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 250px; height: 250px;">
                 {% endif %}
             </div>
-            {% if favourited %}
-            <a href="{% url 'delete_from_wishlist' wishlist_id %}">
-                <span class="material-icons-outlined">
-                    favorite
-                    </span>
-            </a>
-            {% else %}
-            <a href="{% url 'add_to_wishlist' product.sku %}">
-                <span class="material-icons-outlined">
-                    favorite_border
-                    </span>
-            </a>
-            {% endif %}
-            
         </div>
         <div class="col s12 m3">
             <div class="product-details">

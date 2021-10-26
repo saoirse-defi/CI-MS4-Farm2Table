@@ -120,16 +120,42 @@ def product_search(request):
 
 def product_detail(request, product_id):
     """ A view to show individual product details """
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
 
     product = get_object_or_404(Product, pk=product_id)
-
     store = get_object_or_404(Store, pk=product.seller_store.store_id)
 
-    context = {
-        'product': product,
-        'store': store,
-    }
-    return render(request, 'products/product_detail.html', context)
+    if current_user is not None:
+        current_wishlist = Wishlist.objects.all().filter(user=current_user)
+        if current_wishlist is not None:
+            for wish in current_wishlist:
+                if wish.product.sku == product_id:
+                    try:
+                        wishlist_id = wish.wishlist_id
+                    except Exception as e:
+                        wishlist_id = None
+                    favourited = True
+                else:
+                    favourited = False
+    
+        context = {
+            'wishlist_id': wishlist_id,
+            'favourited': favourited,
+            'current_user': current_user,
+            'product': product,
+            'store': store,
+            }
+        return render(request, 'products/product_detail.html', context)
+    else:
+        context = {
+            'product': product,
+            'store': store,
+            }
+        return render(request, 'products/product_detail_anon.html', context)
 
 
 # @store_required

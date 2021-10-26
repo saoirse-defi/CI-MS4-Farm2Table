@@ -32,7 +32,7 @@ def add_to_wishlist(request, sku):
 
     messages.success(request, 'Item successfully added to wishlist.')
 
-    return redirect(reverse('wishlist'))
+    return redirect(reverse('product_detail', args=[product.sku]))
 
 
 def delete_from_wishlist(request, wishlist_id):
@@ -42,4 +42,4 @@ def delete_from_wishlist(request, wishlist_id):
 
     messages.success(request, 'Item successfully deleted from wishlist.')
 
-    return redirect(reverse('wishlist'))
+    return redirect(reverse('product_detail', args=[wishlist_item.product.sku]))
