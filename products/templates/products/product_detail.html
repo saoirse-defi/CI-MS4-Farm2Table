@@ -25,7 +25,7 @@
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 250px; height: 250px;">
                 {% endif %}
             </div>
-            {% if favourited %}
+            {% if wishlist_id is not None %}
             <a href="{% url 'delete_from_wishlist' wishlist_id %}">
                 <span class="material-icons-outlined">
                     favorite
