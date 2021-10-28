@@ -14,7 +14,7 @@ User = get_user_model()
 class StoreRegisterForm(forms.ModelForm):
     class Meta:
         model = Store
-        exclude = ('iban', 'user', 'rating', 'organic', 'street_address2')
+        exclude = ('user', 'rating', 'organic', 'street_address2')
 
     image = forms.ImageField(label='Image', required=False,
                              widget=CustomClearableFileUnit)
@@ -22,6 +22,7 @@ class StoreRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
     phone_number = forms.CharField(label='Phone')
+    iban = IBANField()
     street_address1 = forms.CharField()
     town = forms.CharField()
     county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
