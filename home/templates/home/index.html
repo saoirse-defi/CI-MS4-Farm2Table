@@ -32,18 +32,16 @@
                 {% for store in stores %}
                     <a href="{% url 'view_store' store.store_id %}">
                         <div class="store-card center-align">
+                            {% if store.organic %}
+                                <span class="new badge green" data-badge-caption="Organic"></span>
+                            {% endif %}
                             {% if store.image_url %}
                                 <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}">
                             {% else %}
                                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}"> 
                             {% endif %}
                             <div class="card-body">
-                                <p class="center-align">{{ store.name }}</p>
-                            </div>
-                            <div class="card-footer">
-                                    {% if store.organic %}
-                                        <span class="new badge green" data-badge-caption="Organic"></span>
-                                    {% endif %}
+                                <h5 class="store-name center-align">{{ store.name }}</h5>
                             </div>
                         </div>
                     </a>

@@ -4,7 +4,7 @@ html{
 
 body{
   background-color: #a5d6a7;
-  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 header{
@@ -68,20 +68,28 @@ header{
 }
 
 .store-card{
+    position: relative;
     width: 275px;
-    height: 375px;
+    height: 350px;
     border-radius: 8px;
-    background-color: #f2f3f4;
+    background-color: #eaeab4;
     border: 1px solid #e5e5e5;
 }
 
 .store-card:hover{
+    position: relative;
     width: 275px;
-    height: 375px;
+    height: 350px;
     border-radius: 8px;
-    background-color: #f2f3f4;
+    background-color: #eaeab4;
     border: 1px solid #e5e5e5;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.store-card span{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .store-card img{
@@ -91,6 +99,11 @@ header{
     padding-top: 10px;
     border-radius: 50%;
     
+}
+
+.store-name{
+    text-decoration: underline;
+    overflow: visible;
 }
 
 .card{
@@ -133,10 +146,6 @@ header{
 }
 
 .card-body{
-    background-color: #eaeab4;
-}
-
-.card-footer{
     background-color: #eaeab4;
 }
 
