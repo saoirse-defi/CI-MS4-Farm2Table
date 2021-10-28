@@ -18,6 +18,7 @@ class Store(models.Model):
     email = models.CharField(max_length=254)
     phone_number = models.CharField(max_length=20,
                                     null=True, blank=True)
+    iban = models.CharField(max_length=64, null=True, blank=True)
     street_address1 = models.CharField(max_length=80,
                                        null=True, blank=True)
     street_address2 = models.CharField(max_length=80,
@@ -36,7 +37,6 @@ class Store(models.Model):
                                 optimized_image_resize_method='cover',
                                 null=True, blank=True)
     organic = models.BooleanField(default=False, null=False, blank=False)
-    iban = models.CharField(max_length=64, null=True, blank=True)
     rating = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
 

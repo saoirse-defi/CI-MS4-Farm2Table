@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 
 from .filters import StoreFilter
-from .forms import StoreRegisterForm
+from .forms import StoreRegisterForm, StoreUpdateForm
 from profile.models import UserProfile
 from .models import Store, County
 from checkout.models import Order
@@ -73,12 +73,15 @@ def view_store(request, store_id):
     store_orders = Order.objects.all().filter(seller_store=store)
     store_products = Product.objects.all().filter(seller_store=store)
 
+    form = StoreUpdateForm(instance=store)
+
     if store.user == current_user:
         template = 'store/store.html'
         context = {
             'store': store,
             'store_orders': store_orders,
             'store_products': store_products,
+            'form': form,
             'current_user':current_user,
         }
         return render(request, template, context)
@@ -99,7 +102,7 @@ def edit_store(request, store_id):
     store = get_object_or_404(Store, pk=store_id)
 
     if request.method == 'POST':
-        form = StoreRegisterForm(request.POST, instance=store)
+        form = StoreUpdateForm(request.POST, instance=store)
         if form.is_valid():
             form.save()
             messages.success(request, "Seller profile updated successfully.")
@@ -113,7 +116,7 @@ def edit_store(request, store_id):
     template = 'store/store.html'
     context = {
         'form': form,
-        'store':store,
+        'store': store,
     }
     return render(request, template, context)
 

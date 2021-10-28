@@ -53,6 +53,10 @@ header{
     width: 90%;
 }
 
+form{
+    background-color: #eaeab4;
+}
+
 .logo-font {
     text-transform: uppercase;
     margin-bottom: 0px;
