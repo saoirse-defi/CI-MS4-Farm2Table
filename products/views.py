@@ -18,7 +18,7 @@ def superuser_required(func):
     def wrapper(request, *args, **kwargs):
         if not request.user.is_superuser:
             messages.error(request, 'Sorry only store owners can do that.')
-            return redirect(reverse('products'))
+            return redirect(reverse('error_handler_500'))
         else:
             return func(request)
     return wrapper
