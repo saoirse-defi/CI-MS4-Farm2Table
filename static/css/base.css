@@ -4,7 +4,7 @@ html{
 
 body{
   background-color: #a5d6a7;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 header{
@@ -66,6 +66,22 @@ header{
 .select-wrapper{
     width: 25%;
 }
+
+#edit-personal-details{
+    width: 450px;
+    background-color: #eaeab4;
+    border-radius: 8px;
+}
+
+.modal-footer{
+    background-color: #eaeab4 !important;
+}
+
+#profile-update-form{
+    margin: 0 25px 0 25px;
+}
+
+
 
 .store-card{
     position: relative;
