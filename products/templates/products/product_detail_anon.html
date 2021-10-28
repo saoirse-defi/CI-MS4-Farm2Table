@@ -4,7 +4,7 @@
 {% block page_header %}
 <div class="container">
     <div class="row">
-        <div class="col"
+        <div class="col"></div>
     </div>
 </div>
 {% endblock %}
@@ -12,13 +12,14 @@
 {% block content %}
 <div class="container-responsive">
     <div class="row">
-        <a href="{% url 'products' %}" class="btn-small">
-            <span class="material-icons-outlined">chevron_left</span>
+        <a href="{% url 'products' %}" class="btn-small left">
+            <span class="material-icons-outlined">chevron_left</span> Back 
         </a>
+        <p class="right"></p>
     </div>
     <div class="row">
-        <div class="col s12 m4">
-            <div class="image-container">
+        <div class="col s12 m5">
+            <div class="image-container ">
                 {% if product.image_url %}
                     <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 250px; height: 250px;">
                 {% else %}
@@ -26,29 +27,28 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col s12 m3">
+        <div class="col s12 m4">
             <div class="product-details">
                 <p>{{ product.name }}</p>
                 <p>€{{ product.price }}</p>
-                <small>
-                    <a href="{% url 'products' %}?category={{ product.category.name }}">
-                        <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
-                    </a>
-                </small>
+                <a href="{% url 'products' %}?category={{ product.category.name }}">
+                    <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
+                </a>
                 <br>
                 {% if product.rating %}
                     <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
                 {% else %}
                     <small>No Rating</small>
                 {% endif %}
-                <p>Product Description: {{ product.description }}</p>
+                <p>Product Description:</p>
+                <p>{{ product.description }}</p>
                 <h6>Signup or log in to purchase</h6>
                 <a href="{% url 'signup' %}">Register</a>
                 <span> Or </span>
                 <a href="{% url 'login' %}">Login</a>
             </div>
         </div>
-        <div class="col s12 m5">
+        <div class="col s12 m3">
             <div class="seller-details">
                 <h5>Seller Details</h5>
                 {% if store.image_url %}
