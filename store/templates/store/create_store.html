@@ -15,29 +15,27 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container responsive">
-    <div class="row">
-        <div class="col s12 l6">
-            <hr>
-            <h2>Create Organisation</h2>
-            <h5>Open a store on our marketplace.</h5>
-            <hr>
-        </div>
+<div class="row">
+    <div class="col s12 l6">
+        <hr>
+        <h2>Create Organisation</h2>
+        <h5>Open a store on our marketplace.</h5>
+        <hr>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col s12 l6">
-            <form method="POST" action="{% url 'create_store' %}" class="form" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    {{ field | as_crispy_field }}
-                {% endfor %}
-                <div class="right">
-                    <a class="btn-small black" href="{% url 'view_profile' %}">Back to Profile</a>
-                    <button class="btn-small black" type="submit">Create Organisation</button>
-                </div>
-            </form>
-        </div>
+<div class="row">
+    <div class="col s12 l6">
+        <form method="POST" action="{% url 'create_store' %}" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field | as_crispy_field }}
+            {% endfor %}
+            <div class="right">
+                <a class="btn-small black" href="{% url 'view_profile' %}">Back to Profile</a>
+                <button class="btn-small black" type="submit">Create Organisation</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

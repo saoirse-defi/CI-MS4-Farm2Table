@@ -10,97 +10,101 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-responsive">
-    <div class="row">
-        <a href="{% url 'products' %}" class="btn-small left">
-            <span class="material-icons-outlined">chevron_left</span>
+<div class="row">
+    <a href="{% url 'products' %}" class="btn-small left">
+        <span class="material-icons-outlined">chevron_left</span>
+    </a>
+    {% if wishlist_id is not None %}
+        <a class="btn-small right" href="{% url 'delete_from_wishlist' wishlist_id %}">
+            <span class="material-icons-outlined">
+                favorite
+            </span>
         </a>
-        {% if wishlist_id is not None %}
-            <a class="btn-small right" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                <span class="material-icons-outlined">
-                    favorite
-                </span>
-            </a>
+        {% else %}
+        <a class="btn-small right" href="{% url 'add_to_wishlist' product.sku %}">
+            <span class="material-icons-outlined">
+                favorite_border
+            </span>
+        </a>
+        {% endif %}
+</div>
+<div class="row">
+    <div class="col s12 m5">
+        <div class="image-container center-align">
+            {% if product.image_url %}
+                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
             {% else %}
-            <a class="btn-small right" href="{% url 'add_to_wishlist' product.sku %}">
-                <span class="material-icons-outlined">
-                    favorite_border
-                </span>
-            </a>
+                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
+        </div>
+        <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
+        <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
     </div>
-    <div class="row">
-        <div class="col s12 m5">
-            <div class="image-container center-align">
-                {% if product.image_url %}
-                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
-                {% else %}
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                {% endif %}
-            </div>
-        </div>
-        <div class="col s12 m4">
-            <div class="product-details">
-                <p>{{ product.name }}</p>
-                <p>€{{ product.price }}</p>
-                <small>
-                    <a href="{% url 'products' %}?category={{ product.category.name }}">
-                        <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
-                    </a>
-                </small>
-                <br>
-                {% if product.rating %}
-                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
-                {% else %}
-                    <small>No Rating</small>
-                {% endif %}
-                <p>{{ product.description }}</p>
-                <form action="{% url 'add_to_bag' product.sku %}" method="POST">
-                    {% csrf_token %}
-                    <div class="row">
-                        {% with product.has_sizes as s %}
-                            {% if s %}
-                            <div class="col s12">
-                                <p><strong>Size:</strong></p>
-                                <select class="form-control" name="product_size" id="id_product_size">
-                                    <option value="250">250g</option>
-                                    <option value="500">500g</option>
-                                    <option value="750">750g</option>
-                                    <option value="1000">1kg</option>
-                                    <option value="2000">2kg</option>
-                                </select>
-                            </div>
-                            {% endif %}
+    <div class="col s12 m4">
+        <div class="product-details">
+            <p>{{ product.name }}</p>
+            <p>€{{ product.price }}</p>
+            <small>
+                <a href="{% url 'products' %}?category={{ product.category.name }}">
+                    <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
+                </a>
+            </small>
+            <br>
+            {% if product.rating %}
+                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+            {% else %}
+                <small>No Rating</small>
+            {% endif %}
+            <p>{{ product.description }}</p>
+            <form action="{% url 'add_to_bag' product.sku %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    {% with product.has_sizes as s %}
+                        {% if s %}
                         <div class="col s12">
-                            <p>Quantity:</p>
-                            <div class="form-group">
-                                <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
-                            </div>
+                            <p><strong>Size:</strong></p>
+                            <select class="form-control" name="product_size" id="id_product_size">
+                                <option value="250">250g</option>
+                                <option value="500">500g</option>
+                                <option value="750">750g</option>
+                                <option value="1000">1kg</option>
+                                <option value="2000">2kg</option>
+                            </select>
                         </div>
-                        <div class="col s12" id="product-detail-btn-container">
-                            <input type="submit" class="btn-small" value="Add to Bag">
+                        {% endif %}
+                    <div class="col s12">
+                        <p>Quantity:</p>
+                        <div class="form-group">
+                            <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
                         </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
-                        {% endwith %}
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="col s12 m3">
-            <div class="seller-details">
-                <h5 class="center-align">Seller Details</h5>
-                <div class="img-container center-align">
-                    {% if store.image_url %}
-                        <img src="{{ store.image_url }}" alt="{{store.name}}"/>
-                    {% else %}
-                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
-                    {% endif %}
+                    <div class="col s12" id="product-detail-btn-container">
+                        <input type="submit" class="btn-small" value="Add to Bag">
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
+                    {% endwith %}
                 </div>
-                <p class="center-align">Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
-                <p class="center-align">Email: {{store.email}}</p>
-                <p class="center-align">Town: {{store.town}}</p>
-                <p class="center-align">County: {{store.county}}</p>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m3">
+        <div class="seller-details">
+            <h5 class="center-align">Seller Details</h5>
+            <div class="img-container center-align">
+                {% if store.image_url %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img src="{{ store.image_url }}" alt="{{store.name}}"/>
+                    </a>
+                {% else %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+                    </a>
+                {% endif %}
             </div>
+            <p class="center-align">Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
+            <p class="center-align">Email: {{store.email}}</p>
+            <p class="center-align">Town: {{store.town}}</p>
+            <p class="center-align">County: {{store.county}}</p>
         </div>
     </div>
 </div>

@@ -10,57 +10,55 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-responsive">
-    <div class="row">
-        <a href="{% url 'products' %}" class="btn-small left">
-            <span class="material-icons-outlined">chevron_left</span> Back 
-        </a>
-        <p class="right"></p>
+<div class="row">
+    <a href="{% url 'products' %}" class="btn-small left">
+        <span class="material-icons-outlined">chevron_left</span> Back 
+    </a>
+    <p class="right"></p>
+</div>
+<div class="row">
+    <div class="col s12 m5">
+        <div class="image-container ">
+            {% if product.image_url %}
+                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+            {% else %}
+                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+            {% endif %}
+        </div>
     </div>
-    <div class="row">
-        <div class="col s12 m5">
-            <div class="image-container ">
-                {% if product.image_url %}
-                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
-                {% else %}
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                {% endif %}
-            </div>
+    <div class="col s12 m4">
+        <div class="product-details">
+            <p>{{ product.name }}</p>
+            <p>€{{ product.price }}</p>
+            <a href="{% url 'products' %}?category={{ product.category.name }}">
+                <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
+            </a>
+            <br>
+            {% if product.rating %}
+                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+            {% else %}
+                <small>No Rating</small>
+            {% endif %}
+            <p>Product Description:</p>
+            <p>{{ product.description }}</p>
+            <h6>Signup or log in to purchase</h6>
+            <a href="{% url 'signup' %}">Register</a>
+            <span> Or </span>
+            <a href="{% url 'login' %}">Login</a>
         </div>
-        <div class="col s12 m4">
-            <div class="product-details">
-                <p>{{ product.name }}</p>
-                <p>€{{ product.price }}</p>
-                <a href="{% url 'products' %}?category={{ product.category.name }}">
-                    <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
-                </a>
-                <br>
-                {% if product.rating %}
-                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
-                {% else %}
-                    <small>No Rating</small>
-                {% endif %}
-                <p>Product Description:</p>
-                <p>{{ product.description }}</p>
-                <h6>Signup or log in to purchase</h6>
-                <a href="{% url 'signup' %}">Register</a>
-                <span> Or </span>
-                <a href="{% url 'login' %}">Login</a>
-            </div>
-        </div>
-        <div class="col s12 m3">
-            <div class="seller-details">
-                <h5>Seller Details</h5>
-                {% if store.image_url %}
-                    <img src="{{ store.image_url }}" alt="{{store.name}}" style="width:42px;height:42px;border:0;"/>
-                {% else %}
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}" style="width:42px;height:42px;border:0;">
-                {% endif %}
-                <p>Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
-                <p>Email: {{store.email}}</p>
-                <p>Town: {{store.town}}</p>
-                <p>County: {{store.county}}</p>
-            </div>
+    </div>
+    <div class="col s12 m3">
+        <div class="seller-details">
+            <h5>Seller Details</h5>
+            {% if store.image_url %}
+                <img src="{{ store.image_url }}" alt="{{store.name}}" style="width:42px;height:42px;border:0;"/>
+            {% else %}
+                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}" style="width:42px;height:42px;border:0;">
+            {% endif %}
+            <p>Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
+            <p>Email: {{store.email}}</p>
+            <p>Town: {{store.town}}</p>
+            <p>County: {{store.county}}</p>
         </div>
     </div>
 </div>

@@ -3,62 +3,60 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container responsive">
-    <div class="row">
-        <div class="col s12">
-            {% if current_categories %} <!--Check to see if working-->
-                {% for c in current_categories %}
-                <h2>{{c.friendly_name}}</h2>
-                {% endfor %}
-            {% else %}
-            <h2>Products</h2>
-            {% endif %}
-            
-        </div>
+<div class="row">
+    <div class="col s12">
+        {% if current_categories %} <!--Check to see if working-->
+            {% for c in current_categories %}
+            <h2>{{c.friendly_name}}</h2>
+            {% endfor %}
+        {% else %}
+        <h2>Products</h2>
+        {% endif %}
+        
     </div>
-    <div class="row">
-        <div class="col s12">
-            <form method="GET" id="products-category-search-form">
-                {% csrf_token %}
-                {{ product_filter.form }}
-                <button class="waves-effect waves-light btn-small" type="submit">
-                    <i class="material-icons-outlined">search</i>
-                </button>
-            </form>            
-        </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <form method="GET" id="products-category-search-form">
+            {% csrf_token %}
+            {{ product_filter.form }}
+            <button class="waves-effect waves-light btn-small" type="submit">
+                <i class="material-icons-outlined">search</i>
+            </button>
+        </form>            
     </div>
-    <div class="row">
-        <div class="product-container col s12">
-                {% for product in products %}
-                    <div class="product-card">
-                        <a href="{% url 'product_detail' product.sku %}" style="color: black;">
-                                <div class="card-header">
-                                    {% if product.image_url %}
-                                        <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
-                                    {% else %}
-                                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                    {% endif %}
-                                </div>
-                            <div class="card-body">
-                                {% if product.category %}
-                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                        <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
-                                    </a>
-                                    {% endif %}
-                                    {% if product.rating %}
-                                        <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
-                                    {% else %}
-                                        <small>No Rating</small>
-                                    {% endif %}
+</div>
+<div class="row">
+    <div class="product-container col s12">
+            {% for product in products %}
+                <div class="product-card">
+                    <a href="{% url 'product_detail' product.sku %}" style="color: black;">
+                            <div class="card-header">
+                                {% if product.image_url %}
+                                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                {% endif %}
                             </div>
-                            <div class="card-footer">
-                                <h6 class="center-align">{{ product.name }}</h6>
-                                <p class="center-align">€{{ product.price }}</p>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-        </div>
+                        <div class="card-body">
+                            {% if product.category %}
+                                <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
+                                </a>
+                                {% endif %}
+                                {% if product.rating %}
+                                    <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
+                                {% else %}
+                                    <small>No Rating</small>
+                                {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <h6 class="center-align">{{ product.name }}</h6>
+                            <p class="center-align">€{{ product.price }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
     </div>
 </div>
 {% endblock %}

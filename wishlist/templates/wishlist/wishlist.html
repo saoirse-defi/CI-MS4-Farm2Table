@@ -11,51 +11,49 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container-responsive">
-    <div class="row">
-        {% if my_wishlist|length == 0 %}
-        <h3>Your wishlist is empty.</h3>
-        <a class="btn-small" href="{% url 'products' %}">Browse Products</a>
-        {% endif %}
-        {% for item in my_wishlist %}
-            <div class="col">
-                <div class="card">
-                    {% if item.product.image_url %}
-                    <a href="{% url 'product_detail' item.product.sku %}">
-                        <img class="card-img responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
+<div class="row">
+    {% if my_wishlist|length == 0 %}
+    <h3>Your wishlist is empty.</h3>
+    <a class="btn-small" href="{% url 'products' %}">Browse Products</a>
+    {% endif %}
+    {% for item in my_wishlist %}
+        <div class="col">
+            <div class="card">
+                {% if item.product.image_url %}
+                <a href="{% url 'product_detail' item.product.sku %}">
+                    <img class="card-img responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
+                </a>
+                {% else %}
+                <a href="{% url 'product_detail' item.product.sku %}">
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
+                </a>
+                {% endif %}
+                <div class="card-body">
+                    <p>{{ item.product.name }}</p>
+                    <a class="btn-small" href="{% url 'delete_from_wishlist' item.wishlist_id %}">
+                        <span class="material-icons-outlined">delete</span>
                     </a>
-                    {% else %}
-                    <a href="{% url 'product_detail' item.product.sku %}">
-                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 225px; height: 225px;">
-                    </a>
-                    {% endif %}
-                    <div class="card-body">
-                        <p>{{ item.product.name }}</p>
-                        <a class="btn-small" href="{% url 'delete_from_wishlist' item.wishlist_id %}">
-                            <span class="material-icons-outlined">delete</span>
-                        </a>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <p>€{{ item.product.price }}</p>
-                                {% if item.product.category %}
-                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
-                                    <span class="new badge black" data-badge-caption="{{ item.product.category.friendly_name }}"></span>
-                                </a>
-                                {% endif %}
-                                <br>
-                                {% if item.product.rating %}
-                                    <small><span class="material-icons-outlined">star</span>{{ item.product.rating }} / 5</small>
-                                {% else %}
-                                    <small>No Rating</small>
-                                {% endif %}
-                            </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <p>€{{ item.product.price }}</p>
+                            {% if item.product.category %}
+                            <a href="{% url 'products' %}?category={{ item.product.category.name }}">
+                                <span class="new badge black" data-badge-caption="{{ item.product.category.friendly_name }}"></span>
+                            </a>
+                            {% endif %}
+                            <br>
+                            {% if item.product.rating %}
+                                <small><span class="material-icons-outlined">star</span>{{ item.product.rating }} / 5</small>
+                            {% else %}
+                                <small>No Rating</small>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}
