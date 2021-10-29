@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col s12 l6">
-            <form method="POST" action="{% url 'add_product' %}" class="form" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'add_product' %}" class="form" id="add-product-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
                         {% if field.name != 'image' %}
