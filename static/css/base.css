@@ -54,7 +54,7 @@ header{
 }
 
 form{
-    background-color: #eaeab4;
+    background-color: #a5d6a7;
 }
 
 .logo-font {
@@ -72,9 +72,12 @@ form{
 }
 
 #edit-personal-details{
-    width: 450px;
     background-color: #eaeab4;
     border-radius: 8px;
+}
+
+#edit-personal-details form{
+    background-color: #eaeab4;
 }
 
 .modal-footer{
@@ -85,7 +88,27 @@ form{
     margin: 0 25px 0 25px;
 }
 
+#store-image-upload{
+    border-radius: 8px;
+    background-color: #eaeab4;
+}
 
+#store-image-upload form{
+    background-color: #eaeab4;
+}
+
+#store-update-form{
+    margin: 0 25px 0 25px;
+}
+
+#store-details{
+    border-radius: 8px;
+    background-color: #eaeab4;
+}
+
+#store-details-content{
+    margin: 25px;
+}
 
 .store-card{
     position: relative;
@@ -138,8 +161,8 @@ form{
 
 .product-card{
     width: 250px;
-    height: 400px;
-    border-radius: 25px;
+    height: 365px;
+    border-radius: 8px;
     background-color: #eaeab4;
     border: 0.5px solid black;
     border-left: 1px solid black;
@@ -147,8 +170,8 @@ form{
 
 .product-card:hover{
     width: 250px;
-    height: 400px;
-    border-radius: 25px;
+    height: 365px;
+    border-radius: 8px;
     background-color: #eaeab4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -160,9 +183,14 @@ form{
 .product-card img{
     width: 248.5px;
     height: 250px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     border-bottom: 0.5px solid black;
+}
+
+.image-container img{
+    width: 100%;
+    height: auto;
 }
 
 .card-body{
@@ -223,6 +251,22 @@ form{
     height: 75px;
     border: 0;
 }
+
+::-webkit-input-placeholder {
+    color: #361505;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    color: #361505;
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    color: #361505;
+ }
+ 
+ :-ms-input-placeholder {
+    color: #361505;
+ }
 
 /* Allauth form formatting */
 
