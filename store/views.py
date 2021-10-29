@@ -145,16 +145,28 @@ def delete_store(request, store_id):
 
 
 def local_producers(request):
-    current_user = UserProfile.objects.get(user=request.user)
-    stores = Store.objects.all()
-    local_stores = Store.objects.all().filter(county=current_user.default_county)
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
 
-    template = 'store/local_producers.html'
-    context = {
-        'current_user': current_user,
-        'local_stores': local_stores,
-    }
-    return render(request, template, context)
+    if current_user is None:
+        template = 'store/all_stores.html'
+        context = {
+            'current_user': current_user,
+        }
+        return render(request, template, context)
+    else:
+        local_stores = Store.objects.all().filter(county=current_user.default_county)
+
+        template = 'store/local_producers.html'
+        context = {
+            'current_user': current_user,
+            'local_stores': local_stores,
+        }
+        return render(request, template, context)
+        
 
 
 def store_search(request):
