@@ -160,23 +160,28 @@ def product_detail(request, product_id):
 # @superuser_required
 def add_product(request):
     """ Add a product to the store. """
-    stores = Store.objects.all()
-    current_user = UserProfile.objects.get(user=request.user)
-    my_store = Store.objects.get(user=current_user)
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+        my_store = Store.objects.get(user=current_user)
+    except Exception as e:
+        current_user = None
+        my_store = None
+        print(e)
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.seller_store = my_store
-            product.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse(
-                            'product_detail', args=[product.sku, ]))
-        else:
-            messages.error(request,
-                           'Failed to add product.'
-                           'Please ensure the form is valid.')
+        if my_store is not None:
+            if form.is_valid():
+                product = form.save(commit=False)
+                product.seller_store = my_store
+                product.save()
+                messages.success(request, 'Successfully added product!')
+                return redirect(reverse(
+                                'product_detail', args=[product.sku, ]))
+            else:
+                messages.error(request,
+                            'Failed to add product.'
+                            'Please ensure the form is valid.')
     else:
         form = ProductForm()
 
@@ -216,11 +221,23 @@ def edit_product(request, product_id):
 @login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
+
     product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request,
-                     f'{product.name} has been removed from the marketplace.')
-    return redirect(reverse('products'))
+
+    if product.store.user == current_user:
+        product.delete()
+        messages.success(request,
+                        f'{product.name} has been removed from the marketplace.')
+        return redirect(reverse('products'))
+    else:
+        messages.error(request,
+                        f'{product.name} cannot be deleted as you do not have the authority.')
+        return redirect(reverse('product_detail_anon', args=[product_id]))
 
 
 @login_required
