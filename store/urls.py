@@ -9,5 +9,6 @@ urlpatterns = [
     path('create_store/', views.create_store, name='create_store'),
     path('<uuid:store_id>/', views.view_store, name='view_store'),
     path('edit_store/<uuid:store_id>/', views.edit_store, name='edit_store'),
+    path('delete_store/<uuid:store_id>/', views.delete_store, name='delete_store'),
     path('local_producers/', views.local_producers, name='local_producers'),
 ]
