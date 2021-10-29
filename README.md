@@ -63,6 +63,14 @@ This section will outline goals set out by application creator both in relation 
 
 #### Developer Goals
 
+My goals as the developer of this project are:
+
+1. To provide a neutral platform that will allow grocers to sell directly to the consumer.
+2. Provide Stripe integration which will allow payment's to be sent directly to the merchant's bank account.
+3. Create a clean and intuitive UI which keeps users.
+4. Allow merchant's goods to be in full focus by cultivating an immersive UX for the user that keeps them coming back to shop with us.
+5. Once a robust marketplace has been formed within Ireland, the application can be launched in localised foreign markets.
+
 
 #### Business Goals
 
@@ -141,11 +149,21 @@ It appears to provide more feedback to the user when they are navigating through
 
 All icons for this application have been sourced from [Google Fonts](https://fonts.google.com/icons) collected from the Material Icons library. As the designer of the web application, the selection of the icons must be done in line with other successful applications. 
 
+##### Favourite Outline Icon
+
+This icon is present on the product_details page when you are logged in to the application. By pressing the button linked to it, the user has the ability to add products to their wishlist.
+
 ##### Favourite Icon
+
+Present on the product_details page, if a user's wishlist already contains this specific product, the empty heart icon will be replaced by the full heart.
 
 ##### Edit Icon
 
+When a store owner has landed on the details page for one of his/her products, a button with the edit icon will allow them to change product details on the fly.
+
 ##### Delete Icon
+
+When a store owner has landed on the details page for one of his/her products, a button with the delete icon will allow them to remove that product from the marketplace.
 
 
 #### Fonts
