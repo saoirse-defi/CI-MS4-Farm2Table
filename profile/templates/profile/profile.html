@@ -81,13 +81,13 @@
                     <div class="modal-content">
                         <h5 class="center-align">Edit Profile</h5>
                         <p class="center-align">These delivery details will be used in your next order!</p>
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {{ field | as_crispy_field }}
+                        {% endfor %}
+                        <div class="modal-footer">
+                            <button class="btn-small" type="submit">Save</button>
                     </div>
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {{ field | as_crispy_field }}
-                    {% endfor %}
-                    <div class="modal-footer">
-                        <button class="btn-small" type="submit">Save</button>
                     </div>
                 </form>
             </div>
