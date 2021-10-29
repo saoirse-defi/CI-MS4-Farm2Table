@@ -82,7 +82,7 @@ def view_store(request, store_id):
             'store_orders': store_orders,
             'store_products': store_products,
             'form': form,
-            'current_user':current_user,
+            'current_user': current_user,
         }
         return render(request, template, context)
     else:
@@ -91,25 +91,30 @@ def view_store(request, store_id):
             'store': store,
             'store_orders': store_orders,
             'store_products': store_products,
-            'current_user':current_user,
+            'current_user': current_user,
         }
         return render(request, template, context)
 
-    
-
 
 def edit_store(request, store_id):
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
+
     store = get_object_or_404(Store, pk=store_id)
 
     if request.method == 'POST':
         form = StoreUpdateForm(request.POST, instance=store)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Seller profile updated successfully.")
-            return redirect(reverse('view_store', args=[store.store_id, ]))
-        else:
-            messages.error(request, 'Seller profile Update Failed: '
-                           'Please ensure the form is valid.')
+        if store.user == current_user:
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Seller profile updated successfully.")
+                return redirect(reverse('view_store', args=[store.store_id, ]))
+            else:
+                messages.error(request, 'Seller profile Update Failed: '
+                               'Please ensure the form is valid.')
     else:
         form = StoreRegisterForm(instance=store)
 
@@ -119,6 +124,24 @@ def edit_store(request, store_id):
         'store': store,
     }
     return render(request, template, context)
+
+
+def delete_store(request, store_id):
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
+
+    store = get_object_or_404(Store, pk=store_id)
+
+    if store.user == current_user:
+        store.delete()
+        messages.success(request, f'{store.name} has been deleted successfully.')
+        return redirect(reverse('view_profile'))
+    else:
+        messages.error(request, 'You do not have the authority for this action')
+        return redirect(reverse('view_store', args=[store.store_id, ]))
 
 
 def local_producers(request):
