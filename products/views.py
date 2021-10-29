@@ -201,7 +201,7 @@ def edit_product(request, product_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Product successfully updated!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            return redirect(reverse('product_detail', args=[product_id]))
         else:
             messages.error(request,
                            f'Failed to update {product.name},'
@@ -229,7 +229,7 @@ def delete_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
-    if product.store.user == current_user:
+    if product.seller_store.user == current_user:
         product.delete()
         messages.success(request,
                         f'{product.name} has been removed from the marketplace.')
