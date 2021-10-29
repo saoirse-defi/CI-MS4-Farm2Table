@@ -21,9 +21,9 @@
         <div class="col s12 m5">
             <div class="image-container ">
                 {% if product.image_url %}
-                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 250px; height: 250px;">
+                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
                 {% else %}
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="width: 250px; height: 250px;">
+                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                 {% endif %}
             </div>
         </div>
