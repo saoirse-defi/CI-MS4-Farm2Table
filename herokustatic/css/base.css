@@ -1,0 +1,380 @@
+html{
+    height: 100%;
+}
+
+body{
+  background-color: #a5d6a7;
+  font-family: 'Lato', sans-serif;
+}
+
+header{
+    background-color: #a5d6a7;
+}
+
+.nav-wrapper{
+    background-color: #a5d6a7;
+}
+
+.brand-logo{
+    margin-left: 25px;
+}
+
+#main-nav{
+    background-color: #a5d6a7;
+}
+
+#navbar-row{
+    background-color: #a5d6a7;
+    display: flex;
+    justify-content: space-between;
+}
+
+#navbar-search{
+    display: flex;
+}
+
+.desktop-only-item a{
+    width: 100px;
+}
+
+.overlay {
+    background-color: #a5d6a7;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: -1;
+}
+
+.container{
+    margin: 0 10px 0 10px;
+    max-width: 1280px;
+    width: 90%;
+}
+
+form{
+    background-color: #a5d6a7;
+}
+
+.logo-font {
+    text-transform: uppercase;
+    margin-bottom: 0px;
+}
+
+.login-form-container{
+    display: flex;
+    justify-content: center;
+}
+
+.select-wrapper{
+    width: 25%;
+}
+
+#edit-personal-details{
+    background-color: #eaeab4;
+    border-radius: 8px;
+}
+
+#edit-personal-details form{
+    background-color: #eaeab4;
+}
+
+.modal-footer{
+    background-color: #eaeab4 !important;
+}
+
+#profile-update-form{
+    margin: 0 25px 0 25px;
+}
+
+#store-image-upload{
+    border-radius: 8px;
+    background-color: #eaeab4;
+}
+
+#store-image-upload form{
+    background-color: #eaeab4;
+}
+
+#store-update-form{
+    margin: 0 25px 0 25px;
+}
+
+#store-details{
+    border-radius: 8px;
+    background-color: #eaeab4;
+}
+
+#store-details-content{
+    margin: 25px;
+}
+
+.store-card{
+    position: relative;
+    width: 275px;
+    height: 350px;
+    border-radius: 8px;
+    background-color: #eaeab4;
+    border: 1px solid #e5e5e5;
+}
+
+.store-card:hover{
+    position: relative;
+    width: 275px;
+    height: 350px;
+    border-radius: 8px;
+    background-color: #eaeab4;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.store-card span{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.store-card img{
+    width: 250px;
+    height: 250px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-radius: 50%;
+    
+}
+
+.store-name{
+    text-decoration: underline;
+    overflow: visible;
+}
+
+.card{
+    width: 250px;
+    height: 400px;
+}
+
+.card img{
+    width: 250px;
+    height: 250px;
+}
+
+.product-card{
+    width: 250px;
+    height: 365px;
+    border-radius: 8px;
+    background-color: #eaeab4;
+    border: 0.5px solid black;
+    border-left: 1px solid black;
+}
+
+.product-card:hover{
+    width: 250px;
+    height: 365px;
+    border-radius: 8px;
+    background-color: #eaeab4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-card a{
+    color: black;
+}
+
+.product-card img{
+    width: 248.5px;
+    height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 0.5px solid black;
+}
+
+.image-container img{
+    width: 100%;
+    height: auto;
+}
+
+.card-body{
+    background-color: #eaeab4;
+}
+
+.card-body a{
+    padding-left: 5px;
+}
+
+.category{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.dashboard-product-card{
+    width: 250px;
+    height: 450px;
+}
+
+.dashboard-product-card img{
+    width: 250px;
+    height: 250px;
+}
+
+#seller-listings-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5rem;
+}
+
+.local-seller-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5rem;
+}
+
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5rem;
+}
+
+.admin-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#product-detail-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seller-details img{
+    width: 75px;
+    height: 75px;
+    border: 0;
+}
+
+::-webkit-input-placeholder {
+    color: #361505;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    color: #361505;
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    color: #361505;
+ }
+ 
+ :-ms-input-placeholder {
+    color: #361505;
+ }
+
+/* Allauth form formatting */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; /* mt-4 */
+    color: #6c757d; /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #000;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a {
+	color: black; /* text-info */
+}
+
+#id_product_size{
+    display: block;
+}
+
+.remove-item{
+    cursor: pointer;
+}
+
+/* Product form */
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before{
+    border-radius: 0;
+    border-color: #dc3545;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0;
+}
+
+.stripe-style-input{
+
+}
+
+#listing-card{
+
+}
+
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only-item{
+        display: none;
+    }
+}
