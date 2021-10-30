@@ -1,0 +1,1 @@
+web: gunicorn farm2table.wsgi:application

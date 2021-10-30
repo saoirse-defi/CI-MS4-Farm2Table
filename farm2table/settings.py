@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-p+l3@33i*8h(f@vol!pc^p8xgkhvrh))2uel3neqf-6poqoz--
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'thevegtable.herokuapp.com']
 
 
 # Application definition
@@ -177,7 +177,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
