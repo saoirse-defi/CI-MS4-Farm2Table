@@ -2,7 +2,6 @@ import uuid
 from django.db import models
 from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
-from django_ibanfield.fields import IBANField
 
 from profile.models import UserProfile
 
@@ -19,7 +18,8 @@ class Store(models.Model):
     email = models.CharField(max_length=254)
     phone_number = models.CharField(max_length=20,
                                     null=True, blank=True)
-    iban = IBANField()
+    iban = models.CharField(max_length=34,
+                                       null=True, blank=True)
     street_address1 = models.CharField(max_length=80,
                                        null=True, blank=True)
     street_address2 = models.CharField(max_length=80,

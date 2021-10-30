@@ -7,6 +7,7 @@ django-countries==7.2.1
 django-crispy-forms==1.12.0
 django-filter==21.1
 django-iban-field==0.8
+django-ibanfield==0.0.2
 django-image-optimizer==1.0.1
 django-localflavor==3.1
 django-multiselectfield==0.1.12

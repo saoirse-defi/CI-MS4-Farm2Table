@@ -128,16 +128,17 @@ WSGI_APPLICATION = 'farm2table.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
-
-#DATABASES = {
- #   'default': dj_database_url.parse('postgres://ageaumzdgqffxl:81a86018cf14b86683a2cd856f95aada47c110512e90717317ae5b92de057e29@ec2-34-247-151-118.eu-west-1.compute.amazonaws.com:5432/d8q2305v94dtmj'),
-#}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
