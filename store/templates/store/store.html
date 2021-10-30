@@ -21,7 +21,7 @@
                     {% if store.image_url %}
                         <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
                     {% else %}
-                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}" style="height: 250px; width: 250px;">
                     {% endif %}
         </div>
         <div class="col s12 m7 valign-wrapper">
