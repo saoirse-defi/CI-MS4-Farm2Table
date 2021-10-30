@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p+l3@33i*8h(f@vol!pc^p8xgkhvrh))2uel3neqf-6poqoz--'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'thevegtable.herokuapp.com']
 
@@ -185,6 +185,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FREE_DELIVERY_THRESHOLD = 25
+
 STANDARD_DELIVERY_PERCENTAGE = 10
 
 DEFAULT_FROM_EMAIL = 'orders@farm2table.com'
