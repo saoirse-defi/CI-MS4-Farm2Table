@@ -136,7 +136,7 @@ WSGI_APPLICATION = 'farm2table.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse('postgres://iadmsfxxnwyhew:b262fa1e0792bba7875ca4e896d5ae353a62844e016ffb74693dbe22ace57286@ec2-44-199-158-170.compute-1.amazonaws.com:5432/dqam01gm6i278')
     }
 else:
     DATABASES = {
