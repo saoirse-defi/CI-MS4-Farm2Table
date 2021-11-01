@@ -118,7 +118,7 @@ form{
 .store-card{
     position: relative;
     width: 275px;
-    height: 350px;
+    height: 375px;
     border-radius: 8px;
     background-color: #eaeab4;
     border: 1px solid #e5e5e5;
@@ -127,7 +127,7 @@ form{
 .store-card:hover{
     position: relative;
     width: 275px;
-    height: 350px;
+    height: 375px;
     border-radius: 8px;
     background-color: #eaeab4;
     border: 1px solid #e5e5e5;
