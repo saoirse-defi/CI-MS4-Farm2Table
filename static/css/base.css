@@ -11,6 +11,11 @@ header{
     background-color: #a5d6a7;
 }
 
+img{
+    width: 250px;
+    height: 250px;
+}
+
 .nav-wrapper{
     background-color: #a5d6a7;
 }
