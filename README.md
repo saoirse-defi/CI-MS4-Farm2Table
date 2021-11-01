@@ -357,6 +357,8 @@ This section will cover all software dependencies needed to run this application
 
 ## Deployment
 
+### 
+
 ### Github Pages Deployment Procedure
 
 This project was developed using Gitpod, committed to git and pushed to Github using the built-in function with Gitpod.
@@ -417,7 +419,7 @@ Follow these steps:
 #### How to run your project on Heroku
 
 Follow these steps:
-1. Create a virtual environment with pipenv and install Flask and Gunicorn
+1. Create a virtual environment with pipenv and install Django and Gunicorn
 2. Create a “Procfile” and write the following code "touch Procfile" in the command line
 3. Create “runtime.txt” and write the following code "touch runtime.txt" in the command line
 4. Create a folder named “app” and enter the folder
@@ -440,6 +442,32 @@ if __name__ == "__main__":
 9. Login to heroku CLI using "heroku login"
 10.  Create a unique name for your Web app, write "heroku create hashboard"
 11. Push your code from local to the heroku remote using "git push heroku master"
+
+
+#### AWS S3 Bucket
+
+1. Create an account with AWS [here](https://www.aws.amazon.com)
+2. Navigate to the S3 bucket console using the search bar
+3. Create an S3 bucket using thoughtful naming conventions
+4. Navigate to the IAM (Identity & Access Management) console in order to create a user group
+5. Create a user policy for this group outlining the permission allowed
+6. Create and attach a user to this user group
+7. Design a bucket policy containing the access required and attach it to the bucket
+8. In 'My Security Credentials' you will find the AWS access keys & secrets
+9. Add AWS access key and secret to Heroku config variables
+
+
+#### Postgres Database (Heroku)
+
+Once your application is deployed on Heroku:
+
+1. Within the Heroku dashboard in the resources tab, search for Postgres
+2. Once it appears, click on Heroku Postgres & select the 'Hobby - Free' tier
+3. Once created, find the 'database credentials' within the settings tab of the Postgres console
+4. Add the DATABASE_URL & SECRET_KEY TO Heroku config variables
+5. From within your IDE terminal, sign into to Heroku and make sure your database is up to date.
+6. You can now type the command "heroku run python3 manage.py migrate"
+7. Within your settings.py file use database_dj_url to extract the Database URL from heroku
 
 
 #### How to create a MongoDB database
