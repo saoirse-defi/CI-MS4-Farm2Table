@@ -13,7 +13,7 @@
 <div class="overlay"></div>
 <div class="row">
     {% if not local_stores %}
-        <h3>Unfortunately there are no producers currently in {{ current_user.default_county }}</h3>
+        <h5>Unfortunately there are no producers currently in {{ current_user.default_county }}</h5>
     {% else %}
         <h5>Showing results for {{ current_user.default_county }}</h5>
     {% endif %}
@@ -34,6 +34,7 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="store-name center-align">{{ store.name }}</h5>
+                            <p class="store-location center-align">{{ store.town }}, {{ store.county}}</p>
                         </div>
                     </div>
                 </a>
