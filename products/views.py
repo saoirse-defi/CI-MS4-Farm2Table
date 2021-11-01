@@ -180,8 +180,8 @@ def add_product(request):
                                 'product_detail', args=[product.sku, ]))
             else:
                 messages.error(request,
-                            'Failed to add product.'
-                            'Please ensure the form is valid.')
+                               'Failed to add product.'
+                               'Please ensure the form is valid.')
     else:
         form = ProductForm()
 
@@ -232,11 +232,11 @@ def delete_product(request, product_id):
     if product.seller_store.user == current_user:
         product.delete()
         messages.success(request,
-                        f'{product.name} has been removed from the marketplace.')
+                         f'{product.name} has been removed from the marketplace.')
         return redirect(reverse('products'))
     else:
         messages.error(request,
-                        f'{product.name} cannot be deleted as you do not have the authority.')
+                       f'{product.name} cannot be deleted as you do not have the authority.')
         return redirect(reverse('product_detail_anon', args=[product_id]))
 
 

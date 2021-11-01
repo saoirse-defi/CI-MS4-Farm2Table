@@ -42,7 +42,7 @@ class ProductForm(forms.ModelForm):
 
         categories = Category.objects.all()
         cat_choices = [(c.category_id,
-                           c.name) for c in categories]
+                        c.name) for c in categories]
 
         self.fields['category'].choices = cat_choices
 
