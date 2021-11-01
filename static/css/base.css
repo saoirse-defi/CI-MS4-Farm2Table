@@ -3,8 +3,9 @@ html{
 }
 
 body{
-  background-color: #a5d6a7;
-  font-family: 'Lato', sans-serif;
+    color: black;
+    background-color: #a5d6a7;
+    font-family: 'Lato', sans-serif;
 }
 
 header{
