@@ -140,13 +140,22 @@ def product_detail(request, product_id):
         except Exception as e:
             wishlist_id = None
 
-        context = {
-            'wishlist_id': wishlist_id,
-            'current_user': current_user,
-            'product': product,
-            'store': store,
-            }
-        return render(request, 'products/product_detail.html', context)
+        if store.user == current_user:
+            context = {
+                'wishlist_id': wishlist_id,
+                'current_user': current_user,
+                'product': product,
+                'store': store,
+                }
+            return render(request, 'products/product_detail.html', context)
+        else:
+            context = {
+                'wishlist_id': wishlist_id,
+                'current_user': current_user,
+                'product': product,
+                'store': store,
+                }
+            return render(request, 'products/product_detail_anon.html', context)
     else:
         context = {
             'product': product,
