@@ -41,10 +41,44 @@
             {% endif %}
             <p>Product Description:</p>
             <p>{{ product.description }}</p>
-            <h6>Signup or log in to purchase</h6>
-            <a href="{% url 'signup' %}">Register</a>
-            <span> Or </span>
-            <a href="{% url 'login' %}">Login</a>
+
+            {% if current_user %}
+                <form action="{% url 'add_to_bag' product.sku %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% with product.has_sizes as s %}
+                            {% if s %}
+                            <div class="col s12">
+                                <p><strong>Size:</strong></p>
+                                <select class="form-control" name="product_size" id="id_product_size">
+                                    <option value="250">250g</option>
+                                    <option value="500">500g</option>
+                                    <option value="750">750g</option>
+                                    <option value="1000">1kg</option>
+                                    <option value="2000">2kg</option>
+                                </select>
+                            </div>
+                            {% endif %}
+                        <div class="col s12">
+                            <p>Quantity:</p>
+                            <div class="form-group">
+                                <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
+                            </div>
+                        </div>
+                        <div class="col s12" id="product-detail-btn-container">
+                            <input type="submit" class="btn-small" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
+                        {% endwith %}
+                    </div>
+                </form>
+            {% else %}
+                <h6>Signup or log in to purchase</h6>
+                <a href="{% url 'signup' %}">Register</a>
+                <span> Or </span>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            
         </div>
     </div>
     <div class="col s12 m3">
