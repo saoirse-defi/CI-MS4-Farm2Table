@@ -1,5 +1,5 @@
 from django import forms
-from .widgets import CustomClearableFileUnit
+#from .widgets import CustomClearableFileUnit
 
 from .models import Product, Category
 
@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
     """ Form for store owners to create product listings. """
     class Meta:
         model = Product
-        exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
+        exclude = ('seller_store', 'has_sizes', 'rating', 'sku', 'image')
 
     #image = forms.ImageField(label='Image', required=False,
      #                        widget=CustomClearableFileUnit)
