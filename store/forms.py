@@ -23,7 +23,7 @@ class StoreRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
     phone_number = forms.CharField(label='Phone')
-    iban = forms.CharField(label='IBAN')
+    iban = IBANField(label='IBAN')
     street_address1 = forms.CharField()
     town = forms.CharField()
     county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
