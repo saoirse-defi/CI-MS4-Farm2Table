@@ -10,8 +10,8 @@ class ProductForm(forms.ModelForm):
         model = Product
         exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
 
-    image = forms.ImageField(label='Image', required=False,
-                             widget=CustomClearableFileUnit)
+    #image = forms.ImageField(label='Image', required=False,
+     #                        widget=CustomClearableFileUnit)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
