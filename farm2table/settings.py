@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 't3s5s#g&o-a#tf!!#$#v4e2s1)rd81vfd%)*8qxn0s%ruhztb+'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -31,9 +31,12 @@ if os.environ.get('OS_ENVIRON_NAME') == 'gitpod':
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    DEBUG = False
+    DEBUG = os.environ.get('DEBUG')
     ALLOWED_HOSTS = ['thevegtable.herokuapp.com']
 
+
+
+#ALLOWED_HOSTS = ['thevegtable.herokuapp.com']
 
 
 # Application definition
@@ -134,21 +137,17 @@ WSGI_APPLICATION = 'farm2table.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-        'default': dj_database_url.parse('postgres://iadmsfxxnwyhew:b262fa1e0792bba7875ca4e896d5ae353a62844e016ffb74693dbe22ace57286@ec2-44-199-158-170.compute-1.amazonaws.com:5432/dqam01gm6i278')
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-
-#if 'DATABASE_URL' in os.environ:
- #   DATABASES = {
-  #      'default': dj_database_url.parse('postgres://iadmsfxxnwyhew:b262fa1e0792bba7875ca4e896d5ae353a62844e016ffb74693dbe22ace57286@ec2-44-199-158-170.compute-1.amazonaws.com:5432/dqam01gm6i278')
-   # }
-#else:
- #   DATABASES = {
-  #      'default': {
-   #         'ENGINE': 'django.db.backends.sqlite3',
-    #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     #   }
-    #}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
