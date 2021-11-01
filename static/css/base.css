@@ -17,6 +17,10 @@ img{
     height: 250px;
 }
 
+a{
+    color: black;
+}
+
 .nav-wrapper{
     background-color: #a5d6a7;
 }
