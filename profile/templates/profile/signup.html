@@ -9,6 +9,7 @@
 {% block content %}
 <div class="overlay"></div>
 <h1>Register</h1>
+<span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
 <form method="POST">
     {% csrf_token %}
     {% for field in form %}
@@ -16,8 +17,7 @@
     {% endfor %}
     <button class="btn-small" type="submit">Signup</button>
 </form>
-<br><br>
-<span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
+
 {% endblock %}
 
 {% block postloadjs %}
