@@ -7,6 +7,7 @@
 {% if current_categories %} <!--Check to see if working-->
     {% for c in current_categories %}
     <h2>{{c.friendly_name}}</h2>
+    <!-- c.id for request -->
     {% endfor %}
 {% else %}
 <h2>All Products</h2>
