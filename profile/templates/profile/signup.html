@@ -9,14 +9,14 @@
 {% block content %}
 <div class="overlay"></div>
 <h1>Register</h1>
-<span>Already have an account? <a class="btn-small" href="{% url 'login' %}">Login</a></span>
 <form method="POST">
     {% csrf_token %}
     {% for field in form %}
         {{ field | as_crispy_field }}
     {% endfor %}
-    <input type="submit" />
+    <input class="btn-small" type="submit"/>
 </form>
+<span>Already have an account? <a class="btn-small" href="{% url 'login' %}">Login</a></span>
 {% endblock %}
 
 {% block postloadjs %}

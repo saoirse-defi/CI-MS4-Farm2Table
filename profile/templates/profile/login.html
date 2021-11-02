@@ -9,19 +9,17 @@
 {% block content %}
 <div class="overlay"></div>
 <h1>Login</h1>
-<span>Don't have an account? <a class="btn-small" href="{% url 'signup' %}">Register</a></span>
 <form method="POST">
     {% csrf_token %}
     {% for field in form %}
         {{ field | as_crispy_field }}
     {% endfor %}
-    <input type="submit" />
+    <input class="btn-small" type="submit"/>
 </form>
+<span>Don't have an account? <a class="btn-small" href="{% url 'signup' %}">Register</a></span>
 {% endblock %}
 
 {% block postloadjs %}
-
-    
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
