@@ -14,10 +14,10 @@
     {% for field in form %}
         {{ field | as_crispy_field }}
     {% endfor %}
-    <input class="btn-small" type="submit"/>
+    <button class="btn-small" type="submit">Login</button>
 </form>
 <br><br>
-<span>Don't have an account? <a class="btn-small" href="{% url 'signup' %}">Register</a></span>
+<span>Don't have an account? <a href="{% url 'signup' %}">Signup</a></span>
 {% endblock %}
 
 {% block postloadjs %}
