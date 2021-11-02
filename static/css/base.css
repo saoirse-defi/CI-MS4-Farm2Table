@@ -18,7 +18,7 @@ img{
 }
 
 .nav-wrapper{
-    justify-content: center;
+    margin: 0 auto;
     background-color: #a5d6a7;
 }
 
