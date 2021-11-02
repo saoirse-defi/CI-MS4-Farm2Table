@@ -16,7 +16,7 @@
     </div>
     <div class="col s12 m4">
         <div class="product-details">
-            <p>{{ product.name }}</p>
+            <h5>{{ product.name }}</h5>
             <p>€{{ product.price }}</p>
             <small>
                 <a href="{% url 'products' %}?category={{ product.category.name }}">
@@ -78,8 +78,8 @@
             {% endif %}
             <h5 class="center-align">Seller Details</h5>
             {% if store.image_url %}
-                <a href="{% url 'view_store' store.store_id %}">
-                    <img src="{{ store.image_url }}" alt="{{store.name}}"/>
+                <a class="center-align" href="{% url 'view_store' store.store_id %}">
+                    <img class="center-align" src="{{ store.image_url }}" alt="{{store.name}}"/>
                 </a>
             {% else %}
                 <a href="{% url 'view_store' store.store_id %}">
