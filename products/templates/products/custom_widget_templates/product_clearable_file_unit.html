@@ -13,6 +13,6 @@
     {{ widget.input_text }}:
 {% endif %}
 <span class="btn-small black btn-file">
-    Select Image <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    Select Image <input type="{{ widget.type }}" name="{{ widget.name }}"{% include 'django/forms/widgets/attrs.html' %}>
 </span>
 <strong><p class="red" id="filename"></p></strong>
