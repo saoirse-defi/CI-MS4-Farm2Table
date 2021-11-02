@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
     """ Form for store owners to create product listings. """
     class Meta:
         model = Product
-        exclude = ('seller_store', 'has_sizes', 'rating', 'sku', 'image')
+        exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
 
     image = forms.ImageField(label='Image', required=False,
                              widget=ProductClearableFileUnit)
