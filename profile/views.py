@@ -15,35 +15,53 @@ from store.models import Store
 
 
 def login_view(request):
-    form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect(reverse('view_profile'))
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
 
-    context = {
-        'form': form,
-    }
-    return render(request, "profile/login.html", context)
+    if current_user is not None:
+        return redirect(reverse('view_profile'))
+    else:
+        form = UserLoginForm(request.POST or None)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect(reverse('view_profile'))
+
+        context = {
+            'form': form,
+        }
+        return render(request, "profile/login.html", context)
 
 
 def signup_view(request):
-    form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        return redirect(reverse('view_profile'))
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
 
-    context = {
-        'form': form,
-    }
-    return render(request, "profile/signup.html", context)
+    if current_user is not None:
+        return redirect(reverse('view_profile'))
+    else:
+        form = UserRegisterForm(request.POST or None)
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
+            user.save()
+            new_user = authenticate(username=user.username, password=password)
+            login(request, new_user)
+            return redirect(reverse('view_profile'))
+
+        context = {
+            'form': form,
+        }
+        return render(request, "profile/signup.html", context)
 
 
 @login_required
