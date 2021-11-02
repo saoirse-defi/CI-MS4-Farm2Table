@@ -3,17 +3,15 @@
 
 {% block content %}
 <h4>Find local producers near you</h4>
-<form method="GET" id="store-search-form">
-    {% csrf_token %}
-    {{ county_store_filter.form }}
-    <div class="form-group">
-        <div class="form-control input-field" id="navbar-search">
-            <button class="waves-effect waves-light btn-small" type="submit">
-                <i class="material-icons-outlined">search</i>
-            </button>
-        </div>
-    </div>
-</form>
+<span>
+    <form method="GET" id="store-search-form">
+        {% csrf_token %}
+        {{ county_store_filter.form }}
+        <button class="waves-effect waves-light btn-small" type="submit">
+            <i class="material-icons-outlined">search</i>
+        </button>
+    </form>
+</span>
 <div class="row">
     <div class="local-seller-container s12">
         {% for store in stores %}
