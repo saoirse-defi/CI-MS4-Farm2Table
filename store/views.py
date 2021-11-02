@@ -166,7 +166,8 @@ def local_producers(request):
             return render(request, template, context)
 
         else:
-            local_stores = Store.objects.all().filter(county=current_user.default_county)
+            local_stores = Store.objects.all().filter(
+                           county=current_user.default_county)
 
             template = 'store/local_producers.html'
             context = {
@@ -177,36 +178,19 @@ def local_producers(request):
 
 
 def store_search(request):
-    all_stores = Store.objects.all()
+    all_stores_list = Store.objects.all()
     counties = County.objects.all()
     query = None
-    stores = []
 
     if request.GET.get('#store_search_form'):
         if 'county' in request.GET:
             query = request.GET['county']
             result = Store.objects.filter(Q(name__icontains=query))
 
-
-    #if request.method == 'GET':
-     #   if 'county' in request.GET:
-      #      query = request.GET['county']
-
-            #for county in counties:
-             #   if county.name == query:
-              #      current_county_name = county.name
-
-            #for store in all_stores:
-             #   if store.county == query:
-              #      stores.append(store)
-
-            #queries = Q(name__icontains=query)
-            #all_stores = all_stores.filter(queries)
-
     template = 'store/all_stores.html'
 
     context = {
-        'all_stores': all_stores,
+        'all_stores_list': all_stores_list,
         'search_term': query,
         'counties': counties,
         'result': result,
