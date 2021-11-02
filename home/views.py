@@ -1,6 +1,6 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render
 
-from store.models import Store, County
+from store.models import Store
 from store.filters import StoreFilter
 
 # Create your views here.
@@ -11,7 +11,7 @@ def index(request):
     stores = Store.objects.all()
 
     county_store_filter = StoreFilter(request.GET, queryset=stores)
-    stores = county_store_filter.qs 
+    stores = county_store_filter.qs
 
     template = 'home/index.html'
 
