@@ -235,6 +235,12 @@ form{
     gap: 0.5rem;
 }
 
+.wishlist-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5rem;
+}
+
 .admin-btn-container{
     display: flex;
     align-items: center;
