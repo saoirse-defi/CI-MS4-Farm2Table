@@ -1,0 +1,18 @@
+{% if widget.is_initial %}
+    {{ widget.initial_text }}: 
+    <a href="{{ widget.value.url }}">
+        <img width="86" height="96" src="{{ widget.value.url }}">
+    </a>
+    {% if not widget.required %}
+    <div class="custom-control custom-checkbox">
+        <label class="custom-control-label" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+        <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+    </div>
+    {% endif %}
+    <br>
+    {{ widget.input_text }}:
+{% endif %}
+<span class="btn-small black btn-file">
+    Select Image <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+</span>
+<strong><p class="red" id="filename"></p></strong>

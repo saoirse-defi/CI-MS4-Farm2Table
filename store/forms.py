@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.widgets import Select
 from django.contrib.auth import get_user_model
-from products.widgets import CustomClearableFileUnit
+from store.widgets import StoreClearableFileUnit
 from django_iban.fields import IBANField
 
 from .models import Store, County
@@ -18,7 +18,7 @@ class StoreRegisterForm(forms.ModelForm):
         exclude = ('user', 'rating', 'organic', 'street_address2')
 
     image = forms.ImageField(label='Image', required=False,
-                             widget=CustomClearableFileUnit)
+                             widget=StoreClearableFileUnit)
 
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')

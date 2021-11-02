@@ -2,8 +2,8 @@ from django.forms.widgets import ClearableFileInput
 from django.utils.translation import gettext_lazy as _
 
 
-class ProductClearableFileUnit(ClearableFileInput):
+class StoreClearableFileUnit(ClearableFileInput):
     clear_checkbox_label = _('Remove')
     initial_text = _('Current Image')
     input_text = _('')
-    template_name = '/workspace/CI-MS4-Farm2Table/products/templates/product_widget_templates/product_clearable_file_unit.html'
+    template_name = '/workspace/CI-MS4-Farm2Table/store/templates/custom_widget_templates/store_clearable_file_unit.html'
