@@ -79,14 +79,14 @@
         <div class="seller-details">
             {% if current_user %}
                 {% if wishlist_id is not None %}
-                    <a class="btn-small center-align" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                        Remove from wishlist <span class="material-icons-outlined">
+                    <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                        <span class="material-icons-outlined">
                             favorite
                         </span>
                     </a>
                     {% else %}
-                    <a class="btn-small center-align" href="{% url 'add_to_wishlist' product.sku %}">
-                        Add to wishlist <span class="material-icons-outlined">
+                    <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
+                        <span class="material-icons-outlined">
                             favorite_border
                         </span>
                     </a>

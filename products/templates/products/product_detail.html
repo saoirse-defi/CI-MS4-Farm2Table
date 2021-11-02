@@ -72,13 +72,13 @@
     <div class="col s12 m3">
         <div class="seller-details">
             {% if wishlist_id is not None %}
-                <a class="btn-small center-align" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
                     <span class="material-icons-outlined">
                         favorite
                     </span>
                 </a>
             {% else %}
-                <a class="btn-small right" href="{% url 'add_to_wishlist' product.sku %}">
+                <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
                     <span class="material-icons-outlined">
                         favorite_border
                     </span>
