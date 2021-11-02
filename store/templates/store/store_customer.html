@@ -6,14 +6,6 @@
     <link rel="stylesheet" href="{% static 'profile/static/css/store.css' %}"/>
 {% endblock %}
 
-{% block page_header %}
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
     <div class="row">
@@ -29,13 +21,13 @@
         </div>
         <div class="col s12 m3">
             <div class="store-details">
-                <h5>Contact Details</h5>
-                <h6><small>Email: </small>{{ store.user }}</h6>
-                <h6><small>Phone: </small>{{ store.phone_number }}</h6>
-                <h6><small>Address: </small>{{ store.street_address1 }}</h6>
-                <h6><small>Town: </small>{{ store.town }}</h6>
-                <h6><small>County: </small>{{ store.county }}</h6>
-                <h6><small>Eircode: </small>{{ store.postcode }}</h6>
+                <h5>Location/Contact</h5>
+                <h6><small>Email:</small>  {{ store.user }}</h6>
+                <h6><small>Phone:</small>  {{ store.phone_number }}</h6>
+                <h6><small>Address:</small>  {{ store.street_address1 }}</h6>
+                <h6><small>Town:</small>  {{ store.town }}</h6>
+                <h6><small>County:</small>  {{ store.county }}</h6>
+                <h6><small>Eircode:</small>  {{ store.postcode }}</h6>
             </div>
         </div>
     </div>
