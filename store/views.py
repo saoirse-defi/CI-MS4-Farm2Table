@@ -158,15 +158,22 @@ def local_producers(request):
         }
         return render(request, template, context)
     else:
-        local_stores = Store.objects.all().filter(county=current_user.default_county)
+        if current_user.default_county is None:
+            template = 'store/unknown_local_producers.html'
+            context = {
+                'current_user': current_user,
+            }
+            return render(request, template, context)
 
-        template = 'store/local_producers.html'
-        context = {
-            'current_user': current_user,
-            'local_stores': local_stores,
-        }
-        return render(request, template, context)
-        
+        else:
+            local_stores = Store.objects.all().filter(county=current_user.default_county)
+
+            template = 'store/local_producers.html'
+            context = {
+                'current_user': current_user,
+                'local_stores': local_stores,
+            }
+            return render(request, template, context)
 
 
 def store_search(request):
