@@ -14,7 +14,21 @@
     <a href="{% url 'products' %}" class="btn-small left">
         <span class="material-icons-outlined">chevron_left</span> Back 
     </a>
-    <p class="right"></p>
+    {% if current_user %}
+        {% if wishlist_id is not None %}
+            <a class="btn-small right" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                <span class="material-icons-outlined">
+                    favorite
+                </span>
+            </a>
+            {% else %}
+            <a class="btn-small right" href="{% url 'add_to_wishlist' product.sku %}">
+                <span class="material-icons-outlined">
+                    favorite_border
+                </span>
+            </a>
+        {% endif %}
+    {% endif %}
 </div>
 <div class="row">
     <div class="col s12 m5">
