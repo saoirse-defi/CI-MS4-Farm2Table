@@ -9,24 +9,7 @@
 {% block content %}
 <div class="overlay"></div>
 <hr>
-<div class="row">
-    <p class="center-align">
-        {% if from_profile %}
-            <a href="{% url 'view_profile' %}" class="btn-small">
-                <span class="material-icons-outlined">chevron_left</span>
-                <span>Back to profile</span>
-            </a>
-        {% else %}
-            <a href="{% url 'products' %}" class="btn btn-black rounded-0 my-2">
-                <span class="icon mr-2">
-                    <i class="fas fa-gifts"></i>
-                </span>
-                <span class="text-uppercase">Now check out the latest deals!</span>
-            </a>
-        {% endif %}
-    </p>
-    <h2 class="center-align">Thank You!</h2>
-</div>
+<h3 class="center-align">Thank You!</h3>
 <hr>
 <p class="center-align">Your order confirmation details are outlined below. A confirmation email will be sent to <strong>{{order.email}}</strong>.</p>
 <hr>
@@ -34,8 +17,8 @@
     <div class="col s12 l4">
         <div class="order-confirmation-wrapper center-align">
             <div class="row">
-                <div class="col">
-                    <small class="text-muted">Order Info:</small>
+                <div class="col s12">
+                    <small class="text-muted center-align">Order Info:</small>
                 </div>
             </div>
 
@@ -59,7 +42,7 @@
 
             <div class="row">
                 <div class="col">
-                    <small class="text-muted">Order Details:</small>
+                    <small class="text-muted center-align">Order Details:</small>
                 </div>
             </div>
 
@@ -78,7 +61,7 @@
     <div class="col s12 l4 center-align">
         <div class="row">
             <div class="col">
-                <small class="text-muted">Delivering To:</small>
+                <small class="text-muted center-align">Delivering To:</small>
             </div>
         </div>
 
@@ -159,7 +142,7 @@
     <div class="col s12 l4 center-align">
         <div class="row">
             <div class="col">
-                <small class="text-muted">Billing Info:</small>
+                <small class="text-muted center-align">Billing Info:</small>
             </div>
         </div>
 
