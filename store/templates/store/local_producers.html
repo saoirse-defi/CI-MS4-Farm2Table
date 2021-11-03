@@ -5,9 +5,9 @@
 <div class="overlay"></div>
 <div class="row">
     {% if not local_stores %}
-        <h5>Unfortunately there are no producers currently in {{ current_user.default_county }}</h5>
+        <h5 class="center-align">Unfortunately there are no producers currently in {{ current_user.default_county }}</h5>
     {% else %}
-        <h5>Showing results for {{ current_user.default_county }}</h5>
+        <h5 class="center-align">Showing results for {{ current_user.default_county }}</h5>
     {% endif %}
 </div>
 <div class="row">
