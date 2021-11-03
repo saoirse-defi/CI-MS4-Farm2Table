@@ -343,8 +343,15 @@ input:-webkit-autofill:active{
     }
 }
 
+@media (max-width: 1000px) {
+    .hide{
+        display:none;
+    }
+}
+
 @media (max-width: 768px) {
     .desktop-only-item{
         display: none;
     }
 }
+
