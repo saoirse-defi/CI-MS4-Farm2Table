@@ -9,7 +9,7 @@
     <div class="col s12">
         {% if bag_items %}
         <div class="table">
-            <table class="table">
+            <table class="responsive-table">
                 <thead>
                     <tr>
                         <th scope="col">Product Image</th>
@@ -25,11 +25,11 @@
                 <tr>
                     {% if item.product.image_url %}
                     <td>
-                        <img class="img-responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">
+                        <img class="img-responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
                     </td>
                     {% else %}
                     <td>
-                        <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 250px; height: 250px;">
+                        <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                     </td>
                     {% endif %}
                     <td>
