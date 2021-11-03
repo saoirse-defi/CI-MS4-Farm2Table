@@ -80,7 +80,7 @@
             <p class="center-align">
                 {% if store.image_url %}
                     <a href="{% url 'view_store' store.store_id %}">
-                        <img class="center-align" src="{{ store.image_url }}" alt="{{store.name}}"/>
+                        <img class="card-img responsive" src="{{ store.image_url }}" alt="{{store.name}}"/>
                     </a>
                 {% else %}
                     <a href="{% url 'view_store' store.store_id %}">
