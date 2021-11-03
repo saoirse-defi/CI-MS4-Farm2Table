@@ -54,6 +54,19 @@
                     </div>
                     <div class="col s12" id="product-detail-btn-container">
                         <input type="submit" class="btn-small" value="Add to Bag">
+                        {% if wishlist_id is not None %}
+                            <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                                <span class="material-icons-outlined">
+                                    favorite
+                                </span>
+                            </a>
+                        {% else %}
+                            <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
+                                <span class="material-icons-outlined">
+                                    favorite_border
+                                </span>
+                            </a>
+                        {% endif %}
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
                     {% endwith %}
@@ -63,29 +76,18 @@
     </div>
     <div class="col s12 m3">
         <div class="seller-details">
-            {% if wishlist_id is not None %}
-                <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                    <span class="material-icons-outlined">
-                        favorite
-                    </span>
-                </a>
-            {% else %}
-                <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
-                    <span class="material-icons-outlined">
-                        favorite_border
-                    </span>
-                </a>
-            {% endif %}
             <h5 class="center-align">Seller Details</h5>
-            {% if store.image_url %}
-                <a class="center-align" href="{% url 'view_store' store.store_id %}">
-                    <img class="center-align" src="{{ store.image_url }}" alt="{{store.name}}"/>
-                </a>
-            {% else %}
-                <a href="{% url 'view_store' store.store_id %}">
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
-                </a>
-            {% endif %}
+            <p class="center-align">
+                {% if store.image_url %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img class="center-align" src="{{ store.image_url }}" alt="{{store.name}}"/>
+                    </a>
+                {% else %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+                    </a>
+                {% endif %}
+            </p>
             <p class="center-align">Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
             <p class="center-align">Email: {{store.email}}</p>
             <p class="center-align">Town: {{store.town}}</p>
