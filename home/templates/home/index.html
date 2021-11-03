@@ -3,7 +3,7 @@
 
 {% block content %}
 <h4>Find local producers near you</h4>
-<span>
+<p class="center-align">
     <form method="GET" id="store-search-form">
         {% csrf_token %}
         {{ county_store_filter.form }}
@@ -11,7 +11,7 @@
             <i class="material-icons-outlined">search</i>
         </button>
     </form>
-</span>
+</p>
 <div class="row">
     <div class="local-seller-container s12">
         {% for store in stores %}
