@@ -144,6 +144,7 @@ def checkout_success(request, order_number):
     ''' Handles successful checkout. '''
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+    order_items = ObjectLineItem.objects.filter(order_number=order)
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
@@ -176,7 +177,8 @@ def checkout_success(request, order_number):
 
     template = 'checkout/checkout_success.html'
     context = {
-        'order': order
+        'order': order,
+        'order_items': order_items,
     }
 
     return render(request, template, context)
