@@ -58,78 +58,75 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12">
-            <div class="row">
-                <p>Order History:</p>
-                <div class="order-history table-responsive">
-                    <table class="table">
-                        <thead>
+        <p>Order History:</p>
+        <div class="order-history table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order Number</th>
+                        <th>Date</th>
+                        <th>Items</th>
+                        <th>Order Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in store_orders %}
                             <tr>
-                                <th>Order Number</th>
-                                <th>Date</th>
-                                <th>Items</th>
-                                <th>Order Total</th>
+                                <td>
+                                    <a href="{% url 'order_history' order.order_number %}"
+                                    title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
+                                </td>
+                                <td>{{ order.date }}</td>
+                                <td>
+                                    <ul>
+                                        {% for item in order.lineitems.all %}
+                                        <li class="small">
+                                            {% if item.product.has_sizes %}
+                                                Size {{item.product.size|upper}}
+                                            {% endif %}{{item.product.name}} x{{item.quantity}}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>${{ order.grand_total }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for order in store_orders %}
-                                    <tr>
-                                        <td>
-                                            <a href="{% url 'order_history' order.order_number %}"
-                                            title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
-                                        </td>
-                                        <td>{{ order.date }}</td>
-                                        <td>
-                                            <ul>
-                                                {% for item in order.lineitems.all %}
-                                                <li class="small">
-                                                    {% if item.product.has_sizes %}
-                                                        Size {{item.product.size|upper}}
-                                                    {% endif %}{{item.product.name}} x{{item.quantity}}
-                                                </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </td>
-                                        <td>${{ order.grand_total }}</td>
-                                    </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <p>Active Listings</p>
+        <div class="container" id="seller-listings-grid">
+            {% for product in store_products %}
+                <div class="product-card">
+                    <a href="{% url 'product_detail' product.sku %}" style="color: black;">
+                            <div class="card-header">
+                                {% if product.image_url %}
+                                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                {% endif %}
+                            </div>
+                        <div class="card-body">
+                            {% if product.category %}
+                                <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
+                                </a>
+                                {% endif %}
+                                {% if product.rating %}
+                                    <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
+                                {% else %}
+                                    <small>No Rating</small>
+                                {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <h6 class="center-align">{{ product.name }}</h6>
+                            <p class="center-align">€{{ product.price }}</p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="row">
-                <p>Active Listings</p>
-                <div class="container" id="seller-listings-grid">
-                {% for product in store_products %}
-                    <div class="product-card">
-                        <a href="{% url 'product_detail' product.sku %}" style="color: black;">
-                                <div class="card-header">
-                                    {% if product.image_url %}
-                                        <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
-                                    {% else %}
-                                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                    {% endif %}
-                                </div>
-                            <div class="card-body">
-                                {% if product.category %}
-                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                        <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
-                                    </a>
-                                    {% endif %}
-                                    {% if product.rating %}
-                                        <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
-                                    {% else %}
-                                        <small>No Rating</small>
-                                    {% endif %}
-                            </div>
-                            <div class="card-footer">
-                                <h6 class="center-align">{{ product.name }}</h6>
-                                <p class="center-align">€{{ product.price }}</p>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="row">
