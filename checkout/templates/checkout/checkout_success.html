@@ -18,13 +18,13 @@
         <div class="order-confirmation-wrapper center-align">
             <div class="row">
                 <div class="col s12">
-                    <small class="text-muted center-align">Order Info:</small>
+                    <small class="text-muted center-align">Order Info</small>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col s12 m4">
-                    <p><strong>Order Number</strong></p>
+                    <p><strong>Order Number:</strong></p>
                 </div>
                 <div class="col s12 m8 right">
                     <p class="mb-0">{{ order.order_number|truncatechars:9 }}</p>
@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col s12 m4">
-                    <p><strong>Order Date</strong></p>
+                    <p><strong>Order Date:</strong></p>
                 </div>
                 <div class="col s12 m8 right">
                     <p class="mb-0">{{ order.date }}</p>
@@ -42,7 +42,7 @@
 
             <div class="row">
                 <div class="col">
-                    <small class="text-muted center-align">Order Details:</small>
+                    <small class="text-muted center-align">Order Details</small>
                 </div>
             </div>
 
@@ -61,13 +61,13 @@
     <div class="col s12 l4 center-align">
         <div class="row">
             <div class="col">
-                <small class="text-muted center-align">Delivering To:</small>
+                <small class="text-muted center-align">Delivering To</small>
             </div>
         </div>
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Full Name</strong></p>
+                <p><strong>Full Name:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.full_name }}</p>
@@ -76,7 +76,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Address 1</strong></p>
+                <p><strong>Address:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.street_address1 }}</p>
@@ -86,7 +86,7 @@
         {% if order.street_address2 %}
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Address 2</strong></p>
+                <p><strong>Address 2:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.street_address1 }}</p>
@@ -96,7 +96,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>County</strong></p>
+                <p><strong>County:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.county }}</p>
@@ -105,7 +105,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Town/City</strong></p>
+                <p><strong>Town/City:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.town_or_city }}</p>
@@ -114,7 +114,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Eircode</strong></p>
+                <p><strong>Eircode:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.postcode }}</p>
@@ -123,7 +123,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Country</strong></p>
+                <p><strong>Country:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.country }}</p>
@@ -132,7 +132,7 @@
 
         <div class="row">
             <div class="col s12 m4">
-                <p><strong>Phone Number</strong></p>
+                <p><strong>Phone Number:</strong></p>
             </div>
             <div class="col s12 m8 right">
                 <p class="mb-0">{{ order.phone_number }}</p>
@@ -142,7 +142,7 @@
     <div class="col s12 l4 center-align">
         <div class="row">
             <div class="col">
-                <small class="text-muted center-align">Billing Info:</small>
+                <small class="text-muted center-align">Billing Info</small>
             </div>
         </div>
 
