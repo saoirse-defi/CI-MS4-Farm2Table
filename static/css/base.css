@@ -344,7 +344,7 @@ input:-webkit-autofill:active{
 }
 
 @media (max-width: 1000px) {
-    .hide{
+    .hide-image{
         display:none;
     }
 }
