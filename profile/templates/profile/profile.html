@@ -12,16 +12,18 @@
     <div class="col s12 m10">
         <div class="row">
             <hr>
-            <h4>{{profile.user}}'s Profile</h4>
+            <h4 class="center-align">{{profile.user}}'s Profile</h4>
             <hr>
         </div>
         <div class="row">
+            <p class="center-align">
                 {% if store is not None %}
                     <a class="waves-effect waves-light btn-small" href="{% url 'view_store' store.store_id %}">My Store</a>
                 {% else %}
                     <a class="waves-effect waves-light btn-small" href="{% url 'create_store' %}">Create Store</a>
                 {% endif %}
-                <a class="waves-effect waves-light btn-small modal-trigger" href="#edit-personal-details">Edit Profile</a>
+                    <a class="waves-effect waves-light btn-small modal-trigger" href="#edit-personal-details">Edit Profile</a>
+            </p>
         </div>
         <div class="row">
             <div class="col s12">
