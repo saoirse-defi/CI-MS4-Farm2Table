@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col s12 m6">
+    <div class="col s12 l6">
         <p class="center-align">Fill out your details to proceed</p>
         <form action="{% url 'checkout' %}" method="POST" id="payment-form">
             {% csrf_token %}
@@ -71,7 +71,7 @@
             </div>
         </form>
     </div>
-    <div class="col s12 m6">
+    <div class="col s12 l6">
         <p class="center-align">Order Summary ({{ product_count }})</p>
         <div class="row">
             <div class="col s4">
