@@ -259,6 +259,11 @@ form{
     border: 0;
 }
 
+.checkout-image img{
+    width: 125px;
+    height: 125px;
+}
+
 .seller-details-img{
 
 }
