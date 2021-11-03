@@ -14,7 +14,7 @@
 <p class="center-align">Your order confirmation details are outlined below. A confirmation email will be sent to <strong>{{order.email}}</strong>.</p>
 <hr>
 <div class="row">
-    <div class="col s12 l4">
+    <div class="col s12 l4 center-align">
         <div class="order-confirmation-wrapper center-align">
             <div class="row">
                 <div class="col s12">
@@ -61,9 +61,7 @@
     <div class="col s12 l4 center-align">
         <div class="row">
             <div class="col s12">
-                <p class="center-align">
-                    <small class="text-muted">Delivering To</small>
-                </p>
+                <small class="text-muted center-align">Delivering To</small>
             </div>
         </div>
 
@@ -169,25 +167,6 @@
                 <p class="center-align">€{{ order.grand_total }}</p>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col s12 l7 right">
-        <p class="center-align">
-            {% if from_profile %}
-                <a href="{% url 'view_profile' %}" class="btn-small">
-                    <span class="material-icons-outlined">chevron_left</span>
-                    <span>Back to profile</span>
-                </a>
-            {% else %}
-                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
-                    <span class="icon mr-2">
-                        <i class="fas fa-gifts"></i>
-                    </span>
-                    <span class="text-uppercase">Now check out the latest deals!</span>
-                </a>
-            {% endif %}
-        </p>
     </div>
 </div>
 {% endblock %}
