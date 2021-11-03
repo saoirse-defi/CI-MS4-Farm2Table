@@ -9,7 +9,7 @@
 {% block content %}
 <div class="overlay"></div>
     <div class="row">
-        <div class="col s12 l3">
+        <div class="col s12 l4">
             <p class="center-align">
                 {% if store.image_url %}
                     <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
@@ -18,10 +18,10 @@
                 {% endif %}
             </p>
         </div>
-        <div class="col s12 l7">
+        <div class="col s12 l4">
             <h4 class="logo-font center-align">{{store.name}}'s Dashboard</h4>
         </div>
-        <div class="col s12 l2">
+        <div class="col s12 l4">
             <p class="center-align">
                 <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create a Listing</a>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a><br>
