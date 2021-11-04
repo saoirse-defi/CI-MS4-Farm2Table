@@ -16,15 +16,18 @@
         <div class="product-details">
             <h4>{{ product.name }}</h4>
             <p>€{{ product.price }}</p>
-            <a href="{% url 'products' %}?category={{ product.category.name }}">
-                <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
-            </a>
-            <br>
-            {% if product.rating %}
-                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
-            {% else %}
-                <small>No Rating</small>
-            {% endif %}
+            <div class="col s6 left">
+                {% if product.rating %}
+                    <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
+                {% else %}
+                    <small><span class="material-icons-outlined gold">star</span>No Rating</small>
+                {% endif %}
+            </div>
+            <div class="col s6 right">
+                <a href="{% url 'products' %}?category={{ product.category.name }}">
+                    <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
+                </a>
+            </div>
             <p>Product Description:</p>
             <p>{{ product.description }}</p>
             {% if current_user %}
