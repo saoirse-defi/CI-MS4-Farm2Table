@@ -4,14 +4,10 @@
 {% block content %}
 <div class="overlay"></div>
 
-{% if current_categories %} <!--Check to see if working-->
-    {% for c in current_categories %}
-    <h2>{{c.friendly_name}}</h2>
-    <!-- c.id for request -->
-    {% endfor %}
-{% else %}
-<h2>All Products</h2>
-{% endif %}
+{% for c in categories %}
+    <h2>{{c.name}}</h2>
+<!-- c.id for request -->
+{% endfor %}
 
 <form method="GET" id="products-category-search-form">
     {% csrf_token %}
