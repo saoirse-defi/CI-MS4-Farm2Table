@@ -14,7 +14,7 @@
 
 <div class="product-container col s12">
         {% for product in products %}
-            <div class="product-card center-align">
+            <div class="product-card">
                 <a href="{% url 'product_detail' product.sku %}" style="color: black;">
                         <div class="card-header">
                             {% if product.image_url %}
