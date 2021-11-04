@@ -13,11 +13,11 @@
         </div>
     </div>
     <div class="col s12 m4">
-        <div class="product-details">
+        <div class="product-details center-align">
             <h5>{{ product.name }}</h5>
             <p>€{{ product.price }}</p>
             <a href="{% url 'products' %}?category={{ product.category.name }}">
-                <span class="new badge black" data-badge-caption="{{ product.category.name }}"></span>
+                <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
             </a>
             <br>
             {% if product.rating %}
@@ -64,11 +64,6 @@
                 <span> Or </span>
                 <a href="{% url 'login' %}">Login</a>
             {% endif %}
-            
-        </div>
-    </div>
-    <div class="col s12 m3">
-        <div class="seller-details">
             {% if current_user %}
                 {% if wishlist_id is not None %}
                     <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
@@ -84,16 +79,22 @@
                     </a>
                 {% endif %}
             {% endif %}
+        </div>
+    </div>
+    <div class="col s12 m3">
+        <div class="seller-details">
             <h5 class="center-align">Seller Details</h5>
-            {% if store.image_url %}
-                <a class="center-align" href="{% url 'view_store' store.store_id %}">
-                    <img src="{{ store.image_url }}" alt="{{store.name}}"/>
-                </a>
-            {% else %}
-                <a class="center-align" href="{% url 'view_store' store.store_id %}">
-                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
-                </a>
-            {% endif %}
+            <p class="center-align">
+                {% if store.image_url %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img class="card-img responsive" src="{{ store.image_url }}" alt="{{store.name}}"/>
+                    </a>
+                {% else %}
+                    <a href="{% url 'view_store' store.store_id %}">
+                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
+                    </a>
+                {% endif %}
+            </p>
             <p class="center-align">Store Name: <a href="{% url 'view_store' store.store_id %}">{{store.name}}</a></p>
             <p class="center-align">Email: {{store.email}}</p>
             <p class="center-align">Town: {{store.town}}</p>
