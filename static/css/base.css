@@ -365,5 +365,9 @@ input:-webkit-autofill:active{
     .mobile-only-item{
         display: block;
     }
+
+    .select-wrapper{
+        width: 25%;
+    }
 }
 
