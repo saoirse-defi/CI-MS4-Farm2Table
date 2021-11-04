@@ -46,11 +46,14 @@ def all_products(request):
     product_filter = ProductFilter(request.GET, queryset=products)
     products = product_filter.qs
 
+    categories = Category.objects.all()
+
     if request.user.is_authenticated:
         current_user = UserProfile.objects.get(user=request.user)
         current_wishlist = Wishlist.objects.all().filter(user=current_user)
 
         context = {
+            'categories': categories,
             'products': products,
             'product_filter': product_filter,
             'current_wishlist': current_wishlist,
@@ -60,6 +63,7 @@ def all_products(request):
         return render(request, 'products/products.html', context)
     else:
         context = {
+            'categories': categories,
             'products': products,
             'product_filter': product_filter,
         }
