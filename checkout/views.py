@@ -179,8 +179,9 @@ def checkout_success(request, order_number):
 
     send_mail('Order confirmed!',
               f'Your order {order_number} has been confirmed. If you did not place the order, please contact us at info@thevegtable.com',
-              settings.DEFAULT_FROM_EMAIL,
-              [order.email])
+              'theindie360@gmail.com',
+              ['kokod42814@ingfix.com'],
+              fail_silently=False)
 
     if 'bag' in request.session:
         del request.session['bag']
