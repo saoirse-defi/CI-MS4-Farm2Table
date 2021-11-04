@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper" id="main-nav">
-    <ul style="margin: 0 auto;">
+    <ul>
       <li>
         <a class="btn-small" href="{% url 'local_producers' %}">Local</a>
       </li>
@@ -8,23 +8,9 @@
         <a class="btn-small" href="{% url 'all_stores' %}">All Stores</a>
       </li>
       <li>
-        <a class='dropdown-trigger btn-small' href='#' data-target='sorting-dropdown'>All Products</a>
-        <ul class="dropdown-content" id="sorting-dropdown">
-          <li>
-            <a href="{% url 'local_producers' %}">Local Produce</a>
-          </li>
-          <li>
-            <a href="{% url 'products' %}?sort=location&direction=asc">By Location</a>
-          </li>
-          <li>
-            <a href="{% url 'products' %}?sort=price&direction=asc">By Price</a>
-          </li>
-          <li>
-            <a href="{% url 'products' %}">All Products</a>
-          </li>
-        </ul>
+        <a class="btn-small" href="{% url 'all_products' %}">All Products</a>
       </li>
-      <li>
+      <li class="mobile-only-item">
         <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
         <ul class="dropdown-content" id="category-dropdown">
           <li>
