@@ -28,27 +28,38 @@ This section will outline potential features which I would like to implement in 
 
 ### Project Goals
 
-The goal of this project is to get Ireland eating locally again by creating a marketplace where fruit & vegetable producers will post listings of their produce. This format will increase competition between the farmers as consumers can compare prices directly. Payment will be taken through the application in order to reduce friction once the customer goes to collect their order or has it delivered. 
+The goal of this project is to get Ireland eating locally again by creating a marketplace where fruit & vegetable producers will post listings of their produce. This format will increase competition between the farmers as consumers can compare prices directly. Payment will be taken through the application in order to reduce friction once the customer goes to collect their order or has it delivered.
+
+## Users
 
 ### User Goals
 
-The user base of this application is split into 2 groups, buyers and sellers. Therefore, it is essential to be mindful of specific needs of both types of user.
+Potential users for this application can be split into 2 groups listed below. It is essential to be mindful of specific needs of both of these user types.
 
-#### User Goals (Seller)
+1. Producers
+2. Consumers
 
-For this application to be successful we will need to onboard as many fruit & vegetable producers across the country.
+#### User Goals (Producers)
+
+For this application to be successful we will need to onboard as many fruit & vegetable producers across the country in order to create a competitive marketplace for the consumer. We need to make the registration process as easy as possible.
 
 In order for a seller to be willing to join our app, they will need:
 
-* 
+* Access to a phone/computer to maintain their store's dashboard.
+* A European Bank Account in order to receive card payments via Stripe.
 
-#### User Goals (Customer)
+##### Producer Goals
+
+* To expand my customer base.
+* Cultivate an online presence, the benefit of free online advertising.
+
+#### User Goals (Consumers)
 
 The target audience for this application will be users over the age of 25. This is due to the fact that they are generally more concerned about the source/quality of their produce & have access to more discretionary income. Users of the application will be in search of the highest quality fruit & vegetables at the most affordable price.
 
 As a user of this application, I need:
 
-* A central marketplace where I can browse different producers.
+* A central marketplace where I can browse different producers and compare pricing.
 * The ability to filter the marketplace to only show sellers within my vicinity.
 * Ways to identify how local producers compare to one another in order to make an informed purchase.
 * A clean UX that is easy to navigate while also remaining fresh and exciting.
@@ -56,10 +67,15 @@ As a user of this application, I need:
 * The ability to make purchases using my credit/debit card.
 * To be able to quickly identify which sellers can deliver to my area.
 
+##### Consumer Goals
+
+* To find the best price for locally grown produce.
+* To support local business.
+
 
 ### Developer & Business Goals
 
-This section will outline goals set out by application creator both in relation to how they would like to develop as a software engineer & their financial goals as regards to the website.
+This section will outline my goals as the developer of the project, what the future of the website holds & how to generate revenue from the application.
 
 #### Developer Goals
 
@@ -76,11 +92,9 @@ My goals as the developer of this project are:
 
 Currently, I have identified 3 possible streams of income this project would be able to generate. 
 
-* A small fee will be applied to each purchase made within the application for connecting the producer with the consumer & processing payment between the 2 parties.
-
-* Producers will have the ability to purchase premium Farm2Table memberships giving them access to additional features, such as being highlighted on the front page of the website, ad-free storefronts.
-
-* Advertising revenue will be generated from the web traffic on the application.
+1. A small fee will be applied to each purchase made within the application for connecting the producer with the consumer & processing payment between the 2 parties.
+2. Producers will have the ability to purchase premium Farm2Table memberships giving them access to additional features, such as being highlighted on the front page of the website, ad-free storefronts.
+3. Advertising revenue will be generated from the web traffic on the application.
 
 
 ### User Stories
@@ -177,7 +191,6 @@ When a store owner has landed on the details page for one of his/her products, a
 
 ##### Materialize Button
 
-The colour of the buttons throughout the site is unchanged as it is the primary button colour for the Materialize framework. During the design process, I noticed that this shade of blue complemented the teal hue of the navbar.
 
 
 ## Key Frontend Design Elements
@@ -210,6 +223,7 @@ This section of the documentation will outline the function behind each self-con
 
 URLs for each Django app
 Settings.py
+
 
 #### Profile App
 
@@ -381,14 +395,7 @@ As the application began to take shape with all major components in place, the u
 ## Bugs Discovered
 
 
-## Dependencies
-
-This section will cover all software dependencies needed to run this application.
-
-
 ## Deployment
-
-### 
 
 ### Github Pages Deployment Procedure
 
@@ -438,6 +445,14 @@ Further reading and troubleshooting on cloning a repository can be found here [G
 
 ### Django Deployment Procedure
 
+#### Requirements.txt
+
+#### Procfile
+
+#### Environment Variables
+
+#### 
+
 #### How to create a Django project
 
 Follow these steps:
@@ -462,7 +477,7 @@ app = Flask(__name__)
 def home_view():
         return "<h1>Welcome to Geeks for Geeks</h1>
 
-6. Get back to the previous directory “eflask”.Create a file“wsgi.py” and insert the following code
+6. Get back to the previous directory “eflask”. Create a file “wsgi.py” and insert the following code
 
 from app.main import app
 if __name__ == "__main__":
@@ -499,23 +514,6 @@ Once your application is deployed on Heroku:
 5. From within your IDE terminal, sign into to Heroku and make sure your database is up to date.
 6. You can now type the command "heroku run python3 manage.py migrate"
 7. Within your settings.py file use database_dj_url to extract the Database URL from heroku
-
-
-#### How to create a MongoDB database
-
-1. Create a MongoDB Atlas account [here](https://www.mongodb.com/cloud)
-2. Log into your MongoDB Atlas account 
-3. Create a free, shared cluster by selecting your preferred provider, stick to the free tier
-4. Name your cluster and click create to deploy your cluster
-5. Add your connection IP address to the IP access list
-6. Create a new database user for your cluster
-7. Install PyMongo within your flask application, check version to see if installed correctly
-8. Provide a connection method & a configured connection string to MongoDB Atlas
-9. Import MongoClient from PyMongo within flask
-10. Insert a command within flask that specifies a client is for connecting to your cluster
-11. Create a new database within your cluster
-12. Create a new collection for your database
-13. Create a new document to add to your collection
 
 
 ## Credit
