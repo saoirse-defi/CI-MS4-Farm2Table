@@ -340,6 +340,10 @@ input:-webkit-autofill:active{
 
 }
 
+.mobile-only-item{
+    display: none;
+}
+
 
 @media (min-width: 1200px) {
     .container{
@@ -356,6 +360,10 @@ input:-webkit-autofill:active{
 @media (max-width: 768px) {
     .desktop-only-item{
         display: none;
+    }
+
+    .mobile-only-item{
+        display: block;
     }
 }
 
