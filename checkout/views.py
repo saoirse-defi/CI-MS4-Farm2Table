@@ -4,6 +4,7 @@ from django.shortcuts import (render, redirect,
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -146,7 +147,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     try:
-        order_items = OrderLineItem.objects.get(order_number=order)
+        order_items = OrderLineItem.objects.filter(order_number=order)
     except OrderLineItem.DoesNotExist:
         order_items = None
 
@@ -175,6 +176,11 @@ def checkout_success(request, order_number):
     messages.success(request,
                      f'Order successful. Your order number is {order_number}.'
                      f'A confirmation email have been sent to {order.email}.')
+
+    send_mail('Order confirmed!',
+              f'Your order {order_number} has been confirmed. If you did not place the order, please contact us at info@thevegtable.com',
+              settings.DEFAULT_FROM_EMAIL,
+              [order.email])
 
     if 'bag' in request.session:
         del request.session['bag']
