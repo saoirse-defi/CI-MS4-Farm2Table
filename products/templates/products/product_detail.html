@@ -15,14 +15,12 @@
         <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
     </div>
     <div class="col s12 m4">
-        <div class="product-details center-align">
+        <div class="product-details">
             <h4>{{ product.name }}</h4>
             <p>€{{ product.price }}</p>
-            <p class="center-align">
-                <a href="{% url 'products' %}?category={{ product.category.name }}">
-                    <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
-                </a>
-            </p>
+            <a href="{% url 'products' %}?category={{ product.category.name }}">
+                <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
+            </a>
             <br>
             {% if product.rating %}
                 <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
@@ -30,50 +28,48 @@
                 <small>No Rating</small>
             {% endif %}
             <p>{{ product.description }}</p>
-            <p class="center-align">
-                <form action="{% url 'add_to_bag' product.sku %}" method="POST">
-                    {% csrf_token %}
-                    <div class="row">
-                        {% with product.has_sizes as s %}
-                            {% if s %}
-                            <div class="col s12">
-                                <p><strong>Size:</strong></p>
-                                <select class="form-control" name="product_size" id="id_product_size">
-                                    <option value="250">250g</option>
-                                    <option value="500">500g</option>
-                                    <option value="750">750g</option>
-                                    <option value="1000">1kg</option>
-                                    <option value="2000">2kg</option>
-                                </select>
-                            </div>
-                            {% endif %}
+            <form action="{% url 'add_to_bag' product.sku %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    {% with product.has_sizes as s %}
+                        {% if s %}
                         <div class="col s12">
-                            <p>Quantity:</p>
-                            <div class="form-group">
-                                <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
-                            </div>
+                            <p><strong>Size:</strong></p>
+                            <select class="form-control" name="product_size" id="id_product_size">
+                                <option value="250">250g</option>
+                                <option value="500">500g</option>
+                                <option value="750">750g</option>
+                                <option value="1000">1kg</option>
+                                <option value="2000">2kg</option>
+                            </select>
                         </div>
-                        <div class="col s12" id="product-detail-btn-container">
-                            <input type="submit" class="btn-small" value="Add to Bag">
-                            {% if wishlist_id is not None %}
-                                <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                                    <span class="material-icons-outlined">
-                                        favorite
-                                    </span>
-                                </a>
-                            {% else %}
-                                <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
-                                    <span class="material-icons-outlined">
-                                        favorite_border
-                                    </span>
-                                </a>
-                            {% endif %}
+                        {% endif %}
+                    <div class="col s12">
+                        <p>Quantity:</p>
+                        <div class="form-group">
+                            <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
                         </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
-                        {% endwith %}
                     </div>
-                </form>
-            </p>
+                    <div class="col s12" id="product-detail-btn-container">
+                        <input type="submit" class="btn-small" value="Add to Bag">
+                        {% if wishlist_id is not None %}
+                            <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                                <span class="material-icons-outlined">
+                                    favorite
+                                </span>
+                            </a>
+                        {% else %}
+                            <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
+                                <span class="material-icons-outlined">
+                                    favorite_border
+                                </span>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
+                    {% endwith %}
+                </div>
+            </form>
         </div>
     </div>
     <div class="col s12 m3">

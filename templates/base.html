@@ -254,11 +254,11 @@
                                 '                            {% endif %}'+
                                 '                        </div>'+
                                 '                        <div class="col s8 right">'+
-                                '                            <p><strong>{{ item.product.name }}</strong></p>'+
-                                '                            <p>Size:'+
+                                '                            <p class="center-align"><strong>{{ item.product.name }}</strong></p>'+
+                                '                            <p class="center-align">Size:'+
                                 '                            {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>'+
-                                '                            <p>Qty: {{ item.quantity }}</p>'+
-                                '                            <p>Price: {{ item.price }}</p>'+
+                                '                            <p class="center-align">Qty: {{ item.quantity }}</p>'+
+                                '                            <p class="center-align">Price: {{ item.price }}</p>'+
                                 '                        </div>'+
                                 '                    </div>'+
                                 '                {% endfor %}'+

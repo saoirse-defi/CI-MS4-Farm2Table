@@ -13,14 +13,12 @@
         </div>
     </div>
     <div class="col s12 m4">
-        <div class="product-details center-align">
+        <div class="product-details">
             <h4>{{ product.name }}</h4>
             <p>€{{ product.price }}</p>
-            <p class="center-align">
-                <a href="{% url 'products' %}?category={{ product.category.name }}">
-                    <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
-                </a>
-            </p>
+            <a href="{% url 'products' %}?category={{ product.category.name }}">
+                <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
+            </a>
             <br>
             {% if product.rating %}
                 <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
@@ -29,53 +27,51 @@
             {% endif %}
             <p>Product Description:</p>
             <p>{{ product.description }}</p>
-            <p class="center-align">
-                {% if current_user %}
-                    <form action="{% url 'add_to_bag' product.sku %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            {% with product.has_sizes as s %}
-                                {% if s %}
-                                <div class="col s12">
-                                    <p><strong>Size:</strong></p>
-                                    <select class="form-control" name="product_size" id="id_product_size">
-                                        <option value="250">250g</option>
-                                        <option value="500">500g</option>
-                                        <option value="750">750g</option>
-                                        <option value="1000">1kg</option>
-                                        <option value="2000">2kg</option>
-                                    </select>
-                                </div>
-                                {% endif %}
+            {% if current_user %}
+                <form action="{% url 'add_to_bag' product.sku %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% with product.has_sizes as s %}
+                            {% if s %}
                             <div class="col s12">
-                                <p>Quantity:</p>
-                                <div class="form-group">
-                                    <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
-                                </div>
+                                <p><strong>Size:</strong></p>
+                                <select class="form-control" name="product_size" id="id_product_size">
+                                    <option value="250">250g</option>
+                                    <option value="500">500g</option>
+                                    <option value="750">750g</option>
+                                    <option value="1000">1kg</option>
+                                    <option value="2000">2kg</option>
+                                </select>
                             </div>
-                            <div class="col s12" id="product-detail-btn-container">
-                                <input type="submit" class="btn-small" value="Add to Bag">
+                            {% endif %}
+                        <div class="col s12">
+                            <p>Quantity:</p>
+                            <div class="form-group">
+                                <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
                             </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
-                            {% endwith %}
                         </div>
-                    </form>
-                {% else %}
-                    <h6>Signup or log in to purchase</h6>
-                    <a href="{% url 'signup' %}">Register</a>
-                    <span> Or </span>
-                    <a href="{% url 'login' %}">Login</a>
-                {% endif %}
-            </p>
+                        <div class="col s12" id="product-detail-btn-container">
+                            <input type="submit" class="btn-small" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
+                        {% endwith %}
+                    </div>
+                </form>
+            {% else %}
+                <h6>Signup or log in to purchase</h6>
+                <a href="{% url 'signup' %}">Register</a>
+                <span> Or </span>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
             {% if current_user %}
                 {% if wishlist_id is not None %}
-                    <a class="btn-small center-align valign-wrapper" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                    <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
                         <span class="material-icons-outlined">
                             favorite
                         </span>
                     </a>
                     {% else %}
-                    <a class="btn-small center-align valign-wrapper" href="{% url 'add_to_wishlist' product.sku %}">
+                    <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
                         <span class="material-icons-outlined">
                             favorite_border
                         </span>
