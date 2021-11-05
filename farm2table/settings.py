@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'image_optimizer',
 
     #other
+    'materialize',
     'crispy_forms',
     'crispy_forms_materialize',
     'django_iban',
