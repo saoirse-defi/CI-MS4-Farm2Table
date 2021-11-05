@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'localflavor',
-    'image_optimizer',
 
     #other
     'crispy_forms',

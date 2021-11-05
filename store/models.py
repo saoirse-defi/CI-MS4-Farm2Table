@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from image_optimizer.fields import OptimizedImageField
 from django_countries.fields import CountryField
 
 from profile.models import UserProfile
@@ -34,9 +33,7 @@ class Store(models.Model):
     postcode = models.CharField(max_length=20,
                                 null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = OptimizedImageField(optimized_image_output_size=(400, 300),
-                                optimized_image_resize_method='cover',
-                                null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     organic = models.BooleanField(default=False, null=False, blank=False)
     rating = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
