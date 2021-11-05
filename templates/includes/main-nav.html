@@ -12,14 +12,14 @@
         <ul class="dropdown-content" id="category-dropdown">
           {% for c in categories %}
             <li>
-              <a class="btn-small" href="{% url 'products' %}?category={{ c.id }}">{{ c.name }}</a>
+              <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
             </li>
           {% endfor %}
         </ul>
       </li>
       {% for c in categories %}
         <li class="desktop-only-item">
-          <a class="btn-small" href="{% url 'products' %}?category={{ c.id }}">{{ c.name }}</a>
+          <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
         </li>
       {% endfor %}
     </ul>
