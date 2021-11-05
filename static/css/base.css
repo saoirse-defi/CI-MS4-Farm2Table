@@ -99,6 +99,10 @@ form{
     margin: 0 25px 0 25px;
 }
 
+#store-search-form{
+    display: inline;
+}
+
 #store-image-upload{
     border-radius: 8px;
     background-color: #eaeab4;
@@ -372,7 +376,7 @@ input:-webkit-autofill:active{
     }
 
     .select-wrapper{
-        width: 25%;
+        width: 100%;
     }
 }
 
