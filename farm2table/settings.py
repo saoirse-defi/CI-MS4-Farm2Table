@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     'django_iban',
     'django_filters',
     'storages',
-    'send_mail',
 ]
 
 MIDDLEWARE = [
