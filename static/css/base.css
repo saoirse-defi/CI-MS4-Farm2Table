@@ -204,10 +204,14 @@ form{
     height: auto;
 }
 
-.product-detail-btn-container{
+.image-container{
+    position: relative;
+}
+
+.wishlist-btn{
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 10px;
+    left: 10px;
 }
 
 .card-body{
