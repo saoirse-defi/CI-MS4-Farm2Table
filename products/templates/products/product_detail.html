@@ -11,13 +11,13 @@
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
             {% if wishlist_id is not None %}
-                <a class="btn-small wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
                     <span class="material-icons-outlined">
                         favorite
                     </span>
                 </a>
             {% else %}
-                <a class="btn-small wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
                     <span class="material-icons-outlined">
                         favorite_border
                     </span>
@@ -31,19 +31,19 @@
         <div class="product-details">
             <div class="col s6 left">
                 {% if product.rating %}
-                    <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
+                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
                 {% else %}
-                    <small><span class="material-icons-outlined gold">star</span>No Rating</small>
+                    <small><span class="material-icons-outlined">star</span>No Rating</small>
                 {% endif %}
             </div>
             <div class="col s6 right">
-                <a href="{% url 'products' %}?category={{ product.category.name }}">
-                    <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
+                <a href="{% url 'products' %}?category={{ product.category.category_id }}">
+                    <span class="new badge green" data-badge-caption="{{ product.category.category_id }}"></span>
                 </a>
             </div><br>
             <h4 class="center-align">{{ product.name }}</h4>
             <p class="center-align">€{{ product.price }}</p>
-            <span class="center-align">Product Description:</span>
+            <p class="center-align">Product Description:</p>
             <p class="center-align">{{ product.description }}</p>
             <form action="{% url 'add_to_bag' product.sku %}" method="POST">
                 {% csrf_token %}
