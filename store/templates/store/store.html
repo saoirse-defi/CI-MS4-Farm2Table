@@ -73,25 +73,27 @@
                 </thead>
                 <tbody>
                     {% for order in store_orders %}
-                            <tr>
-                                <td>
-                                    <a href="{% url 'order_history' order.order_number %}"
-                                    title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
-                                </td>
-                                <td>{{ order.date }}</td>
-                                <td>
-                                    <ul>
-                                        {% for item in order.lineitems.all %}
-                                        <li class="small">
-                                            {% if item.product.has_sizes %}
-                                                Size {{item.product.size|upper}}
-                                            {% endif %}{{item.product.name}} x{{item.quantity}}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                                <td>${{ order.grand_total }}</td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <a href="{% url 'order_history' order.order_number %}"
+                                title="{{ order.order_number }}">{{ order.order_number|truncatechars:6 }}</a>
+                            </td>
+                            <td>{{ order.date }}</td>
+                            <td>
+                                <ul>
+                                    {% for item in order.lineitems.all %}
+                                    <li class="small">
+                                        {% if item.product.has_sizes %}
+                                            Size {{item.product.size|upper}}
+                                        {% endif %}{{item.product.name}} x{{item.quantity}}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>${{ order.grand_total }}</td>
+                        </tr>
+                    {% empty %}
+                        <h5 class="center-align">No orders yet, such empty...</h5>
                     {% endfor %}
                 </tbody>
             </table>
@@ -117,7 +119,7 @@
                                 </a>
                                 {% endif %}
                                 {% if product.rating %}
-                                    <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
+                                    <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
                                 {% else %}
                                     <small>No Rating</small>
                                 {% endif %}
@@ -128,6 +130,8 @@
                         </div>
                     </a>
                 </div>
+            {% empty %}
+                <h5 class="center-align">This store hasn't added any products yet!</h5>
             {% endfor %}
         </div>
     </div>
