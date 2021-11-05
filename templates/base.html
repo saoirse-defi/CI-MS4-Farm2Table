@@ -100,11 +100,18 @@
                         <a href="{% url 'seller_product_management' %}">Product Management</a>
                     </li>
                 {% endif %}
+                {% for store in stores %}
+                    {% if store.user.user == request.user %}
+                        <li>
+                            <a href="{% url 'view_store' store.store_id %}">Store</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
                     <li>
-                        <a href="{% url 'view_profile' %}">My Profile</a>
+                        <a href="{% url 'view_profile' %}">Profile</a>
                     </li>
                     <li>
-                        <a href="{% url 'wishlist' %}">My Wishlist</a>
+                        <a href="{% url 'wishlist' %}">Wishlist</a>
                     </li>
                     <li>
                         <a href="{% url 'logout' %}">Logout</a>
