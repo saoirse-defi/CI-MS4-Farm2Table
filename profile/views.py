@@ -49,6 +49,7 @@ def signup_view(request):
         return redirect(reverse('view_profile'))
     else:
         form = UserRegisterForm(request.POST or None)
+        form.email
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data.get('password')
