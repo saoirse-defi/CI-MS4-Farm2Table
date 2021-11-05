@@ -29,8 +29,6 @@
     </div>
     <div class="col s12 m4">
         <div class="product-details">
-            <h4 class="center-align">{{ product.name }}</h4>
-            <p class="center-align">€{{ product.price }}</p>
             <div class="col s6 left">
                 {% if product.rating %}
                     <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
@@ -43,6 +41,8 @@
                     <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
                 </a>
             </div>
+            <h4 class="center-align">{{ product.name }}</h4>
+            <p class="center-align">€{{ product.price }}</p>
             <p class="center-align">Product Description:</p>
             <p>{{ product.description }}</p>
             {% if current_user %}
