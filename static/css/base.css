@@ -27,6 +27,11 @@ img{
 
 #main-nav{
     background-color: #a5d6a7;
+    text-align: center;
+}
+
+#nav-list{
+    text-align: left;
 }
 
 #navbar-row{
