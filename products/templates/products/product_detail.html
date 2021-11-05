@@ -12,13 +12,13 @@
             {% endif %}
             {% if wishlist_id is not None %}
                 <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                    <span class="material-icons-outlined pink">
+                    <span class="material-icons-outlined">
                         favorite
                     </span>
                 </a>
             {% else %}
                 <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
-                    <span class="material-icons-outlined pink">
+                    <span class="material-icons-outlined">
                         favorite_border
                     </span>
                 </a>
