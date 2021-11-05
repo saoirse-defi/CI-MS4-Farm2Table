@@ -11,11 +11,26 @@
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
         </div>
+        {% if current_user %}
+            {% if wishlist_id is not None %}
+                <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                    <span class="material-icons-outlined">
+                        favorite
+                    </span>
+                </a>
+                {% else %}
+                <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
+                    <span class="material-icons-outlined">
+                        favorite_border
+                    </span>
+                </a>
+            {% endif %}
+        {% endif %}
     </div>
     <div class="col s12 m4">
         <div class="product-details">
-            <h4>{{ product.name }}</h4>
-            <p>€{{ product.price }}</p>
+            <h4 class="center-align">{{ product.name }}</h4>
+            <p class="center-align">€{{ product.price }}</p>
             <div class="col s6 left">
                 {% if product.rating %}
                     <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
@@ -28,7 +43,7 @@
                     <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
                 </a>
             </div>
-            <p>Product Description:</p>
+            <p class="center-align">Product Description:</p>
             <p>{{ product.description }}</p>
             {% if current_user %}
                 <form action="{% url 'add_to_bag' product.sku %}" method="POST">
@@ -65,21 +80,6 @@
                 <a href="{% url 'signup' %}">Register</a>
                 <span> Or </span>
                 <a href="{% url 'login' %}">Login</a>
-            {% endif %}
-            {% if current_user %}
-                {% if wishlist_id is not None %}
-                    <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                        <span class="material-icons-outlined">
-                            favorite
-                        </span>
-                    </a>
-                    {% else %}
-                    <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
-                        <span class="material-icons-outlined">
-                            favorite_border
-                        </span>
-                    </a>
-                {% endif %}
             {% endif %}
         </div>
     </div>
