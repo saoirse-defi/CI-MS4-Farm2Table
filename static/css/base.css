@@ -79,7 +79,7 @@ form{
 }
 
 .select-wrapper{
-    width: 25%;
+    width: 100%;
 }
 
 #edit-personal-details{
@@ -201,6 +201,12 @@ form{
 .image-container img{
     width: 100%;
     height: auto;
+}
+
+.product-detail-btn-container{
+    position: absolute;
+    top: 25px;
+    right: 25px;
 }
 
 .card-body{

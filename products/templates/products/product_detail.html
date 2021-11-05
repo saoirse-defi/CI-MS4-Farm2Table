@@ -10,13 +10,29 @@
             {% else %}
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
+            <div class="col s12" id="product-detail-btn-container">
+                <input type="submit" class="btn-small" value="Add to Bag">
+                {% if wishlist_id is not None %}
+                    <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                        <span class="material-icons-outlined">
+                            favorite
+                        </span>
+                    </a>
+                {% else %}
+                    <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
+                        <span class="material-icons-outlined">
+                            favorite_border
+                        </span>
+                    </a>
+                {% endif %}
+            </div>
         </div>
         <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
         <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
     </div>
     <div class="col s12 m4">
-        <div class="product-details">
-            <h4>{{ product.name }}</h4>
+        <div class="product-details center-align">
+            <h4>{{ product.name }}</h4><br><br>
             <p>€{{ product.price }}</p>
             <div class="col s6 left">
                 {% if product.rating %}
@@ -30,7 +46,8 @@
                     <span class="new badge purple" data-badge-caption="{{ product.category.name }}"></span>
                 </a>
             </div>
-            <p>Product Description:</p>
+            <br><br>
+            <span>Product Description:</span>
             <p>{{ product.description }}</p>
             <form action="{% url 'add_to_bag' product.sku %}" method="POST">
                 {% csrf_token %}
@@ -53,22 +70,6 @@
                         <div class="form-group">
                             <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
                         </div>
-                    </div>
-                    <div class="col s12" id="product-detail-btn-container">
-                        <input type="submit" class="btn-small" value="Add to Bag">
-                        {% if wishlist_id is not None %}
-                            <a class="btn-small" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                                <span class="material-icons-outlined">
-                                    favorite
-                                </span>
-                            </a>
-                        {% else %}
-                            <a class="btn-small" href="{% url 'add_to_wishlist' product.sku %}">
-                                <span class="material-icons-outlined">
-                                    favorite_border
-                                </span>
-                            </a>
-                        {% endif %}
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
                     {% endwith %}
