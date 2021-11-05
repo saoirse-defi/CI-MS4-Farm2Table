@@ -200,16 +200,6 @@ form{
     height: auto;
 }
 
-.image-container{
-    position: relative;
-}
-
-.wishlist-btn{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
 .card-body{
     background-color: #eaeab4;
 }
