@@ -5,10 +5,14 @@
 <h4>Find local producers near you</h4>
 <form method="GET" id="store-search-form">
     {% csrf_token %}
-    {{ county_store_filter.form }}
-    <button class="waves-effect waves-light btn-small right" type="submit">
-        <i class="material-icons-outlined">search</i>
-    </button>
+    <div class="col s11 left">
+        {{ county_store_filter.form }}
+    </div>
+    <div class="col s1 right">
+        <button class="waves-effect waves-light btn-small right" type="submit">
+            <i class="material-icons-outlined">search</i>
+        </button>
+    </div>
 </form>
 <div class="row">
     <div class="local-seller-container col s12">
