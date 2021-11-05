@@ -10,19 +10,6 @@
             {% else %}
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
-            {% if wishlist_id is not None %}
-                <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                    <span class="material-icons-outlined">
-                        favorite
-                    </span>
-                </a>
-            {% else %}
-                <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
-                    <span class="material-icons-outlined">
-                        favorite_border
-                    </span>
-                </a>
-            {% endif %}
         </div>
         <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
         <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
@@ -41,7 +28,20 @@
                     <span class="new badge green" data-badge-caption="{{ product.category.name}}"></span>
                 </a>
             </div><br>
-            <h4 class="center-align">{{ product.name }}</h4>
+            <h4 class="center-align">{{ product.name }}
+            {% if wishlist_id is not None %}
+                <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                    <span class="material-icons-outlined">
+                        favorite
+                    </span>
+                </a>
+            {% else %}
+                <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                    <span class="material-icons-outlined">
+                        favorite_border
+                    </span>
+                </a>
+            {% endif %}</h4>
             <p class="center-align">€{{ product.price }}</p>
             <p class="center-align">Product Description:</p>
             <p class="center-align">{{ product.description }}</p>

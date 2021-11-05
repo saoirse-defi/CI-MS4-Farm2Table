@@ -10,21 +10,6 @@
             {% else %}
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
-            {% if current_user %}
-                {% if wishlist_id is not None %}
-                    <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                        <span class="material-icons-outlined">
-                            favorite
-                        </span>
-                    </a>
-                    {% else %}
-                    <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
-                        <span class="material-icons-outlined">
-                            favorite_border
-                        </span>
-                    </a>
-                {% endif %}
-            {% endif %}
         </div>
     </div>
     <div class="col s12 m4">
@@ -42,7 +27,21 @@
                 </a>
             </div>
             <br>
-            <h4 class="center-align">{{ product.name }}</h4>
+            <h4 class="center-align">{{ product.name }}{% if current_user %}
+                {% if wishlist_id is not None %}
+                    <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                        <span class="material-icons-outlined">
+                            favorite
+                        </span>
+                    </a>
+                    {% else %}
+                    <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                        <span class="material-icons-outlined">
+                            favorite_border
+                        </span>
+                    </a>
+                {% endif %}
+            {% endif %}</h4>
             <p class="center-align">€{{ product.price }}</p>
             <p class="center-align">Product Description:</p>
             <p class="center-align">{{ product.description }}</p>
