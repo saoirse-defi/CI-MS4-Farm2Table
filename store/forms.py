@@ -16,7 +16,7 @@ User = get_user_model()
 class StoreRegisterForm(forms.ModelForm):
     class Meta:
         model = Store
-        exclude = ('user', 'rating', 'organic', 'street_address2')
+        exclude = ('user', 'rating', 'organic', 'street_address2', 'image_url')
 
     image = forms.ImageField(label='Image', required=False,
                              widget=StoreClearableFileUnit)
