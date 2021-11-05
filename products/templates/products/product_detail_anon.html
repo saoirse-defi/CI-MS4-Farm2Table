@@ -12,13 +12,13 @@
             {% endif %}
             {% if current_user %}
                 {% if wishlist_id is not None %}
-                    <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                    <a class="wishlist-btn pink" href="{% url 'delete_from_wishlist' wishlist_id %}">
                         <span class="material-icons-outlined">
                             favorite
                         </span>
                     </a>
                     {% else %}
-                    <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                    <a class="wishlist-btn pink" href="{% url 'add_to_wishlist' product.sku %}">
                         <span class="material-icons-outlined">
                             favorite_border
                         </span>
@@ -38,7 +38,7 @@
             </div>
             <div class="col s6 right">
                 <a href="{% url 'products' %}?category={{ product.category.category_id }}">
-                    <span class="new badge green" data-badge-caption="{{ product.category.category_id }}"></span>
+                    <span class="new badge green" data-badge-caption="{{ product.category.name }}"></span>
                 </a>
             </div>
             <br>

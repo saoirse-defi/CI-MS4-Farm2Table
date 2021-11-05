@@ -11,13 +11,13 @@
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
             {% if wishlist_id is not None %}
-                <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                <a class="wishlist-btn pink" href="{% url 'delete_from_wishlist' wishlist_id %}">
                     <span class="material-icons-outlined">
                         favorite
                     </span>
                 </a>
             {% else %}
-                <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                <a class="wishlist-btn pink" href="{% url 'add_to_wishlist' product.sku %}">
                     <span class="material-icons-outlined">
                         favorite_border
                     </span>
@@ -38,7 +38,7 @@
             </div>
             <div class="col s6 right">
                 <a href="{% url 'products' %}?category={{ product.category.category_id }}">
-                    <span class="new badge green" data-badge-caption="{{ product.category.category_id }}"></span>
+                    <span class="new badge green" data-badge-caption="{{ product.category.name}}"></span>
                 </a>
             </div><br>
             <h4 class="center-align">{{ product.name }}</h4>
@@ -67,7 +67,9 @@
                             <input class="form-control qty-input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.sku }}" id="id_qty_{{ product.sku }}">
                         </div>
                     </div>
-                    <input type="submit" class="btn-small" value="Add to Bag">
+                    <div class="col s12" id="product-detail-btn-container">
+                        <input type="submit" class="btn-small" value="Add to Bag">
+                    </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
                     {% endwith %}
                 </div>
