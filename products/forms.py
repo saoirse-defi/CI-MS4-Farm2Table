@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
     """ Form for store owners to create product listings. """
     class Meta:
         model = Product
-        exclude = ('seller_store', 'has_sizes', 'rating', 'sku')
+        exclude = ('seller_store', 'has_sizes', 'rating', 'sku', 'image_url')
 
     image = forms.ImageField(label='Image', required=False,
                              widget=ProductClearableFileUnit)
@@ -19,7 +19,6 @@ class ProductForm(forms.ModelForm):
             'price': 'Price per 250g',
             'name': 'Product Name',
             'description': 'Write a short description of your product...',
-            'image_url': 'Image URL',
         }
 
         self.fields['name'].widget.attrs['autofocus'] = True
@@ -32,9 +31,6 @@ class ProductForm(forms.ModelForm):
                 placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             if field == 'description':
-                placeholder = placeholders[field]
-                self.fields[field].widget.attrs['placeholder'] = placeholder
-            if field == 'image_url':
                 placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'

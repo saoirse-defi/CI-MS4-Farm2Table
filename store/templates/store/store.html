@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col s12 l4">
             <p class="center-align">
-                {% if store.image_url %}
-                    <img src="{{ store.image_url }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
+                {% if store.image %}
+                    <img src="{{ store.image }}" alt="{{ store.name }}" style="height: 250px; width: 250px;"/>
                 {% else %}
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}" style="height: 250px; width: 250px;">
                 {% endif %}
@@ -115,8 +115,8 @@
                 <div class="product-card">
                     <a href="{% url 'product_detail' product.sku %}" style="color: black;">
                             <div class="card-header">
-                                {% if product.image_url %}
-                                    <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+                                {% if product.image %}
+                                    <img class="card-img responsive" src="{{ product.image }}" alt="{{ product.name }}">
                                 {% else %}
                                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 {% endif %}

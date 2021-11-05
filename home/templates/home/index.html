@@ -25,8 +25,8 @@
                     {% if store.organic %}
                         <span class="new badge green" data-badge-caption="Organic"></span>
                     {% endif %}
-                    {% if store.image_url %}
-                        <img class="card-img responsive" src="{{ store.image_url }}" alt="{{ store.name }}">
+                    {% if store.image %}
+                        <img class="card-img responsive" src="{{ store.image }}" alt="{{ store.name }}">
                     {% else %}
                         <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ store.name }}"> 
                     {% endif %}

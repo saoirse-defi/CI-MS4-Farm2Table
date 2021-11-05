@@ -89,7 +89,7 @@
                         <p class="center-align">
                             <a class="checkout-image" href="{% url 'product_detail' item.product.sku %}">
                                 {% if item.product.image %}
-                                    <img src="{{ item.product.image_url }}" alt="{{ product.name }}">
+                                    <img src="{{ item.product.image }}" alt="{{ product.name }}">
                                 {% else %}
                                     <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 {% endif %}

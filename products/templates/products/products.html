@@ -16,8 +16,8 @@
             <div class="product-card">
                 <a href="{% url 'product_detail' product.sku %}" style="color: black;">
                         <div class="card-header">
-                            {% if product.image_url %}
-                                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+                            {% if product.image %}
+                                <img class="card-img responsive" src="{{ product.image }}" alt="{{ product.name }}">
                             {% else %}
                                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}

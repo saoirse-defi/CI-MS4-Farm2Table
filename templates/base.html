@@ -246,7 +246,7 @@
 
     {% if messages %}
         {% for message in messages %}
-            {% if message.tags == 'success'%}
+            {% if message.tags == 'success' %}
                 <script>
                     var add_to_bag_html = '<div class="bag-modal">'+
                                 '            <h4>{{ message }}</h4>'+
@@ -255,8 +255,8 @@
                                 '                {% for item in bag_items %}'+
                                 '                    <div class="row">'+
                                 '                        <div class="col s4">'+
-                                '                            {% if item.product.image_url %}'+
-                                '                                <img class="card-img" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">'+
+                                '                            {% if item.product.image %}'+
+                                '                                <img class="card-img" src="{{ item.product.image }}" alt="{{ item.product.name }}">'+
                                 '                            {% else %}'+
                                 '                                <img class="card-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">'+
                                 '                            {% endif %}'+

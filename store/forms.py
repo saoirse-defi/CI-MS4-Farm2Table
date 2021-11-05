@@ -3,6 +3,7 @@ from django.forms.widgets import Select
 from django.contrib.auth import get_user_model
 from store.widgets import StoreClearableFileUnit
 from django_iban.fields import IBANField
+from crispy_forms.helper import FormHelper
 
 from .models import Store, County
 from localflavor.ie.forms import EircodeField
@@ -47,7 +48,7 @@ class StoreRegisterForm(forms.ModelForm):
 class StoreUpdateForm(forms.ModelForm):
     class Meta:
         model = Store
-        exclude = ('store_id', 'user', 'organic', 'rating',)
+        exclude = ('store_id', 'user', 'organic', 'rating', 'image_url')
 
     def __init__(self, *args, **kwargs):
         """Adds placeholders and classes,

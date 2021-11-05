@@ -22,9 +22,9 @@
             </thead>
             {% for item in bag_items %}
             <tr>
-                {% if item.product.image_url %}
+                {% if item.product.image %}
                 <td class="hide-image">
-                    <img class="img-responsive" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                    <img class="img-responsive" src="{{ item.product.image }}" alt="{{ item.product.name }}">
                 </td>
                 {% else %}
                 <td class="hide-image">

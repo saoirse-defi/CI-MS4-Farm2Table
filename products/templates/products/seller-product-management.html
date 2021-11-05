@@ -17,9 +17,9 @@
             {% for product in products %}
                 {% if product.seller_store == store %}
                     <div class="dashboard-product-card">
-                        {% if product.image_url %}
+                        {% if product.image %}
                         <a href="{% url 'product_detail' product.sku %}">
-                            <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+                            <img class="card-img responsive" src="{{ product.image }}" alt="{{ product.name }}">
                         </a>
                         {% else %}
                         <a href="{% url 'product_detail' product.sku %}">

@@ -5,8 +5,8 @@
 <div class="row">
     <div class="col s12 m5">
         <div class="image-container center-align">
-            {% if product.image_url %}
-                <img class="card-img responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
+            {% if product.image %}
+                <img class="card-img responsive" src="{{ product.image }}" alt="{{ product.name }}">
             {% else %}
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
@@ -88,9 +88,9 @@
         <div class="seller-details">
             <h5 class="center-align">Seller Details</h5>
             <p class="center-align">
-                {% if store.image_url %}
+                {% if store.image %}
                     <a href="{% url 'view_store' store.store_id %}">
-                        <img class="card-img responsive" src="{{ store.image_url }}" alt="{{store.name}}"/>
+                        <img class="card-img responsive" src="{{ store.image }}" alt="{{store.name}}"/>
                     </a>
                 {% else %}
                     <a href="{% url 'view_store' store.store_id %}">
