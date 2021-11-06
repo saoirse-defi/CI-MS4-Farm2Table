@@ -14,7 +14,7 @@ header{
 
 img{
     width: 250px;
-    height: 250px;
+    height: auto;
 }
 
 .nav-wrapper{
@@ -195,11 +195,6 @@ form{
     border-bottom: 0.5px solid black;
 }
 
-.card-image{
-    width: 250px;
-    height: auto;
-}
-
 .card-body{
     background-color: #eaeab4;
 }
@@ -260,8 +255,8 @@ form{
 }
 
 .seller-details img{
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: auto;
     border: 0;
 }
 
