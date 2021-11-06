@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django_iban',
     'django_filters',
     'storages',
+    'image_uploader_widget',
 ]
 
 MIDDLEWARE = [

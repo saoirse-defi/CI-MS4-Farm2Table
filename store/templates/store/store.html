@@ -12,7 +12,7 @@
         <div class="col s12 l4">
             <p class="center-align">
                 {% if store.image %}
-                    <img src="{{ store.image.url }}" alt="{{ store.name }}"/>
+                    <img class="card-img responsive" src="{{ store.image.url }}" alt="{{ store.name }}"/>
                 {% else %}
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
                 {% endif %}
@@ -113,7 +113,7 @@
         <div class="container" id="seller-listings-grid">
             {% for product in store_products %}
                 <div class="product-card">
-                    <a href="{% url 'product_detail' product.sku %}" style="color: black;">
+                    <a href="{% url 'product_detail' product.sku %}">
                             <div class="card-header">
                                 {% if product.image %}
                                     <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">

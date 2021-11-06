@@ -14,7 +14,7 @@
 <div class="product-container col s12">
         {% for product in products %}
             <div class="product-card">
-                <a href="{% url 'product_detail' product.sku %}" style="color: black;">
+                <a href="{% url 'product_detail' product.sku %}">
                         <div class="card-header">
                             {% if product.image %}
                                 <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -29,7 +29,7 @@
                             </a>
                             {% endif %}
                             {% if product.rating %}
-                                <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ product.rating }} / 5</small>
+                                <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
                             {% else %}
                                 <small>No Rating</small>
                             {% endif %}

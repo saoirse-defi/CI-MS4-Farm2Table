@@ -14,7 +14,7 @@
     <div class="wishlist-container col s12">
         {% for item in my_wishlist %}
             <div class="product-card">
-                <a href="{% url 'product_detail' item.product.sku %}" style="color: black;">
+                <a href="{% url 'product_detail' item.product.sku %}">
                         <div class="card-header">
                             {% if item.product.image %}
                                 <img class="card-img responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
@@ -29,7 +29,7 @@
                             </a>
                             {% endif %}
                             {% if item.product.rating %}
-                                <small><span class="material-icons-outlined" style="color: gold;">star</span>{{ item.product.rating }} / 5</small>
+                                <small><span class="material-icons-outlined">star</span>{{ item.product.rating }} / 5</small>
                             {% else %}
                                 <small>No Rating</small>
                             {% endif %}
