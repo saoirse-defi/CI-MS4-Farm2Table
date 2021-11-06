@@ -11,8 +11,10 @@
                 <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}
         </div>
-        <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
-        <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+        <div class="product-button-container center-align">
+            <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
+            <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+        </div>
     </div>
     <div class="col s12 m4">
         <div class="product-details">
