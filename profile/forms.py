@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth import (
     authenticate,
     get_user_model
@@ -46,11 +47,11 @@ class UserRegisterForm(forms.ModelForm):
     def clean(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
         #  password = self.cleaned_data.get('password2')
-        email_qs = User.objects.filter(email=email)
-        if email_qs.exists():
+        #email_qs = User.objects.filter(email=email)
+        if User.objects.filter(email=email).exists():
             raise forms.ValidationError(
                 "This email has already been registered")
-        return super(UserRegisterForm, self).clean(*args, **kwargs)
+        return self.cleaned_data
 
 
 class UserProfileForm(forms.ModelForm):
