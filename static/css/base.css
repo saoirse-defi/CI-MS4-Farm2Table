@@ -31,6 +31,10 @@ img{
     text-align: center;
 }
 
+.dropdown-content li>a{
+    color: white;
+}
+
 #nav-list{
     text-align: left;
 }

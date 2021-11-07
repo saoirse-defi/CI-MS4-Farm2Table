@@ -6,8 +6,7 @@ from .models import Wishlist
 from profile.models import UserProfile
 from products.models import Product
 
-# Create your views here.
-
+# Create your views here
 
 def wishlist(request):
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -22,6 +21,7 @@ def wishlist(request):
 
 
 def add_to_wishlist(request, sku):
+
     profile = get_object_or_404(UserProfile, user=request.user)
 
     product = get_object_or_404(Product, pk=sku)
@@ -30,7 +30,7 @@ def add_to_wishlist(request, sku):
         user=profile, product=product
     )
 
-    messages.success(request, 'Item successfully added to wishlist.')
+    messages.add_message(request, 50, 'Item added to your wishlist.')
 
     return redirect(reverse('product_detail', args=[product.sku]))
 
@@ -40,6 +40,7 @@ def delete_from_wishlist(request, wishlist_id):
 
     wishlist_item.delete()
 
-    messages.success(request, 'Item successfully deleted from wishlist.')
+    messages.add_message(request, 50, 'Item removed from your wishlist.')
 
-    return redirect(reverse('product_detail', args=[wishlist_item.product.sku]))
+    return redirect(reverse('product_detail',
+                            args=[wishlist_item.product.sku]))

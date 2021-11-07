@@ -10,7 +10,7 @@
             <a class="btn-small" href="{% url 'products' %}">Browse Products</a>
         </p>
     {% else %}
-    <h5 class="center-align">Now showing items in your wishlist.</h5>
+    <h5 class="center-align">My Wishlist.</h5>
     <div class="wishlist-container col s12">
         {% for item in my_wishlist %}
             <div class="product-card">

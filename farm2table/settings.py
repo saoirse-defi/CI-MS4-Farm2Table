@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 import os
 import dj_database_url
@@ -108,6 +107,11 @@ TEMPLATES = [
 TEMPLATE_CONTEXT_PROCESSORS = ('django.contrib.messages.context_processors.messages',)
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+MESSAGE_TAGS = {
+    50: 'wishlist',
+    60: 'checkout',
+}
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
