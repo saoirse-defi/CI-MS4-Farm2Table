@@ -1,7 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth import (
-    authenticate,
     get_user_model
 )
 
@@ -14,6 +12,7 @@ User = get_user_model()
 
 
 class UserLoginForm(forms.ModelForm):
+    """ Handles user login form validation."""
     email = forms.EmailField(label='Email address')
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -39,17 +38,9 @@ class UserLoginForm(forms.ModelForm):
         
         return self.cleaned_data
 
-        #user = authenticate(email=email, password=password)
-        #if not user:
-        #    raise forms.ValidationError('This user does not exist')
-        #if not user.check_password(password):
-        #    raise forms.ValidationError('Incorrect password')
-        #if not user.is_active:
-         #   raise forms.ValidationError('This user is not active')
-        #return self.cleaned_data
-
 
 class UserRegisterForm(forms.ModelForm):
+    """ Handles user registration form validation."""
     username = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
@@ -82,11 +73,10 @@ class UserRegisterForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    """ Creates and validates UserProfile form."""
     class Meta:
         model = UserProfile
         exclude = ('user',)
-
-    # county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
 
     def __init__(self, *args, **kwargs):
         """Adds placeholders and classes,
@@ -94,25 +84,8 @@ class UserProfileForm(forms.ModelForm):
             autofocus on first field."""
 
         super().__init__(*args, **kwargs)
-        #placeholders = {
-         #   'default_phone_number': 'Phone',
-          #  'default_street_address1': 'Street Address Line 1',
-           # 'default_street_address2': 'Street Address Line 2',
-            #'default_town': 'Town/City',
-            #'default_postcode': 'Eircode',
-        #}
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
-
-        #for field in self.fields:
-            #if field != 'default_country':
-                #if self.fields[field].required:
-                    #placeholder = f'{placeholders[field]} *'
-                #else:
-                    #placeholder = placeholders[field]
-            #self.fields[field].widget.attrs['placeholder'] = placeholder
-        #self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-        #self.fields[field].label = False
         self.fields['default_county'] = forms.ModelChoiceField(
                                         queryset=County.objects.all(),
                                         initial=0)

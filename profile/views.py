@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
@@ -15,6 +14,8 @@ from checkout.models import Order
 from store.models import Store
 
 from django.contrib.auth.models import User
+
+
 def login_view(request):
     form = UserLoginForm(request.POST or None)
     if request.method == "POST":
