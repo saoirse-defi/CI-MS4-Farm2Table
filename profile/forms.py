@@ -13,27 +13,45 @@ from localflavor.ie.forms import EircodeField
 User = get_user_model()
 
 
-class UserLoginForm(forms.Form):
-    username = forms.CharField()
+class UserLoginForm(forms.ModelForm):
+    email = forms.EmailField(label='Email address')
     password = forms.CharField(widget=forms.PasswordInput)
 
+    class Meta:
+        model = User
+        fields = [
+            'email',
+            'password',
+        ]
+
     def clean(self, *args, **kwargs):
-        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
 
-        if username and password:
-            user = authenticate(username=username, password=password)
-            if not user:
-                raise forms.ValidationError('This user does not exist')
-            if not user.check_password(password):
-                raise forms.ValidationError('Incorrect password')
-            if not user.is_active:
-                raise forms.ValidationError('This user is not active')
-        return super(UserLoginForm, self).clean(*args, **kwargs)
+        user = User.objects.get(email=email)
+
+        if not User.objects.filter(email=email).exists():
+            raise forms.ValidationError({"email":
+                                         "This email is not registered"})
+        if not user.check_password(password):
+            raise forms.ValidationError({"password":
+                                         "Incorrect password"})
+        
+        return self.cleaned_data
+
+        #user = authenticate(email=email, password=password)
+        #if not user:
+        #    raise forms.ValidationError('This user does not exist')
+        #if not user.check_password(password):
+        #    raise forms.ValidationError('Incorrect password')
+        #if not user.is_active:
+         #   raise forms.ValidationError('This user is not active')
+        #return self.cleaned_data
 
 
 class UserRegisterForm(forms.ModelForm):
-    email = forms.EmailField(label='Email address')
+    username = forms.CharField()
+    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
@@ -45,12 +63,21 @@ class UserRegisterForm(forms.ModelForm):
         ]
 
     def clean(self, *args, **kwargs):
+        username = self.cleaned_data.get('username')
         email = self.cleaned_data.get('email')
-        #  password = self.cleaned_data.get('password2')
-        #email_qs = User.objects.filter(email=email)
+        password = self.cleaned_data.get('password')
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError({"username":
+                                         "This username has "
+                                         "already been registered"})
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                "This email has already been registered")
+            raise forms.ValidationError({"email":
+                                         "This email has "
+                                         "already been registered"})
+        if len(password) < 5:
+            raise forms.ValidationError({"password":
+                                         "Please use a password "
+                                         "with more than 4 characters"})
         return self.cleaned_data
 
 

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
@@ -13,29 +14,23 @@ from .forms import UserProfileForm, UserLoginForm, UserRegisterForm
 from checkout.models import Order
 from store.models import Store
 
-
+from django.contrib.auth.models import User
 def login_view(request):
-    try:
-        current_user = UserProfile.objects.get(user=request.user)
-    except Exception as e:
-        current_user = None
-        print(e)
-
-    if current_user is not None:
-        return redirect(reverse('view_profile'))
-    else:
-        form = UserLoginForm(request.POST or None)
+    form = UserLoginForm(request.POST or None)
+    if request.method == "POST":
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect(reverse('view_profile'))
+            user = User.objects.get(email=email)
+            user = authenticate(username=user.username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(reverse('view_profile'))
 
-        context = {
-            'form': form,
-        }
-        return render(request, "profile/login.html", context)
+    context = {
+        'form': form,
+    }
+    return render(request, "profile/login.html", context)
 
 
 def signup_view(request):
