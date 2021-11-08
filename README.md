@@ -30,7 +30,7 @@ This section will outline potential features which I would like to implement in 
 
 The goal of this project is to get Ireland eating locally again by creating a marketplace where fruit & vegetable producers will post listings of their produce. This format will increase competition between the farmers as consumers can compare prices directly. Payment will be taken through the application in order to reduce friction once the customer goes to collect their order or has it delivered.
 
-## Users
+## User Stories
 
 ### User Goals
 
@@ -39,7 +39,7 @@ Potential users for this application can be split into 2 groups listed below. It
 1. Producers
 2. Consumers
 
-#### User Goals (Producers)
+#### User Needs (Producers)
 
 For this application to be successful we will need to onboard as many fruit & vegetable producers across the country in order to create a competitive marketplace for the consumer. We need to make the registration process as easy as possible.
 
@@ -53,7 +53,7 @@ In order for a seller to be willing to join our app, they will need:
 * To expand my customer base.
 * Cultivate an online presence, the benefit of free online advertising.
 
-#### User Goals (Consumers)
+#### User Needs (Consumers)
 
 The target audience for this application will be users over the age of 25. This is due to the fact that they are generally more concerned about the source/quality of their produce & have access to more discretionary income. Users of the application will be in search of the highest quality fruit & vegetables at the most affordable price.
 
@@ -69,6 +69,7 @@ As a user of this application, I need:
 
 ##### Consumer Goals
 
+* To eat the best quality produce sourced close to me.
 * To find the best price for locally grown produce.
 * To support local business.
 
@@ -155,9 +156,7 @@ I really enjoy this favicon which was sourced from [Favicon.cc](https://www.favi
 
 #### Responsive Front-End Framework
 
-For this project, I decided to use the Materialize framework which is build on the principles of material design.
-After completing the project using this new framework, I can safely say that I prefer it more than Bootstrap which I have used on my previous 2 milestone projects.
-It appears to provide more feedback to the user when they are navigating throughout the web application while remaining responsive on most devices.
+For this project, I decided to use the Materialize framework which is build on the principles of material design. I have previous experience with this framework as I encorporated it into my third milestone project. Throughout the course of this project, the lack of thorough documentation & package support for this framework have turned me off using it in future.
 
 #### Icons
 
@@ -171,22 +170,23 @@ This icon is present on the product_details page when you are logged in to the a
 
 Present on the product_details page, if a user's wishlist already contains this specific product, the empty heart icon will be replaced by the full heart.
 
-##### Edit Icon
-
-When a store owner has landed on the details page for one of his/her products, a button with the edit icon will allow them to change product details on the fly.
-
-##### Delete Icon
-
-When a store owner has landed on the details page for one of his/her products, a button with the delete icon will allow them to remove that product from the marketplace.
-
 
 #### Fonts
 
+The impact that font choice can have on a web application cannot be understated. Web design trends over the past decade have shown that clear and extremely legible sans-serif fonts leads to a dramatic reduction in the user bounce rate. All fonts used within this application have been sourced from [Google Fonts](https://fonts.google.com/icons).
 
-##### Varela Round
+##### Logo Font
+
+The extreme legibility of a font can be sacrificed in the case that is to be displaying the company's logo. For THEVEGTABLE.ie, I have chosen a font named Fjalla One, a sans-serif font that catches the eye while still remaining fully legible to the user.
+
+##### Content Font
+
+The font chosen for the rest of the application's content should be lightweight and extremely legible. This allows the user to relax while browsing through the website as they are not having to strain their eyes when moving from one piece of content to the other. The Lato font was chosen for this task due to its sharp and clean look.
 
 
 #### Colours
+
+During the design process, I wanted to colour pallet of the application to take inspiration from nature. Greens & Beige have been used to remind the user that purchasing produce locally has a massive effect on the environment and that they're making a 'green' choice.
 
 
 ##### Materialize Button
@@ -198,19 +198,6 @@ When a store owner has landed on the details page for one of his/her products, a
 This section will outline the key elements within this application giving descriptions on the purpose of each element.
 
 
-### Error Handling
-
-#### Flash Messages
-
-
-#### API Exceptions
-
-
-#### Other Low Level Exceptions
-
-Other low level exceptions such as client-side errors (4xx) or server-side errors (5xx) will also be handled, describing to the user which error occurred. The user will also have an option to either return to their homepage or the login page depending on their credentials. 
-
-
 #### Lottie Player Animations
 
 Lottie provides lightweight animation hosting which provides significantly smaller footprint than conventional animations.
@@ -219,65 +206,35 @@ Lottie provides lightweight animation hosting which provides significantly small
 
 This section of the documentation will outline the function behind each self-contained Django application.
 
-#### Farm2Table App
+##### Farm2Table App
 
-URLs for each Django app
-Settings.py
+This app is responsible for the Django configuration of the entire project as well as organising the URL paths for each sub-application.
 
+##### Profile App
 
-#### Profile App
+This application controls information in relation to the UserProfile model such as contact details & their order history. It also contains authentication features such as login & signup.
 
-User Login Form
-User Reg Form
-UserProfile Model
-Login
-Signup
-View Profile
-Order History
+##### Store App
 
-#### Store App
+Once a UserProfile is created, the application user can establish a sales organisation and connect it to their UserProfile. Once on the store page, store owners can edit their store's contact details. This is also where the County model resides.
 
-Store Model
-County Model
-Store reg form
-Local Producers
-View Store
-Edit Store
+##### Products App
 
-#### Products App
+This Django application gives the ability to store owners so that they can create, edit & delete products. Each product is connected to a Category model in order to enable product filtering.
 
-Category Model
-Product Model
-Product creation form
-Product Search
-Product Details
-Seller Product Management
+##### Wishlist App
 
-#### Wishlist App
+This app keeps track of a list of products favourited by the user. Favourited items can be removed at any time.
 
-Wishlist Model
-View Wishlist
-Add to wishlist
-Delete from wishlist
+##### Bag App
 
-#### Bag App
+The bag application hosts the shopping cart, allowing the user to gather products before proceeding to the checkout. The size & quantity of the each item within the bag can be updated.
 
-No Models
-View Bag
-Adjust Bag
-Add to Bag
-Remove from Bag
+##### Checkout App
 
-#### Checkout App
+In the checkout, the user submits their shipping details and card information. Here is where the order is processed and Stripe payment is established.
 
-Order Model
-OrderLineItem Model
-Order Form
-View Checkout
-Cache Checkout Data
-Webhooks
-
-#### Media App
+##### Media App
 
 Stores Images
 
@@ -293,6 +250,35 @@ This section will outline the technologies & processes used in the design & impl
 
 For this project, the frontend framework I decided to use was Materialize. In my previous 2 milestone projects, I chose Bootstrap for the frontend, but I can now safely say that I much prefer the look of Materialize.
 As it is based on the principles of material design, all elements just seem that little bit sharper and current.
+
+### Error Handling
+
+
+#### Django Messages
+
+This section outlined the technology used to pass the user information without refreshing the page. These notifications appear when:
+
+* Adding/Removing/Adjusting products to/from the bag
+* Adding/Removing products to/from the user's watch list
+* Adding/Updating/Removing a product to/from the store
+* A user updates their profile
+* A store owner updates their store profile
+
+
+##### Custom Django Message Tags
+
+Django messages allows developers to create custom message tags to allow for more granular UX notifications. As you can see from the image below, two new message tags have been created for this project. 
+
+* Checkout[50] - In charge of displaying the shopping cart modal to the user whenever they add an item to the cart
+* Wishlist[60] - Allow for a custom modal when the adds/removes items from their wish list
+
+
+#### API Exceptions
+
+
+#### Other Low Level Exceptions
+
+Other low level exceptions such as client-side errors (4xx) or server-side errors (5xx) will also be handled, describing to the user which error occurred. The user will also have an option to either return to their homepage or the login page depending on their credentials. 
 
 ### Database Design
 
