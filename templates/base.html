@@ -62,25 +62,16 @@
                                 <a href="{% url 'logout' %}">Logout</a>
                             </li>
                             <li>
-                                <a class='dropdown-trigger btn-small' href='#' data-target='shopping-cart-dropdown'>
+                                <a class="btn" href="{% url 'view_bag' %}">
                                     <span class="material-icons-outlined">shopping_cart</span>
+                                    <span>
+                                        {% if grand_total %}
+                                        €{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                        €0.00
+                                        {% endif %}
+                                    </span>
                                 </a>
-                                <ul class="dropdown-content" id="shopping-cart-dropdown">
-                                    <li>
-                                        <a href="{% url 'view_bag' %}">
-                                            <div class="center-align">
-                                                <div><span class="material-icons-outlined">shopping_cart</span></div>
-                                                <p>
-                                                    {% if grand_total %}
-                                                    €{{ grand_total|floatformat:2 }}
-                                                    {% else %}
-                                                    €0.00
-                                                    {% endif %}
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                     {% else %}
                         <li>
@@ -216,7 +207,7 @@
             <script>
                 var add_to_bag_html = '<div class="bag-modal">'+
                             '            <h4>{{ message }}</h4>'+
-                            '            <p>Your Bag ({{ product_count }})</p>'+
+                            '            <p>Your Bag: ({{ product_count }}) Items</p>'+
                             '            <div class="bag-notification-wrapper">'+
                             '                {% for item in bag_items %}'+
                             '                    <div class="row">'+
