@@ -282,36 +282,6 @@ Webhooks
 Stores Images
 
 
-## Testing
-
-| Test Description | Expectation | Outcome | Result |
-|---|---|---|---|
-| Hero Logo | The logo link should take you back to the home page. | When the user clicks the logo, they should be redirected to the home page. |  |
-| Navigation Links | All links should direct the user as outlined. | The user should be redirected to the URL outlined by the button description. |  |
-| Local Producers | Displays stores that are within the user's county.  If a county hasn't been set,  the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. |  |
-| All Stores | Displays all stores to the user | All stores should be displayed. |  |
-| Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. |  |
-| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the  correct credentials are provided. |  |
-| Logout | Logged in users can sign out of their account. | Active users can log out successfully. |  |
-| Profile | All links should work as intended.  | Clicking links redirects the user as described. |  |
-| Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. |  |
-| Create Store | Users with a profile should be able to create a  sales organisation. | A store is created which is linked to the user's profile. |  |
-| Edit Store | Store owners can edit their contact details,  IBAN & organic status with the correct form  validation being applied. | The store profile can be edited by it's owner using the store edit form with the correct validation being applied. |  |
-| Create Product | Store owners should have the ability to create products within  their organisation and attach a product image. | Store owners can create products under their sales organisation. |  |
-| Edit Product | Product creators can update details and image on products which they have created. | Store owners can edit products they have created. |  |
-| Delete Product | Product creators should be able to delete their own products. | Store owners can delete products they have created. |  |
-| Add to Wishlist | Users with an account can add products to their  personalised wishlist. | Users with a profile can add products to a wishlist. |  |
-| Remove From Wishlist | Profile users should be able to delete items  from their own wishlist. | Users with a profile can remove items from their wishlist. |  |
-| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. |  |
-| Adjust Product  Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. |  |
-| Add to Bag | Users can add items to their shopping bag | Items of varying sizes and quantities can be added to the users shopping bag. |  |
-| Remove from Bag | Users can remove items from their shopping bag | Items existing in the shopping bag can be removed. |  |
-| Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. |  |
-| Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-
 ## User Interaction
 
 
@@ -385,6 +355,36 @@ The CSS style rules have been [Autoprefixed](https://autoprefixer.github.io/) to
 ### User Testing
 
 As the application began to take shape with all major components in place, the user testing could commence. This was done by reviewing each component line by line to ensure that the code works as intended. If an edit was to be made, the developer made sure to the changes were reflected correctly on the frontend.
+
+### Manual Testing
+
+| Test Description | Expectation | Outcome | Result |
+|---|---|---|---|
+| Hero Logo | The logo link should take you back to the home page. | When the user clicks the logo, they should be redirected to the home page. |  |
+| Navigation Links | All links should direct the user as outlined. | The user should be redirected to the URL outlined by the button description. |  |
+| Local Producers | Displays stores that are within the user's county.  If a county hasn't been set,  the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. |  |
+| All Stores | Displays all stores to the user | All stores should be displayed. |  |
+| Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. |  |
+| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the  correct credentials are provided. |  |
+| Logout | Logged in users can sign out of their account. | Active users can log out successfully. |  |
+| Profile | All links should work as intended.  | Clicking links redirects the user as described. |  |
+| Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. |  |
+| Create Store | Users with a profile should be able to create a  sales organisation. | A store is created which is linked to the user's profile. |  |
+| Edit Store | Store owners can edit their contact details,  IBAN & organic status with the correct form  validation being applied. | The store profile can be edited by it's owner using the store edit form with the correct validation being applied. |  |
+| Create Product | Store owners should have the ability to create products within  their organisation and attach a product image. | Store owners can create products under their sales organisation. |  |
+| Edit Product | Product creators can update details and image on products which they have created. | Store owners can edit products they have created. |  |
+| Delete Product | Product creators should be able to delete their own products. | Store owners can delete products they have created. |  |
+| Add to Wishlist | Users with an account can add products to their  personalised wishlist. | Users with a profile can add products to a wishlist. |  |
+| Remove From Wishlist | Profile users should be able to delete items  from their own wishlist. | Users with a profile can remove items from their wishlist. |  |
+| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. |  |
+| Adjust Product  Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. |  |
+| Add to Bag | Users can add items to their shopping bag | Items of varying sizes and quantities can be added to the users shopping bag. |  |
+| Remove from Bag | Users can remove items from their shopping bag | Items existing in the shopping bag can be removed. |  |
+| Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. |  |
+| Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 ### Mobile Testing
 
