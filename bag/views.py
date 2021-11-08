@@ -39,7 +39,7 @@ def add_to_bag(request, product_id):
                                  'to your shopping bag')
             else:
                 bag[product_id]['items_by_size'][size] = quantity
-                messages.add_message(request, 60, 
+                messages.add_message(request, 60,
                                      f'Added {product.name} {size}g '
                                      'to your shopping bag')
         else:
@@ -50,8 +50,7 @@ def add_to_bag(request, product_id):
         if product_id in list(bag.keys()):
             bag[product_id] += quantity
             messages.add_message(request, 60,
-                                 f'Updated {product.name} quantity '
-                                 f'to {bag[product_id]}')
+                                 f'Updated the quantity of {product.name}')
         else:
             bag[product_id] = quantity
             messages.add_message(request, 60, f'Added {product.name} {size}g '
