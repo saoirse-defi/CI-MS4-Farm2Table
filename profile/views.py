@@ -104,9 +104,8 @@ def edit_profile(request):
             messages.success(request, "Profile updated successfully.")
             return redirect(reverse('view_profile'))
         else:
-            messages.error(request,
-                           'Profile Update Failed: '
-                           'Please ensure the form is valid.')
+            messages.error(request, 'Please review profile details as '
+                               'there appears to be an error.')
     else:
         form = UserProfileForm(instance=profile)
 
