@@ -286,6 +286,10 @@ form{
 
 }
 
+.bag-image{
+    width: 250px;
+    height: auto;
+}
 
 
 /* Change the white to any color */
@@ -369,6 +373,10 @@ input:-webkit-autofill:active{
     overflow-y: auto;
 }
 
+.mobile-bag{
+    display: none;
+}
+
 .mobile-only-item{
     display: none;
 }
@@ -383,6 +391,14 @@ input:-webkit-autofill:active{
 @media (max-width: 1000px) {
     .hide-image{
         display:none;
+    }
+
+    table.responsive-table{
+        display: none;
+    }
+
+    .mobile-bag{
+        display: block;
     }
 }
 
@@ -399,8 +415,5 @@ input:-webkit-autofill:active{
         width: 100%;
     }
 
-    table.responsive-table{
-        display: none;
-    }
 }
 
