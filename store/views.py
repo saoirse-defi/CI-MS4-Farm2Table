@@ -113,8 +113,8 @@ def edit_store(request, store_id):
                 messages.success(request, "Seller profile updated successfully.")
                 return redirect(reverse('view_store', args=[store.store_id, ]))
             else:
-                messages.error(request, 'Seller profile Update Failed: '
-                               'Please ensure the form is valid.')
+                messages.error(request, 'Please review form as '
+                               'there appears to be an error.')
     else:
         form = StoreRegisterForm(instance=store)
 
