@@ -24,11 +24,11 @@
             <tr>
                 {% if item.product.image %}
                 <td class="hide-image">
-                    <img class="img-responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    <img class="img-responsive bag-image" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                 </td>
                 {% else %}
                 <td class="hide-image">
-                    <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                    <img class="img-responsive bag-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                 </td>
                 {% endif %}
                 <td>
@@ -67,13 +67,13 @@
             </tr>
             {% endfor %}
         </table>
-        <div class="mobile-bag mobile-only-item center-align">
+        <div class="mobile-bag center-align">
             {% for item in bag_items %}
             <div class="mobile-bag-item center-align">
                 {% if item.product.image %}
-                    <img class="img-responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    <img class="img-responsive bag-image" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                 {% else %}
-                    <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                    <img class="img-responsive bag-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                 {% endif %}
                 <h4>{{ item.product.name }}</h4>
                 <p>{% if item.product.has_sizes %}{{ item.size }}g{% else %}No size{% endif %}</p>
