@@ -386,7 +386,6 @@ input:-webkit-autofill:active{
     display: none;
 }
 
-
 @media (min-width: 1200px) {
     .container{
         max-width: 90%;
@@ -422,3 +421,9 @@ input:-webkit-autofill:active{
 
 }
 
+
+@media (max-width: 460px){
+    .custom-only-item{
+        display: none;
+    }
+}

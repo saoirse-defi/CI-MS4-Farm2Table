@@ -4,12 +4,13 @@
       <li>
         <a class="btn-small" href="{% url 'local_producers' %}">Local</a>
       </li>
-      <li>
+      <li class="custom-only-item">
         <a class="btn-small" href="{% url 'all_stores' %}">All Stores</a>
       </li>
       <li class="mobile-only-item">
         <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
         <ul class="dropdown-content" id="category-dropdown">
+          <br>
           {% for c in categories %}
             <li>
               <div class="valign-wrapper">
