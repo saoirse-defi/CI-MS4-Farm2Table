@@ -17,21 +17,30 @@ from django.contrib.auth.models import User
 
 
 def login_view(request):
-    form = UserLoginForm(request.POST or None)
-    if request.method == "POST":
-        if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            user = User.objects.get(email=email)
-            user = authenticate(username=user.username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect(reverse('view_profile'))
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
 
-    context = {
-        'form': form,
-    }
-    return render(request, "profile/login.html", context)
+    if current_user is not None:
+        return redirect(reverse('view_profile'))
+    else:
+        form = UserLoginForm(request.POST or None)
+        if request.method == "POST":
+            if form.is_valid():
+                email = form.cleaned_data.get('email')
+                password = form.cleaned_data.get('password')
+                user = User.objects.get(email=email)
+                user = authenticate(username=user.username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect(reverse('view_profile'))
+
+        context = {
+            'form': form,
+        }
+        return render(request, "profile/login.html", context)
 
 
 def signup_view(request):
