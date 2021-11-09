@@ -8,10 +8,10 @@
 
 {% if bag_items %}
     <div class="row">
-        <table class="responsive-table">
+        <table class="responsive-table desktop-only-item">
             <thead>
                 <tr>
-                    <th class="hide" scope="col">Product Image</th>
+                    <th scope="col">Product Image</th>
                     <th scope="col">Product Info</th>
                     <th scope="col">Size</th>
                     <th scope="col">Price</th>
@@ -67,6 +67,38 @@
             </tr>
             {% endfor %}
         </table>
+        <div class="mobile-bag mobile-only-item center-align">
+            {% for item in bag_items %}
+            <div class="mobile-bag-item center-align">
+                {% if item.product.image %}
+                    <img class="img-responsive" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                {% else %}
+                    <img class="img-responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                {% endif %}
+                <h4>{{ item.product.name }}</h4>
+                <p>{% if item.product.has_sizes %}{{ item.size }}g{% else %}No size{% endif %}</p>
+                <p> Price: €{{ item.product.price }}</p>
+                <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.product.sku %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item-id="{{ item.product_id }}" id="id_qty_{{ item.product_id }}" style="width: 25%;"/>
+                    </div>
+                    {% if item.product.has_sizes %}
+                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                    {% endif %}
+                    <button class="btn-small" type="submit">Update</button>
+                </form>
+                <p>Subtotal: €{{ item.product.price|calc_subtotal:item.quantity|calc_total_with_size:item.size}}</p>
+                <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.product.sku %}">
+                    {% csrf_token %}
+                    {% if item.product.has_sizes %}
+                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                    {% endif %}
+                    <button class=" btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
+                </form><br>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="row">
         <h6 class="center-align"><strong>Bag Total: €{{ total|floatformat:2 }} Euro</strong></h6>

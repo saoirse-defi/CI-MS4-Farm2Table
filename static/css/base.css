@@ -31,6 +31,10 @@ img{
     text-align: center;
 }
 
+#nav-list li{
+    display: inline-block;
+}
+
 .dropdown-content li>a{
     color: white;
 }
@@ -278,12 +282,14 @@ form{
 
 }
 
+
+
 /* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px #a5d6a7 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #d8d8d8 inset !important;
 }
 
 ::-webkit-input-placeholder {
@@ -374,6 +380,10 @@ input:-webkit-autofill:active{
 
     .select-wrapper{
         width: 100%;
+    }
+
+    table.responsive-table{
+        display: none;
     }
 }
 
