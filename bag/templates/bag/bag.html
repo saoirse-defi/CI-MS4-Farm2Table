@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="overlay"></div>
-<h2>Shopping Bag</h2>
+<h2 class="center-align">Shopping Bag</h2>
 
 {% if bag_items %}
     <div class="row">
@@ -77,14 +77,16 @@
                 You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
             </p>
         {% endif %}
-        <a href="{% url 'products' %}" class="btn">
-            <span class="material-icons-outlined">chevron_left</span>
-            <span>Keep Shopping</span>
-        </a>
-        <a href="{% url 'checkout' %}" class="btn">
-            <span class="material-icons-outlined">lock</span>
-            <span>Secure Checkout</span>
-        </a>
+        <div class="center-align">
+            <a href="{% url 'products' %}" class="btn">
+                <span class="material-icons-outlined">chevron_left</span>
+                <span>Keep Shopping</span>
+            </a>
+            <a href="{% url 'checkout' %}" class="btn">
+                <span class="material-icons-outlined">lock</span>
+                <span>Secure Checkout</span>
+            </a>
+        </div>
     </div>
 {% else %}
     <p class="center-align">Your bag is empty.</p>
