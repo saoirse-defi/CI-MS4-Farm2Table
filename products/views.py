@@ -24,16 +24,21 @@ def superuser_required(func):
     return wrapper
 
 
-def store_required(func):  # not working properly
+def store_required(func):
     def wrapper(request, *args, **kwargs):
-        stores = Store.objects.all()
-        for store in stores:
-            if store.user == request.user:
-                return func(request)
-            else:
-                messages.error(request,
-                               "Only store owners can create & sell products.")
-                return redirect(reverse('profile'))
+        try:
+            user = UserProfile.objects.filter(user=request.user)
+            store = Store.objects.filter(user=user)
+        except Exception as e:
+            user = None
+            store = None
+
+        if store is not None:
+            return func(request)
+        else:
+            messages.error(request,
+                            "Only store owners can create & sell products.")
+            return redirect(reverse('products'))
     return wrapper
 
 
@@ -139,6 +144,7 @@ def product_detail(request, product_id):
                     wishlist_id = wish.wishlist_id
         except Exception as e:
             wishlist_id = None
+            print(e)
 
         if store.user == current_user:
             context = {
@@ -155,7 +161,9 @@ def product_detail(request, product_id):
                 'product': product,
                 'store': store,
                 }
-            return render(request, 'products/product_detail_anon.html', context)
+            return render(request,
+                          'products/product_detail_anon.html',
+                          context)
     else:
         context = {
             'product': product,
@@ -164,7 +172,7 @@ def product_detail(request, product_id):
         return render(request, 'products/product_detail_anon.html', context)
 
 
-# @store_required
+@store_required
 @login_required
 # @superuser_required
 def add_product(request):
@@ -179,18 +187,18 @@ def add_product(request):
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-        if my_store is not None:
-            if form.is_valid():
-                product = form.save(commit=False)
-                product.seller_store = my_store
-                product.save()
-                messages.success(request, 'Successfully added product!')
-                return redirect(reverse(
-                                'product_detail', args=[product.sku, ]))
-            else:
-                messages.error(request,
-                               'Failed to add product.'
-                               'Please ensure the form is valid.')
+        #if my_store is not None:
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.seller_store = my_store
+            product.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse(
+                            'product_detail', args=[product.sku, ]))
+        else:
+            messages.error(request,
+                            'Failed to add product.'
+                            'Please ensure the form is valid.')
     else:
         form = ProductForm()
 
@@ -201,6 +209,7 @@ def add_product(request):
     return render(request, template, context)
 
 
+@store_required
 @login_required
 def edit_product(request, product_id):
     """ Edits an existing product the profile has created. """
@@ -227,6 +236,7 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@store_required
 @login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
@@ -241,14 +251,17 @@ def delete_product(request, product_id):
     if product.seller_store.user == current_user:
         product.delete()
         messages.success(request,
-                         f'{product.name} has been removed from the marketplace.')
+                         f'{product.name} has been '
+                         'removed from the marketplace.')
         return redirect(reverse('products'))
     else:
         messages.error(request,
-                       f'{product.name} cannot be deleted as you do not have the authority.')
+                       f'{product.name} cannot be deleted '
+                       'as you do not have the authority.')
         return redirect(reverse('product_detail_anon', args=[product_id]))
 
 
+@store_required
 @login_required
 def seller_product_management(request):
     try:
