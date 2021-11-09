@@ -216,6 +216,10 @@ form{
     margin-right: 10px;
 }
 
+#category-dropdown{
+    background-color: #a5d6a7;
+}
+
 .dashboard-product-card{
     width: 250px;
     height: 450px;
