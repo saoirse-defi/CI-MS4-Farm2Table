@@ -30,11 +30,11 @@ class StoreRegisterForm(forms.ModelForm):
     iban = IBANField()
     street_address1 = forms.CharField()
     town = forms.CharField()
-    county = forms.ModelChoiceField(queryset=County.objects.all(), initial=0)
+    county = forms.ModelChoiceField(queryset=County.objects.order_by('name'), initial=0)
     postcode = EircodeField()
 
     def clean(self, *args, **kwargs):
-        counties = County.objects.all()
+        counties = County.objects.order_by('name')
         friendly_counties = [(c.id, c.name) for c in counties]
         self.fields['county'].choices = friendly_counties
 
@@ -62,7 +62,7 @@ class StoreUpdateForm(forms.ModelForm):
 
         self.fields['phone_number'].widget.attrs['autofocus'] = True
         self.fields['county'] = forms.ModelChoiceField(
-                                        queryset=County.objects.all(),
+                                        queryset=County.objects.order_by('name'),
                                         initial=0)
         self.fields['country'] = CountryField().formfield()
         self.fields['postcode'] = EircodeField()
