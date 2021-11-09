@@ -87,6 +87,6 @@ class UserProfileForm(forms.ModelForm):
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         self.fields['default_county'] = forms.ModelChoiceField(
-                                        queryset=County.objects.all(),
+                                        queryset=County.objects.order_by('name'),
                                         initial=0)
         self.fields['default_postcode'] = EircodeField()
