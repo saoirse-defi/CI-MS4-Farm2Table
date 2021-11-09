@@ -22,6 +22,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lato&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="shortcut icon" type="image/png" href="../media/favicon/favicon.ico">
     {% endblock %}
 
     {% block extra_css %}
@@ -52,30 +53,30 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     {% if request.user.is_authenticated %}
-                            <li>
-                                <a href="{% url 'view_profile' %}">My Profile</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'my_store' %}">My Store</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'wishlist' %}">My Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'logout' %}">Logout</a>
-                            </li>
-                            <li>
-                                <a class="btn" href="{% url 'view_bag' %}">
-                                    <span class="material-icons-outlined">shopping_cart</span>
-                                    <span>
-                                        {% if grand_total %}
-                                        €{{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                        €0.00
-                                        {% endif %}
-                                    </span>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{% url 'view_profile' %}">My Profile</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'my_store' %}">My Store</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'wishlist' %}">My Wishlist</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{% url 'view_bag' %}">
+                                <span class="material-icons-outlined">shopping_cart</span>
+                                <span>
+                                    {% if grand_total %}
+                                    €{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                    €0.00
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </li>
                     {% else %}
                         <li>
                             <a href="{% url 'signup' %}">Register</a>
