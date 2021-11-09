@@ -4,14 +4,13 @@
 {% block content %}
 <h4>Find local producers near you</h4>
 <form method="GET" id="store-search-form">
-    {% csrf_token %}
     <div class="row">
         <div class="col s10 left">
             {{ county_store_filter.form }}
         </div>
         <div class="col s2 right">
             <div><br></div>
-            <button class="waves-effect waves-light btn-small right" type="submit">
+            <button class="waves-effect waves-light btn-small left" type="submit">
                 <i class="material-icons-outlined">search</i>
             </button>
         </div>
