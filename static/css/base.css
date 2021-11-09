@@ -373,6 +373,11 @@ input:-webkit-autofill:active{
     overflow-y: auto;
 }
 
+.add-to-bag-form{
+    width: 25%;
+    margin: auto;
+}
+
 .mobile-bag{
     display: none;
 }

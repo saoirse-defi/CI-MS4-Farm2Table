@@ -47,7 +47,7 @@
             <p class="center-align">€{{ product.price }}</p>
             <p class="center-align">Product Description:</p>
             <p class="center-align">{{ product.description }}</p>
-            <form action="{% url 'add_to_bag' product.sku %}" method="POST">
+            <form class="add-to-bag-form center-align" action="{% url 'add_to_bag' product.sku %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     {% with product.has_sizes as s %}
