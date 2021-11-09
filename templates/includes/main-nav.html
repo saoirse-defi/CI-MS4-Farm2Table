@@ -1,6 +1,6 @@
 <nav>
-  <div class="nav-wrapper center-align" id="main-nav">
-    <ul id="nav-list">
+  <div class="nav-wrapper" id="main-nav">
+    <ul id="nav-list center-align">
       <li>
         <a class="btn-small" href="{% url 'local_producers' %}">Local</a>
       </li>
@@ -12,7 +12,9 @@
         <ul class="dropdown-content" id="category-dropdown">
           {% for c in categories %}
             <li>
-              <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
+              <div class="valign-wrapper">
+                <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
+              </div>
             </li>
           {% endfor %}
         </ul>
