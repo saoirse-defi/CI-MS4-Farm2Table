@@ -23,9 +23,9 @@
         </div>
         <div class="col s12 l4">
             <p class="center-align">
-                <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create a Listing</a><br><br>
+                <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Product</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a><br><br>
-                <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Contact</a>
+                <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Store</a>
             </p>
         </div>
         <div id="store-image-upload" class="modal">
@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="row">
-        <p class="center-align">Active Listings</p>
+        <p class="center-align">Active Listings:</p>
         <div class="container" id="seller-listings-grid">
             {% for product in store_products %}
                 <div class="product-card">
@@ -130,12 +130,10 @@
                         </div>
                     </a>
                 </div>
-            {% empty %}
-                <h5 class="center-align">This store hasn't added any products yet!</h5>
             {% endfor %}
         </div>
     </div>
-    <div class="row">
+    <div class="row center-align">
         <a class="btn-small red" href="{% url 'delete_store' store.store_id %}">Delete Store</a>
     </div>
 {% endblock %}

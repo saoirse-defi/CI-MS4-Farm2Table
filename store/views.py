@@ -62,6 +62,38 @@ def create_store(request):
     return render(request, template, context)
 
 
+def my_store(request):
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+    except Exception as e:
+        current_user = None
+        print(e)
+
+    if current_user is not None:
+        try:
+            store = Store.objects.get(user=current_user)
+        except Exception as e:
+            store = None
+
+        if store is not None:
+            #form = StoreUpdateForm(instance=store)
+            template = 'store/store.html'
+            context = {
+                'store': store,
+                'current_user': current_user,
+                #'form': form,
+            }
+            return render(request, template, context)
+        else:
+            messages.error(request, "No current store available, "
+                           "if you wish to create one please do so below.")
+            return redirect('view_profile')
+    else:
+        messages.error(request, "No current store available, "
+                           "if you wish to create one please do so below.")
+        return redirect('view_profile')
+
+
 def view_store(request, store_id):
     try:
         current_user = UserProfile.objects.get(user=request.user)
