@@ -78,13 +78,14 @@ def adjust_bag(request, product_id):
             bag[product_id]["items_by_size"][size] = quantity
             messages.add_message(request, 60,
                                  f'Updated {product.name} '
-                                 f'quantity to {bag[product_id]["items_by_size"][size]}')
+                                 f'quantity to '
+                                 f'{bag[product_id]["items_by_size"][size]}')
         else:
             del bag[product_id]["items_by_size"][size]
             if not bag[product_id]["items_by_size"]:
                 bag.pop(product_id)
             messages.info(request,
-                             f'Removed {product.name} from your shopping bag')
+                          f'Removed {product.name} from your shopping bag')
     else:
         if quantity > 0:
             bag[product_id] = quantity
