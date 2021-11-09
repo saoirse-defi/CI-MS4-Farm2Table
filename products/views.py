@@ -251,13 +251,20 @@ def delete_product(request, product_id):
 
 @login_required
 def seller_product_management(request):
-    products = Product.objects.all()
-    current_user = UserProfile.objects.get(user=request.user)
-    store = Store.objects.get(user=current_user)
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+        my_store = Store.objects.get(user=current_user)
+    except Exception as e:
+        current_user = None
+        my_store = None
+        print(e)
+
+    products = Product.objects.filter(seller_store=my_store)
 
     template = 'products/seller-product-management.html'
     context = {
-        'store': store,
+        'my_store': my_store,
         'products': products,
+        'current_user': current_user,
     }
     return render(request, template, context)

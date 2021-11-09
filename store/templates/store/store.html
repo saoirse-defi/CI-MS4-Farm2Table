@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profile/static/css/store.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -23,6 +22,7 @@
         </div>
         <div class="col s12 l4">
             <p class="center-align">
+                <a class="waves-effect waves-light btn-small" href="{% url 'seller_product_management' %}">Manage Products</a><br><br>
                 <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Product</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Store</a>
