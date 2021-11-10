@@ -85,7 +85,7 @@ class UserProfileForm(forms.ModelForm):
 
         super().__init__(*args, **kwargs)
 
-        self.fields['default_phone_number'].widget.attrs['autofocus'] = True
+        # self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         self.fields['default_county'] = forms.ModelChoiceField(
                                         queryset=County.objects.order_by('name'),
                                         initial=0)

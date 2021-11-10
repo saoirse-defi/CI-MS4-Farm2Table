@@ -29,11 +29,11 @@ def all_stores(request):
 @login_required
 def create_store(request):
     """ Allows user to create sales organisation. """
+    current_user = UserProfile.objects.get(user=request.user)
+
     try:
-        current_user = UserProfile.objects.get(user=request.user)
         store = Store.objects.get(user=current_user)
     except Exception as e:
-        current_user = None
         store = None
 
     form = StoreRegisterForm(request.POST)
