@@ -27,16 +27,27 @@ class UserLoginForm(forms.ModelForm):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
 
-        user = User.objects.get(email=email)
-
-        if not User.objects.filter(email=email).exists():
-            raise forms.ValidationError({"email":
-                                         "This email is not registered"})
-        if not user.check_password(password):
-            raise forms.ValidationError({"password":
-                                         "Incorrect password"})
+        try:
+            user = User.objects.get(email=email)
+        except Exception as e:
+            user = None
         
+        if user is None:
+            raise forms.ValidationError({"email":
+                                            "This email is not registered"})
+        else:
+            if not user.check_password(password):
+                raise forms.ValidationError({"password":
+                                            "Incorrect password"})
         return self.cleaned_data
+
+        #if user is not None:
+         #   if not User.objects.filter(email=email).exists():
+          #      raise forms.ValidationError({"email":
+           #                                 "This email is not registered"})
+            #if not user.check_password(password):
+             #   raise forms.ValidationError({"password":
+              #                              "Incorrect password"})
 
 
 class UserRegisterForm(forms.ModelForm):
