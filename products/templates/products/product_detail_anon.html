@@ -76,10 +76,12 @@
                     </div>
                 </form>
             {% else %}
-                <h6>Signup or log in to purchase</h6>
-                <a href="{% url 'signup' %}">Register</a>
-                <span> Or </span>
-                <a href="{% url 'login' %}">Login</a>
+                <div class="center-align">
+                    <h6>Signup or log in to purchase</h6>
+                    <a href="{% url 'signup' %}">Register</a>
+                    <span> Or </span>
+                    <a href="{% url 'login' %}">Login</a>
+                </div>
             {% endif %}
         </div>
     </div>
