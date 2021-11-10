@@ -42,6 +42,29 @@ def store_required(func):
     return wrapper
 
 
+def store_owner_required(func, product_id):
+    def wrapper(request, *args, **kwargs):
+        product = Product.objects.filter(sku=product_id)
+        try:
+            user = UserProfile.objects.filter(user=request.user)
+            store = Store.objects.filter(user=user)
+        except Exception as e:
+            user = None
+            store = None
+
+        if store is not None:
+            if product.seller_store != store:
+                return func(request, *args, **kwargs)
+            else:
+                messages.error(request,
+                            "You can only edit your own products.")
+                return redirect(reverse('products'))
+        else:
+            messages.error(request,
+                           "Only store owners can edit products.")
+    return wrapper
+
+
 # Product Views
 
 def all_products(request):
@@ -209,24 +232,36 @@ def add_product(request):
     return render(request, template, context)
 
 
-#@store_required
+#@store_owner_required
 @login_required
 def edit_product(request, product_id):
     """ Edits an existing product the profile has created. """
+    try:
+        current_user = UserProfile.objects.get(user=request.user)
+        my_store = Store.objects.get(user=current_user)
+    except Exception as e:
+        current_user = None
+        my_store = None
+        print(e)
+
     product = get_object_or_404(Product, pk=product_id)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Product successfully updated!')
-            return redirect(reverse('product_detail', args=[product_id]))
+    if product.seller_store == my_store:
+        if request.method == 'POST':
+            form = ProductForm(request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Product successfully updated!')
+                return redirect(reverse('product_detail', args=[product_id]))
+            else:
+                messages.error(request,
+                            f'Failed to update {product.name},'
+                            'please ensure the form is valid.')
         else:
-            messages.error(request,
-                           f'Failed to update {product.name},'
-                           'please ensure the form is valid.')
+            form = ProductForm(instance=product)
+            messages.info(request, f'You are editing {product.name}')
     else:
-        form = ProductForm(instance=product)
-        messages.info(request, f'You are editing {product.name}')
+        messages.error(request, 'You can only edit your own products.')
+        return redirect(reverse('products'))
 
     template = 'products/edit_product.html'
     context = {
@@ -236,19 +271,20 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
-#@store_required
+#@store_owner_required(product_id)
 @login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
     try:
         current_user = UserProfile.objects.get(user=request.user)
+        my_store = Store.objects.get(user=current_user)
     except Exception as e:
         current_user = None
+        my_store = None
         print(e)
 
     product = get_object_or_404(Product, pk=product_id)
-
-    if product.seller_store.user == current_user:
+    if product.seller_store == my_store:
         product.delete()
         messages.success(request,
                          f'{product.name} has been '
@@ -258,7 +294,7 @@ def delete_product(request, product_id):
         messages.error(request,
                        f'{product.name} cannot be deleted '
                        'as you do not have the authority.')
-        return redirect(reverse('product_detail_anon', args=[product_id]))
+        return redirect(reverse('products'))
 
 
 @store_required
