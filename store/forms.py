@@ -45,7 +45,7 @@ class StoreRegisterForm(forms.ModelForm):
             raise forms.ValidationError(
                 "This email has already been registered to a different store.")
 
-        return self.cleaned_data
+        return super(StoreRegisterForm, self).clean(*args, **kwargs)
 
 
 class StoreUpdateForm(forms.ModelForm):
