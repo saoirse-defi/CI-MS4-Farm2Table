@@ -11,7 +11,7 @@
         <div class="col s12 l4">
             <p class="center-align">
                 {% if store.image %}
-                    <img class="card-img responsive" src="https://ik.imagekit.io/iscs6ll976z/{{ store.image.name }}" alt="{{ store.name }}"/>
+                    <img class="card-img responsive" src="{{ store.image.url }}" alt="{{ store.name }}"/>
                 {% else %}
                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{store.name}}">
                 {% endif %}
