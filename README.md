@@ -156,7 +156,7 @@ I really enjoy this favicon which was sourced from [Favicon.cc](https://www.favi
 
 #### Responsive Front-End Framework
 
-For this project, I decided to use the Materialize framework which is build on the principles of material design. I have previous experience with this framework as I encorporated it into my third milestone project. Throughout the course of this project, the lack of thorough documentation & package support for this framework have turned me off using it in future.
+For this project, I decided to use the Materialize framework which is build on the principles of material design. I have previous experience with this framework as I incorporated it into my third milestone project. Throughout the course of this project, the lack of thorough documentation & package support for this framework have turned me off using it in future.
 
 #### Icons
 
@@ -228,11 +228,11 @@ This app keeps track of a list of products favourited by the user. Favourited it
 
 ##### Bag App
 
-The bag application hosts the shopping cart, allowing the user to gather products before proceeding to the checkout. The size & quantity of the each item within the bag can be updated.
+The bag application hosts the shopping cart, allowing the user to gather products before proceeding to the checkout. The size & quantity of each item within the bag can be updated.
 
 ##### Checkout App
 
-In the checkout, the user submits their shipping details and card information. Here is where the order is processed and Stripe payment is established.
+In the checkout, the user submits their shipping details and card information. Here is where the order is processed and where the Stripe payment is established.
 
 ##### Media App
 
@@ -249,7 +249,7 @@ This section will outline the technologies & processes used in the design & impl
 ### Materialize Framework
 
 For this project, the frontend framework I decided to use was Materialize. In my previous 2 milestone projects, I chose Bootstrap for the frontend, but I can now safely say that I much prefer the look of Materialize.
-As it is based on the principles of material design, all elements just seem that little bit sharper and current.
+As it is based on the principles of material design, all elements just seem that little sharper and current.
 
 ### Error Handling
 
@@ -296,7 +296,7 @@ Other low level exceptions such as client-side errors (4xx) or server-side error
 
 #### CRUD Operations
 
-One of the main goals of this milestone project was to integrate a database within our application and use it to it's full potential. CRUD in computer programming is an acronym which stands for create, read, update & delete. This covers the 4 main operations of a database. Within this section I will go over how I implemented each of these operations.
+One of the main goals of this milestone project was to integrate a database within our application and use it to its full potential. CRUD in computer programming is an acronym which stands for create, read, update & delete. This covers the 4 main operations of a database. Within this section I will go over how I implemented each of these operations.
 
 ##### Create Operation
 
@@ -362,58 +362,37 @@ As the application began to take shape with all major components in place, the u
 
 | Test Description | Expectation | Outcome | Result |
 |---|---|---|---|
-| Hero Logo | The logo link should take you back to the home page. | When the user clicks the logo, they should be redirected to the home page. |  |
-| Navigation Links | All links should direct the user as outlined. | The user should be redirected to the URL outlined by the button description. |  |
-| County Search | Should return all stores within the county selected | User see filtered results for their selected county |  |
-| Local Producers | Displays stores that are within the user's county.  If a county hasn't been set,  the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. |  |
-| All Stores | Displays all stores to the user | All stores should be displayed. |  |
-| Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. |  |
-| Register | Users shouldn't be able to create an account with an email that has already been registered | User receives error if they use a pre-registered email |  |
-| Register | All links should work as intended | The user is taken to the intended path |  |
-| Register | Once an account has been created, users are taken to their profile | Users are directed to their profile after registration |  |
-| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the correct credentials are provided. |  |
-| Login | Users shouldn't be able to log into an account with the incorrect password | User gets a form error if the incorrect password is provided |  |
-|  |  |  |  |
-|  |  |  |  |
-| Logout | Logged in users can sign out of their account. | Active users can log out successfully. |  |
-| Profile | All links should work as intended.  | Clicking links redirects the user as described. |  |
-| Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. |  |
-| Create Store | Users with a profile should be able to create a  sales organisation. | A store is created which is linked to the user's profile. |  |
-| Create Store | User shouldn't be able to create a store if the form validation hasn't been passed | The form reloads to show the form validation error to the user |  |
-|  |  |  |  |
-| Edit Store | Store owners can edit their contact details,  IBAN & organic status with the correct form  validation being applied. | The store profile can be edited by it's owner using the store edit form with the correct validation being applied. |  |
-| Create Product | Store owners should have the ability to create products within  their organisation and attach a product image. | Store owners can create products under their sales organisation. |  |
-| Edit Product | Product creators can update details and image on products which they have created. | Store owners can edit products they have created. |  |
-| Delete Product | Product creators should only be able to delete their own products. | Store owners can delete products they have created. |  |
-| Add to Wishlist | Users with an account can add products to their  personalised wishlist. | Users with a profile can add products to a wishlist. |  |
-| Remove From Wishlist | Profile users should be able to delete items  from their own wishlist. | Users with a profile can remove items from their wishlist. |  |
-| Add to Bag | Users can add items to their shopping bag | Items of varying sizes and quantities can be added to the users shopping bag. |  |
-| Bag Nav Link | This link should take the user to their shopping bag | User is directed to their shopping bag |  |
-|  |  |  |  |
-| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. |  |
-| Adjust Product Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. |  |
+| Hero Logo | The logo link should take you back to the home page. | When the user clicks the logo, they should be redirected to the home page. | pass |
+| Navigation Links | All links should direct the user as outlined. | The user should be redirected to the URL outlined by the button description. | pass |
+| County Search | Should return all stores within the county selected | User see filtered results for their selected county | pass |
+| Local Producers | Displays stores that are within the user's county.  If a county hasn't been set, the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. | pass |
+| All Stores | Displays all stores to the user | All stores should be displayed. | pass |
+| Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. | pass |
+| Register | Users shouldn't be able to create an account with an email that has already been registered | User receives error if they use a pre-registered email | pass |
+| Register | All links should work as intended | The user is taken to the intended path | pass |
+| Register | Once an account has been created, users are taken to their profile | Users are directed to their profile after registration | pass |
+| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the correct credentials are provided. | pass |
+| Login | Users shouldn't be able to log into an account with the incorrect password | User gets a form error if the incorrect password is provided | pass |
+| Logout | Logged in users can sign out of their account. | Active users can log out successfully. | pass |
+| Profile | All links should work as intended.  | Clicking links redirects the user as described. | pass |
+| Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. | pass |
+| Create Store | Users with a profile should be able to create a  sales organisation. | A store is created which is linked to the user's profile. | pass |
+| Create Store | User shouldn't be able to create a store if the form validation hasn't been passed | The form reloads to show the form validation error to the user | pass |
+| Edit Store | Store owners can edit their contact details,  IBAN & organic status with the correct form  validation being applied. | The store profile can be edited by it's owner using the store edit form with the correct validation being applied. | pass |
+| Create Product | Store owners should have the ability to create products within  their organisation and attach a product image. | Store owners can create products under their sales organisation. | pass |
+| Edit Product | Product creators can update details and image on products which they have created. | Store owners can edit products they have created. | pass |
+| Delete Product | Product creators should only be able to delete their own products. | Store owners can delete products they have created. | pass |
+| Add to Wishlist | Users with an account can add products to their  personalised wishlist. | Users with a profile can add products to a wishlist. | pass |
+| Remove From Wishlist | Profile users should be able to delete items  from their own wishlist. | Users with a profile can remove items from their wishlist. | pass |
+| Add to Bag | Users can add items to their shopping bag | Items of varying sizes and quantities can be added to the users shopping bag. | pass |
+| Bag Nav Link | This link should take the user to their shopping bag | User is directed to their shopping bag | pass |
+| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. | pass |
+| Adjust Product Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. | pass |
 | Remove from Bag | Users can remove items from their shopping bag | Items existing in the shopping bag can be removed. |  |
-| Checkout Success | Supplies the customer with necessary order information | The information in relation to the order matches what was provided |  |
-| Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. |  |
-| Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Checkout Success | Supplies the customer with necessary order information | The information in relation to the order matches what was provided | pass |
+| Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. | pass |
+| Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. | pass |
+
 
 ## Bugs Discovered
 
@@ -560,14 +539,6 @@ else:
     }
 ```
 
-
-#### How to create a Django project
-
-Follow these steps:
-1. Once in a new project in Gitpod, enter "django-admin startproject projectname ." into the terminal
-2. Create a git ignore file using "touch .gitignore" in the terminal and add "*.sqlite3 *.pyc __pycache__" to it
-3. 
-
 ### Heroku Deployment Procedure
 
 1. Create an account on Heroku and sign in
@@ -586,36 +557,6 @@ Follow these steps:
 ```
     git push heroku main
 ```
-
-
-
-#### How to run your project on Heroku
-
-Follow these steps:
-1. Create a virtual environment with pipenv and install Django and Gunicorn
-2. Create a “Procfile” and write the following code "touch Procfile" in the command line
-3. Create “runtime.txt” and write the following code "touch runtime.txt" in the command line
-4. Create a folder named “app” and enter the folder
-5. Create a python file, “main.py” and enter the sample code below
-
-from flask import Flask
-app = Flask(__name__)
-@app.route("/")
-def home_view():
-        return "<h1>Welcome to Geeks for Geeks</h1>
-
-6. Get back to the previous directory “eflask”. Create a file “wsgi.py” and insert the following code
-
-from app.main import app
-if __name__ == "__main__":
-        app.run()
-
-7. Run the vitual environment write "pipenv shell" in the command line.
-8. Initialize an empty repo, add the files in the repo and commit all the changes
-9. Login to heroku CLI using "heroku login"
-10.  Create a unique name for your Web app, write "heroku create hashboard"
-11. Push your code from local to the heroku remote using "git push heroku master"
-
 
 #### AWS S3 Bucket
 
@@ -646,17 +587,7 @@ if __name__ == "__main__":
 
 [HTML Element fade-out](https://stackoverflow.com/questions/1911290/make-div-text-disappear-after-5-seconds-using-jquery#1911308)
 
-[Etherscan API Documentation](https://etherscan.io/apis)
-
-[Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
-
 [Jinja Documentation](https://jinja.palletsprojects.com/en/3.0.x/)
-
-[Werkzeug Documentation](https://werkzeug.palletsprojects.com/en/2.0.x/)
-
-[Ethereum Documentation](https://ethereum.org/en/)
-
-[Mongo DB Documentation](https://docs.mongodb.com/)
 
 [Python Docstrings](https://www.geeksforgeeks.org/python-docstrings/)
 
@@ -666,10 +597,8 @@ if __name__ == "__main__":
 
 [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet)
 
-[Displaying Information to the user efficiently](https://www.youtube.com/watch?v=Ox9MW9Z8srE&list=PLOPo1bGrV4htxbQCS3CPZ59O1kpPdE7PK)
-
-
 ## Wireframes
 
+[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
 
 
