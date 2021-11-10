@@ -433,11 +433,15 @@ Further reading and troubleshooting on cloning a repository can be found here [G
 
 #### Requirements.txt
 
-This file is responsible for keeping track of the required Django packages needed to run our application successfully.
+This file is responsible for keeping track of the required Django packages needed to run our application successfully. Once a new package has been installed, update the file by typing
+
+```
+    pip freeze > requirements.txt
+```
 
 #### Procfile
 
-Heroku apps use a Procfile in order to specify the commands which have to be executed upon each startup.
+Heroku apps use a Procfile in order to specify the commands which have to be executed upon each startup. This has no file extension and is stored in your application's root directory.
 
 #### WSGI
 
@@ -445,29 +449,71 @@ The web service gateway interface is a standard that allows the web server to be
 
 #### Static Files
 
-The static files for this application are being hosted via an Amazon S3 bucket.
-
-#### Settings.py
-
-This file contains all the information in order to configure your Django application.
+The static files for this application are being hosted via an Amazon S3 bucket for which I have outlined the deployment below.
 
 #### Environment Variables
 
+There variables are stored in such a way that they cannot be accessed by reading through the code. They are stored either within the Gitpod or Heroku settings tab behind password authentication. Variables of this nature would include Secret Keys & the Heroku database URL.
+
+##### Config Vars on Gitpod
+
+##### Config Vars on Heroku
+
+#### Settings.py
+
+This file contains all the information in order to configure your Django application. I have created a variable called OS_ENVIRON_NAME which denotes for which environment to use. This allows me as a developer to customise the settings.py file depending on the circumstances as you can see in the example below.
+
+```
+    if os.environ.get('OS_ENVIRON_NAME') == 'gitpod':
+        DEBUG = True
+        ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    else:
+        DEBUG = os.environ.get('DEBUG')
+        ALLOWED_HOSTS = ['thevegtable.herokuapp.com']
+```
+
 ##### Base Dir
+
+Whatever file paths we created in future all inherit from Base Dir. Initiate Base Dir with the following command.
+
+```
+    BASE_DIR = Path(__file__).resolve().parent.parent
+```
 
 ##### Debug
 
+When this variable is set to it's True default setting, the developer will get a lot more feedback when an error occurs within the application. It is essential to note that this setting should only be True in the development phase, you do not want your end user to see the Django development error page but the custom error page you have created.
+
 ##### Allowed Hosts
+
+This array refers to the list of domains that are allowed run your Django application. In order for Heroku to be able to run your app, it needs to be set to the following:
+
+```
+    ALLOWED_HOSTS = ['appname.herokuapp.com']
+```
 
 ##### Installed Apps
 
+Here is where we outlined all the apps used within our project.
+
 ##### Databases
 
-#### Config Vars on Heroku
+Depending on the environment selected, the Django application will either choose SQLite (local) or Postgres (Heroku).
 
+```
+    if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+```
 
-
-#### 
 
 #### How to create a Django project
 
@@ -483,7 +529,17 @@ Follow these steps:
 3. Select your payment plan, region and dyno tier
 4. Click 'Create App'
 5. You can now add your config variables in the 'settings' tab of your dashboard
-6. On your IDE terminal, download the Heroku CLI
+6. On your IDE terminal, download the Heroku CLI and type
+
+```
+    heroku stack:set container -a <app name>
+```
+
+7. Once git is connected through the Heroku CLI, a new build will be deployed each time new code is committed
+
+```
+    git push heroku main
+```
 
 
 
@@ -528,20 +584,17 @@ if __name__ == "__main__":
 9. Add AWS access key and secret to Heroku config variables
 
 
-#### Postgres Database (Heroku)
-
-Once your application is deployed on Heroku:
-
-1. Within the Heroku dashboard in the resources tab, search for Postgres
-2. Once it appears, click on Heroku Postgres & select the 'Hobby - Free' tier
-3. Once created, find the 'database credentials' within the settings tab of the Postgres console
-4. Add the DATABASE_URL & SECRET_KEY TO Heroku config variables
-5. From within your IDE terminal, sign into to Heroku and make sure your database is up to date.
-6. You can now type the command "heroku run python3 manage.py migrate"
-7. Within your settings.py file use database_dj_url to extract the Database URL from heroku
-
-
 ## Credit
+
+[Settings.py](https://www.geeksforgeeks.org/django-settings-file-step-by-step-explanation/)
+
+[1st Django App](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
+
+[WSGI](https://medium.com/analytics-vidhya/what-is-wsgi-web-server-gateway-interface-ed2d290449e)
+
+[Heroku Documentation](https://devcenter.heroku.com/articles/)
+
+[Postgres Backend Article](https://medium.com/@hdsingh13/deploying-django-app-on-heroku-with-postgres-as-backend-b2f3194e8a43)
 
 [Materialize Framework Documentation](https://materializecss.com/)
 
