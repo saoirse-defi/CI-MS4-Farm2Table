@@ -36,9 +36,8 @@ def create_store(request):
     except Exception as e:
         store = None
 
-    form = StoreRegisterForm(request.POST)
-
     if request.method == 'POST':
+        form = StoreRegisterForm(request.POST, request.FILES)
         if store is not None:
             messages.error(request,
                            'Organisation creation failed, '
