@@ -29,29 +29,33 @@ def all_stores(request):
 @login_required
 def create_store(request):
     """ Allows user to create sales organisation. """
-    if request.method == 'POST':
-        stores = Store.objects.all()
-        form = StoreRegisterForm(request.POST)
+    try:
         current_user = UserProfile.objects.get(user=request.user)
+        store = Store.objects.get(user=current_user)
+    except Exception as e:
+        current_user = None
+        store = None
 
-        for _store in stores:
-            if _store.user == current_user:
-                messages.error(request,
-                               'Organisation creation failed, '
-                               'you can only have 1 store linked '
-                               'to each account.')
-                return redirect(reverse('view_store',
-                                        args=[_store.store_id, ]))
+    form = StoreRegisterForm(request.POST)
 
-        if form.is_valid():
-            store = form.save(commit=False)
-            store.user = current_user
-            store.save()
-            messages.success(request, 'Store Organisation Created!')
-            return redirect(reverse('view_store', args=[store.store_id, ]))
+    if request.method == 'POST':
+        if store is not None:
+            messages.error(request,
+                           'Organisation creation failed, '
+                           'you can only have 1 store linked '
+                           'to each account.')
+            return redirect(reverse('view_store',
+                                    args=[store.store_id, ]))
         else:
-            messages.error(request, 'Organisation creation failed, '
-                           'please check form details.')
+            if form.is_valid():
+                store = form.save(commit=False)
+                store.user = current_user
+                store.save()
+                messages.success(request, 'Store Organisation Created!')
+                return redirect(reverse('view_store', args=[store.store_id, ]))
+            else:
+                messages.error(request, 'Organisation creation failed, '
+                               'please check form details.')
     else:
         form = StoreRegisterForm()
 
