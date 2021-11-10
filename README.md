@@ -433,9 +433,39 @@ Further reading and troubleshooting on cloning a repository can be found here [G
 
 #### Requirements.txt
 
+This file is responsible for keeping track of the required Django packages needed to run our application successfully.
+
 #### Procfile
 
+Heroku apps use a Procfile in order to specify the commands which have to be executed upon each startup.
+
+#### WSGI
+
+The web service gateway interface is a standard that allows the web server to be interoperable with our Django application. During the implementation, I stuck with Gunicorn as it was familiar from the last milestone project.
+
+#### Static Files
+
+The static files for this application are being hosted via an Amazon S3 bucket.
+
+#### Settings.py
+
+This file contains all the information in order to configure your Django application.
+
 #### Environment Variables
+
+##### Base Dir
+
+##### Debug
+
+##### Allowed Hosts
+
+##### Installed Apps
+
+##### Databases
+
+#### Config Vars on Heroku
+
+
 
 #### 
 
@@ -447,6 +477,15 @@ Follow these steps:
 3. 
 
 ### Heroku Deployment Procedure
+
+1. Create an account on Heroku and sign in
+2. Click the 'new' button at the top right of the dashboard and select 'create new app'
+3. Select your payment plan, region and dyno tier
+4. Click 'Create App'
+5. You can now add your config variables in the 'settings' tab of your dashboard
+6. On your IDE terminal, download the Heroku CLI
+
+
 
 #### How to run your project on Heroku
 
