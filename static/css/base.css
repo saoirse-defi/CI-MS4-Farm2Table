@@ -396,6 +396,17 @@ input:-webkit-autofill:active{
     }
 }
 
+@media (max-width: 1065px) {
+    .desktop-only-item{
+        display: none;
+    }
+
+    .mobile-only-item{
+        display: block;
+    }
+
+}
+
 @media (max-width: 1000px) {
     .hide-image{
         display:none;
@@ -411,14 +422,6 @@ input:-webkit-autofill:active{
 }
 
 @media (max-width: 768px) {
-    .desktop-only-item{
-        display: none;
-    }
-
-    .mobile-only-item{
-        display: block;
-    }
-
     .select-wrapper{
         width: 100%;
     }
