@@ -38,13 +38,6 @@ class StoreRegisterForm(forms.ModelForm):
         friendly_counties = [(c.id, c.name) for c in counties]
         self.fields['county'].choices = friendly_counties
 
-        email = self.cleaned_data.get('email')
-        email_qs = User.objects.filter(email=email)
-
-        if email_qs.exists():
-            raise forms.ValidationError(
-                "This email has already been registered to a different store.")
-
         return super(StoreRegisterForm, self).clean(*args, **kwargs)
 
 
