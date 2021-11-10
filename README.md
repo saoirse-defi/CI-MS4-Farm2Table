@@ -599,7 +599,22 @@ else:
 
 ## Wireframes
 
+### Desktop Wireframes
+
 ![Index](/wireframes/index.html.png)
 ![Login](wireframes/Login.png)
+![Product Detail](wireframes/Product Detail.png)
+![Profile](wireframes/profile.png)
+![Signup](wireframes/Signup.png)
+![Store](wireframes/Store.png)
+
+### Mobile Wireframes
+
+![Mobile Index](wireframes/Mobile-Homepage.png)
+![Mobile Product Detail](wireframes/Mobile-Product-Detail.png)
+![Mobile Profile](wireframes/Mobile-Profile.png)
+![Mobile Store](wireframes/Store.png)
+![Mobile Wishlist](wireframes/Mobile-Wishlist.png)
+
 
 
