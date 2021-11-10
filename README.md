@@ -348,30 +348,36 @@ As the application began to take shape with all major components in place, the u
 |---|---|---|---|
 | Hero Logo | The logo link should take you back to the home page. | When the user clicks the logo, they should be redirected to the home page. |  |
 | Navigation Links | All links should direct the user as outlined. | The user should be redirected to the URL outlined by the button description. |  |
+| County Search | Should return all stores within the county selected | User see filtered results for their selected county |  |
 | Local Producers | Displays stores that are within the user's county.  If a county hasn't been set,  the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. |  |
 | All Stores | Displays all stores to the user | All stores should be displayed. |  |
 | Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. |  |
 | Register | Users shouldn't be able to create an account with an email that has already been registered | User receives error if they use a pre-registered email |  |
 | Register | All links should work as intended | The user is taken to the intended path |  |
-|  |  |  |  |
-| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the  correct credentials are provided. |  |
-|  |  |  |  |
+| Register | Once an account has been created, users are taken to their profile | Users are directed to their profile after registration |  |
+| Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the correct credentials are provided. |  |
+| Login | Users shouldn't be able to log into an account with the incorrect password | User gets a form error if the incorrect password is provided |  |
 |  |  |  |  |
 |  |  |  |  |
 | Logout | Logged in users can sign out of their account. | Active users can log out successfully. |  |
 | Profile | All links should work as intended.  | Clicking links redirects the user as described. |  |
 | Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. |  |
 | Create Store | Users with a profile should be able to create a  sales organisation. | A store is created which is linked to the user's profile. |  |
+| Create Store | User shouldn't be able to create a store if the form validation hasn't been passed | The form reloads to show the form validation error to the user |  |
+|  |  |  |  |
 | Edit Store | Store owners can edit their contact details,  IBAN & organic status with the correct form  validation being applied. | The store profile can be edited by it's owner using the store edit form with the correct validation being applied. |  |
 | Create Product | Store owners should have the ability to create products within  their organisation and attach a product image. | Store owners can create products under their sales organisation. |  |
 | Edit Product | Product creators can update details and image on products which they have created. | Store owners can edit products they have created. |  |
-| Delete Product | Product creators should be able to delete their own products. | Store owners can delete products they have created. |  |
+| Delete Product | Product creators should only be able to delete their own products. | Store owners can delete products they have created. |  |
 | Add to Wishlist | Users with an account can add products to their  personalised wishlist. | Users with a profile can add products to a wishlist. |  |
 | Remove From Wishlist | Profile users should be able to delete items  from their own wishlist. | Users with a profile can remove items from their wishlist. |  |
-| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. |  |
-| Adjust Product  Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. |  |
 | Add to Bag | Users can add items to their shopping bag | Items of varying sizes and quantities can be added to the users shopping bag. |  |
+| Bag Nav Link | This link should take the user to their shopping bag | User is directed to their shopping bag |  |
+|  |  |  |  |
+| Adjust Product Size | If the product has size, the user should have the ability to select one using the dropdown provided | The user can change the size of the required product. |  |
+| Adjust Product Quantity | The user can select how many of each specific item they want. | The quantity of an item can be changed before checkout. |  |
 | Remove from Bag | Users can remove items from their shopping bag | Items existing in the shopping bag can be removed. |  |
+| Checkout Success | Supplies the customer with necessary order information | The information in relation to the order matches what was provided |  |
 | Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. |  |
 | Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. |  |
 |  |  |  |  |
