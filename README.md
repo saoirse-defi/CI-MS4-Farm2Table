@@ -121,9 +121,9 @@ Currently, I have identified 3 possible streams of income this project would be 
 |Buyer|Sort marketplace listings by price|Find the best price|
 |Buyer|Sort marketplace listings by a number of categories simultaneously|Exclude product types that I'm not searching for|
 |Buyer|Pay for my order within the application|Avoid payment upon collection|
-|Buyer|Adjust the quantity of items within my shopping bag||
-|Buyer|View order confirmation after checkout||
-|Buyer|View the seller location before checkout||
+|Buyer|Adjust the quantity of items within my shopping bag|Change my mind before proceeding to checkout|
+|Buyer|View order confirmation after checkout|Review my shipping & billing details|
+|Buyer|View the seller location before checkout|Make an informed commercial decision|
 |  |  |  |
 |Site User|Easily register an account|Have a profile in order to start placing orders|
 |Site User|Easily log in/logout|Access my profile|
@@ -351,7 +351,13 @@ As the application began to take shape with all major components in place, the u
 | Local Producers | Displays stores that are within the user's county.  If a county hasn't been set,  the user will be asked to update their profile | Users should see store within their county. If their county isn't set, they should be redirect to their profile. |  |
 | All Stores | Displays all stores to the user | All stores should be displayed. |  |
 | Register | Potential users should be able to create an account using a username, email & password | Users are registered after providing the details requested. |  |
+| Register | Users shouldn't be able to create an account with an email that has already been registered | User receives error if they use a pre-registered email |  |
+| Register | All links should work as intended | The user is taken to the intended path |  |
+|  |  |  |  |
 | Login | Users should be able to access their profile by logging in with their pre-registered credentials. | Users can log into their profile if the  correct credentials are provided. |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 | Logout | Logged in users can sign out of their account. | Active users can log out successfully. |  |
 | Profile | All links should work as intended.  | Clicking links redirects the user as described. |  |
 | Edit Profile | Users are able to edit their profile details using the form provided with the correct form validation being applied. | The profile edit form allows users to edit  their profile details with the correct validation being applied. |  |
@@ -368,6 +374,21 @@ As the application began to take shape with all major components in place, the u
 | Remove from Bag | Users can remove items from their shopping bag | Items existing in the shopping bag can be removed. |  |
 | Place Order | After entering their shipping details and card information, user should be able to place their order & pay using their card. | The order has been placed if all provided details are valid. |  |
 | Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
