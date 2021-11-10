@@ -338,6 +338,22 @@ The CSS style rules have been [Autoprefixed](https://autoprefixer.github.io/) to
 
 ## Testing
 
+### Security features
+
+#### Decorator Functions
+
+##### loginrequired()
+
+This decorator function was supplied by the Django auth package. This decorator is attached to specific views where it essential to be authenicated.
+
+##### storerequired()
+
+This is a custom decorator that check whether the user has created a sales organisation. On pages where is would be insecure to allow access to unauthenticated users or authenticaed users without a Store.
+
+##### Custom Django Security
+
+When writing a view in Django which has CRUD functionality it is essential to ensure that only the data's owner & admin have the access to do so. 
+
 ### User Testing
 
 As the application began to take shape with all major components in place, the user testing could commence. This was done by reviewing each component line by line to ensure that the code works as intended. If an edit was to be made, the developer made sure to the changes were reflected correctly on the frontend.
@@ -399,13 +415,16 @@ As the application began to take shape with all major components in place, the u
 |  |  |  |  |
 |  |  |  |  |
 
-### Mobile Testing
-
-
-### Application Testing
-
-
 ## Bugs Discovered
+
+### Unsolved Bugs
+
+##### Frontend Framework Unsupported by Crispy Forms
+
+Unfortunately due to the lack of Materialize support for Crispy Forms, the placeholder fields for the Materialize dropdowns within forms could not be removed.
+
+### Solved Bugs
+
 
 
 ## Deployment
