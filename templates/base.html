@@ -173,24 +173,7 @@
                     M.toast({html: "{{ message }}", classes: 'green', displayLength:4000});
                 </script>
             {% elif message.tags == 'info'%}
-                <script>var info_html =
-                    '    <div class="row">'+
-                    '        <div class="col s12 toast-header">'+
-                    '            <strong>Info!</strong>'+
-                    '        </div>'+
-                    '    </div>'+
-                    '    <div class="row">'+
-                    '        <div class="col s12 toast-body bg-white">'+
-                    '            <div class="row">'+
-                    '                <div class="col s12">'+
-                    '                    {{ message }}'+
-                    '                    <hr class="mt-1 mb-3">'+
-                    '                </div>'+
-                    '            </div>'+
-                    '        </div>'+
-                    '    </div>';
-                    M.toast({html: info_html, displayLength:4000});
-                </script>
+                <script>M.toast({html: "{{message}}", classes: 'blue', displayLength:4000});</script>
             {% elif message.tags == 'warning'%}
                 <script>M.toast({html: "{{message}}", classes: 'orange', displayLength:4000});</script>
             {% elif message.tags == 'error'%}
