@@ -37,7 +37,7 @@ def store_required(func):
             return func(request)
         else:
             messages.error(request,
-                            "Only store owners can create & sell products.")
+                           "Only store owners can create & sell products.")
             return redirect(reverse('products'))
     return wrapper
 
@@ -209,7 +209,7 @@ def add_product(request):
     return render(request, template, context)
 
 
-@store_required
+#@store_required
 @login_required
 def edit_product(request, product_id):
     """ Edits an existing product the profile has created. """
@@ -236,7 +236,7 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
-@store_required
+#@store_required
 @login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """
