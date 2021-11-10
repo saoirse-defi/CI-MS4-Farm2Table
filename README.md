@@ -145,7 +145,7 @@ Currently, I have identified 3 possible streams of income this project would be 
 
 I really enjoy this favicon which was sourced from [Favicon.cc](https://www.favicon.cc/?action=icon&file_id=636006)
 
-![Favicon](static/favicon.ico)
+![Favicon](media/favicon/favicon.ico)
 
 #### Responsive Front-End Framework
 
