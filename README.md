@@ -16,13 +16,6 @@ With my final milestone project for Code Institute, I will attempt to tackle thi
 This section will outline potential features which I would like to implement in the future.
 
 * Loyalty point system through a native cryptocurrency
-* 
-
-
-## Considerations
-
-### Use Cases
-
 
 ## UX
 
@@ -234,13 +227,7 @@ The bag application hosts the shopping cart, allowing the user to gather product
 
 In the checkout, the user submits their shipping details and card information. Here is where the order is processed and where the Stripe payment is established.
 
-##### Media App
-
-Stores Images
-
-
 ## User Interaction
-
 
 ### Implementation
 
@@ -252,7 +239,6 @@ For this project, the frontend framework I decided to use was Materialize. In my
 As it is based on the principles of material design, all elements just seem that little sharper and current.
 
 ### Error Handling
-
 
 #### Django Messages
 
@@ -270,61 +256,18 @@ This section outlined the technology used to pass the user information without r
 Django messages allows developers to create custom message tags to allow for more granular UX notifications. As you can see from the image below, two new message tags have been created for this project. 
 
 * Checkout[50] - In charge of displaying the shopping cart modal to the user whenever they add an item to the cart
-* Wishlist[60] - Allow for a custom modal when the adds/removes items from their wish list
-
-
-#### API Exceptions
+* Wishlist[60] - Allow for a custom modal when the adds/removes items from their wish list.
 
 
 #### Other Low Level Exceptions
 
 Other low level exceptions such as client-side errors (4xx) or server-side errors (5xx) will also be handled, describing to the user which error occurred. The user will also have an option to either return to their homepage or the login page depending on their credentials. 
 
-### Database Design
-
-#### UserProfile Model
-
-#### Store Model
-
-#### Product Model
-
-#### Wishlist Model
-
-#### Order Model
-
-#### Order Line Item Model
-
 #### CRUD Operations
 
 One of the main goals of this milestone project was to integrate a database within our application and use it to its full potential. CRUD in computer programming is an acronym which stands for create, read, update & delete. This covers the 4 main operations of a database. Within this section I will go over how I implemented each of these operations.
 
-##### Create Operation
-
-
-##### Read Operation
-
-
-##### Update Operation
-
-
-##### Delete Operation
-
-
-
-#### Flask
-
-Flask is a web application framework written in Python based on the Werkzeug toolkit & the Jinja2 templating language. During my development of this application is when I noticed the usefulness of flask, getting to experiment with the different flask libraries. Jinja templating also opened a lot of doors for me as a web developer when managing repeated pre-defined data.
-
-
-### Modules
-
-
 ## Performance
-
-#### Image Resizing & Compression
-
-Due to the nature of the application, no image compression was needed as all design elements are from the Materialize framework. No images were used in the making of this application.
-
 
 #### Lottie Player Animations
 
@@ -404,7 +347,7 @@ Unfortunately due to the lack of Materialize support for Crispy Forms, the place
 
 ### Solved Bugs
 
-
+There were a few bugs during development but they were mainly due to a lack of Django understanding.
 
 ## Deployment
 
@@ -479,10 +422,6 @@ The static files for this application are being hosted via an Amazon S3 bucket f
 #### Environment Variables
 
 There variables are stored in such a way that they cannot be accessed by reading through the code. They are stored either within the Gitpod or Heroku settings tab behind password authentication. Variables of this nature would include Secret Keys & the Heroku database URL.
-
-##### Config Vars on Gitpod
-
-##### Config Vars on Heroku
 
 #### Settings.py
 
