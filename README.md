@@ -599,19 +599,7 @@ else:
 
 ## Wireframes
 
-[Index](/workspace/CI-MS4-Farm2Table/wireframes/index.html.png)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
-[The wireframes can be found here](/workspace/CI-MS4-Farm2Table/wireframes)
+![Index](/wireframes/index.html.png)
+![Login](wireframes/Login.png)
 
 
