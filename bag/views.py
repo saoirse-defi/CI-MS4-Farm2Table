@@ -1,3 +1,4 @@
+""" Django views for bag object. """
 from django.shortcuts import (
     render,
     redirect,

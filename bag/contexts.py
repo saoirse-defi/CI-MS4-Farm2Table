@@ -1,3 +1,4 @@
+""" Adds context variables to pass to checkout. """
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -5,7 +6,7 @@ from products.models import Product
 
 
 def bag_contents(request):
-
+    """ Generates bag data. """
     bag_items = []
     total = 0
     product_count = 0
@@ -24,8 +25,10 @@ def bag_contents(request):
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
-                size_count = int(size) // 250  # product sizes are measured in 250g increments
-                total += (quantity * product.price * size_count)  # total is now correct
+                # product sizes are measured in 250g increments
+                size_count = int(size) // 250
+                # total is now correct
+                total += (quantity * product.price * size_count)
                 product_count += quantity
                 bag_items.append({
                     'item_id': item_id,

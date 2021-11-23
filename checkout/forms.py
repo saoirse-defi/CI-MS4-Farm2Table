@@ -1,7 +1,7 @@
+from crispy_forms.helper import FormHelper
+
 from django import forms
 from .models import Order
-
-from crispy_forms.helper import FormHelper
 
 
 class TestForm(forms.Form):

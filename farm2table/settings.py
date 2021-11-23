@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'localflavor',
 
-    #other
+    # other
     'materialize',
     'crispy_forms',
     'crispy_forms_materialize',
@@ -109,7 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ('django.contrib.messages.context_processors.messa
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-MESSAGE_TAGS = { # Custom Django messages levels for Materialize toast
+MESSAGE_TAGS = {  # Custom Django messages levels for Materialize toast
     50: 'wishlist',
     60: 'checkout',
 }

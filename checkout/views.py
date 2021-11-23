@@ -4,12 +4,10 @@ from django.shortcuts import (render, redirect,
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
-
-from .forms import OrderForm
-from .models import Order, OrderLineItem
 from products.models import Product
 from bag.contexts import bag_contents
+from .forms import OrderForm
+from .models import Order, OrderLineItem
 from profile.forms import UserProfileForm
 from profile.models import UserProfile
 
@@ -146,11 +144,6 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    #try:
-     #   order_items = OrderLineItem.objects.filter(order_number=order)
-    #except OrderLineItem.DoesNotExist:
-     #   order_items = None
-
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         # attaching user's profile to the order
@@ -177,19 +170,12 @@ def checkout_success(request, order_number):
                      f'Order successful. Your order number is {order_number}.'
                      f'A confirmation email have been sent to {order.email}.')
 
-    #send_mail('Order confirmed!',
-     #         f'Your order {order_number} has been confirmed. If you did not place the order, please contact us at info@thevegtable.com',
-      #        'theindie360@gmail.com',
-       #       ['kokod42814@ingfix.com'],
-        #      fail_silently=False)
-
     if 'bag' in request.session:
         del request.session['bag']
 
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        #'order_items': order_items,
     }
 
     return render(request, template, context)
