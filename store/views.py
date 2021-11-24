@@ -77,6 +77,7 @@ def my_store(request):
             store = Store.objects.get(user=current_user)
         except Exception as e:
             store = None
+            print(e)
 
         if store is not None:
             #form = StoreUpdateForm(instance=store)
