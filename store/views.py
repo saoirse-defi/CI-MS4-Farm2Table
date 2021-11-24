@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.db.models import Q
 
-from .filters import StoreFilter
 from .forms import StoreRegisterForm, StoreUpdateForm
 from profile.models import UserProfile
 from .models import Store, County
@@ -35,6 +33,7 @@ def create_store(request):
         store = Store.objects.get(user=current_user)
     except Exception as e:
         store = None
+        print(e)
 
     if request.method == 'POST':
         form = StoreRegisterForm(request.POST, request.FILES)
@@ -80,12 +79,10 @@ def my_store(request):
             print(e)
 
         if store is not None:
-            #form = StoreUpdateForm(instance=store)
             template = 'store/store.html'
             context = {
                 'store': store,
                 'current_user': current_user,
-                #'form': form,
             }
             return render(request, template, context)
         else:
@@ -94,7 +91,7 @@ def my_store(request):
             return redirect('view_profile')
     else:
         messages.error(request, "No current store available, "
-                           "if you wish to create one please do so below.")
+                       "if you wish to create one please do so below.")
         return redirect('view_profile')
 
 
@@ -146,7 +143,8 @@ def edit_store(request, store_id):
         if store.user == current_user:
             if form.is_valid():
                 form.save()
-                messages.success(request, "Seller profile updated successfully.")
+                messages.success(request,
+                                 "Seller profile updated successfully.")
                 return redirect(reverse('view_store', args=[store.store_id, ]))
             else:
                 messages.error(request, 'Please review store\'s details as '
@@ -173,10 +171,12 @@ def delete_store(request, store_id):
 
     if store.user == current_user:
         store.delete()
-        messages.success(request, f'{store.name} has been deleted successfully.')
+        messages.success(request,
+                         f'{store.name} has been deleted successfully.')
         return redirect(reverse('view_profile'))
     else:
-        messages.error(request, 'You do not have the authority for this action')
+        messages.error(request,
+                       'You do not have the authority for this action')
         return redirect(reverse('view_store', args=[store.store_id, ]))
 
 
