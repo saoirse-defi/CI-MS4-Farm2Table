@@ -34,17 +34,17 @@
                 <div class="modal-content">
                     <h4>Edit Store Profile</h4>
                     <p>These details will be accessible by all users.</p>
-                </div>
-                {% csrf_token %}
-                {% for field in form %}
-                    {% if field.name != 'image' %}
-                        {{ field | as_crispy_field }}
-                    {% else %}
-                        {{ field }}
-                    {% endif %}
-                {% endfor %}
-                <div class="modal-footer">
-                    <button class="btn-small" type="submit">Save</button>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="modal-footer">
+                        <button class="btn-small" type="submit">Save</button>
+                    </div>
                 </div>
             </form>
         </div>
