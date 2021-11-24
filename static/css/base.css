@@ -151,8 +151,9 @@ form{
 }
 
 .store-card img{
-    width: 250px;
+    width: 100%;
     height: 250px;
+    object-fit: cover;
     margin-top: 10px;
     padding-top: 10px;
     border-radius: 50%;
