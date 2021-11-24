@@ -114,7 +114,7 @@ def edit_profile(request):
             return redirect(reverse('view_profile'))
         else:
             messages.error(request, 'Please review profile details as '
-                               'there appears to be an error.')
+                           'there appears to be an error.')
     else:
         form = UserProfileForm(instance=profile)
 

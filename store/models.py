@@ -19,7 +19,7 @@ class Store(models.Model):
     phone_number = models.CharField(max_length=20,
                                     null=True, blank=True)
     iban = models.CharField(max_length=34,
-                                       null=True, blank=True)
+                            null=True, blank=True)
     street_address1 = models.CharField(max_length=80,
                                        null=True, blank=True)
     street_address2 = models.CharField(max_length=80,
