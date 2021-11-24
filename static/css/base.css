@@ -31,16 +31,19 @@ img{
     text-align: center;
 }
 
-#nav-list li{
-    display: inline-block;
-}
-
 .dropdown-content li>a{
     color: white;
 }
 
-#nav-list{
+#main-nav ul{
     text-align: left;
+    max-width: 1080px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#nav-list li{
+    display: inline-block;
 }
 
 #navbar-row{
@@ -106,6 +109,13 @@ form{
 
 #profile-update-form{
     margin: 0 25px 0 25px;
+}
+
+#store-search-form{
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    float: none;
 }
 
 #store-image-upload{
@@ -425,6 +435,10 @@ input:-webkit-autofill:active{
 
 @media (max-width: 768px) {
     .select-wrapper{
+        width: 100%;
+    }
+
+    #store-search-form{
         width: 100%;
     }
 
