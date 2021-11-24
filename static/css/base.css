@@ -185,6 +185,13 @@ form{
     height: 250px;
 }
 
+#products-category-search-form{
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    float: none;
+}
+
 .product-card{
     width: 250px;
     height: 365px;
