@@ -42,6 +42,7 @@ class StoreRegisterForm(forms.ModelForm):
 
 
 class StoreUpdateForm(forms.ModelForm):
+    """ Creates and validates Store update form."""
     class Meta:
         model = Store
         exclude = ('store_id', 'user', 'organic', 'rating', 'image_url')
@@ -53,7 +54,6 @@ class StoreUpdateForm(forms.ModelForm):
 
         super().__init__(*args, **kwargs)
 
-        self.fields['phone_number'].widget.attrs['autofocus'] = True
         self.fields['county'] = forms.ModelChoiceField(
                                         queryset=County.objects.order_by('name'),
                                         initial=0)
