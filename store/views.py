@@ -113,6 +113,10 @@ def view_store(request, store_id):  # allows for store lookup based on store_id
                 form.save()
                 messages.success(request, 'Store successfully updated!')
                 return redirect(reverse('my_store')
+            else:
+                messages.error(request,
+                               f'Failed to update {store.name}, '
+                               'please ensure the form is valid.')
         else:
             template = 'store/store.html'
             context = {
