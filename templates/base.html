@@ -109,25 +109,18 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li>
-                    <a class='dropdown-trigger btn-small' href='#' data-target='shopping-cart-dropdown'>
-                        <span class="material-icons-outlined">shopping_cart</span>
+                    <a class="btn-small" href="{% url 'view_bag' %}">
+                        <div class="center-align">
+                            <div><span class="material-icons-outlined">shopping_cart</span></div>
+                            <p id="cart-total">
+                                {% if grand_total %}
+                                €{{ grand_total|floatformat:2 }}
+                                {% else %}
+                                €0.00
+                                {% endif %}
+                            </p>
+                        </div>
                     </a>
-                    <ul class="dropdown-content" id="shopping-cart-dropdown">
-                        <li>
-                            <a href="{% url 'view_bag' %}">
-                                <div class="center-align">
-                                    <div><span class="material-icons-outlined">shopping_cart</span></div>
-                                    <p>
-                                        {% if grand_total %}
-                                        €{{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                        €0.00
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             {% else %}
                 <li>

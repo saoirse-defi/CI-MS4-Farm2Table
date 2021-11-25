@@ -19,12 +19,13 @@
         </div>
         <div class="col s12 l5">
             <h4 class="center-align">{{store.name}}'s Dashboard</h4><br>
+            <p class="center-align">Store Bio:</p>
             <p class="center-align">{{store.description}}</p>
         </div>
         <div class="col s12 l3">
             <p class="center-align">
                 <a class="waves-effect waves-light btn-small" href="{% url 'seller_product_management' %}">Manage Products</a><br><br>
-                <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Product</a><br><br>
+                <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Listing</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Store</a>
             </p>
