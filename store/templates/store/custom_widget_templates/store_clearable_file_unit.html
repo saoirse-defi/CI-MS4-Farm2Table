@@ -1,7 +1,7 @@
 {% if widget.is_initial %}
     <p>{{ widget.initial_text }}</p>
     <a href="{{ widget.value.url }}">
-        <img width="96" height="96" src="{{ widget.value.url }}">
+        <img src="{{ widget.value.url }}">
     </a>
     {% if not widget.required %}
     <div class="custom-control custom-checkbox">
@@ -11,7 +11,7 @@
     {% endif %}<br>
     {{ widget.input_text }}
 {% endif %}
-<span class="btn-small black btn-file">
+<span class="btn-small btn-file">
     Change Image <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
 <strong><p id="filename"></p></strong>
