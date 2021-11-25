@@ -51,9 +51,9 @@
                             </a>
                             {% endif %}
                             {% if product.rating %}
-                                <small><span class="material-icons-outlined gold">star</span>{{ product.rating }} / 5</small>
+                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
                             {% else %}
-                                <small>No Rating</small>
+                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
                             {% endif %}
                     </div>
                     <div class="card-footer">
