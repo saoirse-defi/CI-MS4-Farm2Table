@@ -18,6 +18,7 @@ class StoreRegisterForm(forms.ModelForm):
 
     image = forms.ImageField(label='Image', required=False,
                              widget=StoreClearableFileUnit)
+
     description = forms.CharField()
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
