@@ -295,7 +295,7 @@ form{
 
 .checkout-image img{
     width: 125px;
-    height: 125px;
+    height: auto;
 }
 
 .checkout-h6{
@@ -307,6 +307,11 @@ form{
 }
 
 .bag-image{
+    width: 250px;
+    height: auto;
+}
+
+.card-img-toast{
     width: 250px;
     height: auto;
 }
