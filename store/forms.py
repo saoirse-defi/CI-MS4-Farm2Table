@@ -2,10 +2,10 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django_iban.fields import IBANField
 
+from .widgets import StoreClearableFileUnit
 from .models import Store, County
 from localflavor.ie.forms import EircodeField
 from django_countries.fields import CountryField
-from image_uploader_widget.widgets import ImageUploaderWidget
 
 
 User = get_user_model()
@@ -15,11 +15,9 @@ class StoreRegisterForm(forms.ModelForm):
     class Meta:
         model = Store
         exclude = ('user', 'rating', 'organic', 'street_address2', 'image_url')
-        widgets = {
-            'image': ImageUploaderWidget(),
-        }
 
-    image = forms.ImageField(label='Image', required=False)
+    image = forms.ImageField(label='Image', required=False,
+                             widget=StoreClearableFileUnit)
     description = forms.CharField()
     email = forms.EmailField(label='Email address')
     name = forms.CharField(label='Store Name')
