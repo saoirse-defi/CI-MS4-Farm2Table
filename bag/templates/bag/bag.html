@@ -110,11 +110,11 @@
             </p>
         {% endif %}
         <div class="center-align">
-            <a href="{% url 'products' %}" class="btn">
+            <a href="{% url 'products' %}" class="btn-small">
                 <span class="material-icons-outlined">chevron_left</span>
                 <span>Keep Shopping</span>
             </a>
-            <a href="{% url 'checkout' %}" class="btn">
+            <a href="{% url 'checkout' %}" class="btn-small">
                 <span class="material-icons-outlined">lock</span>
                 <span>Secure Checkout</span>
             </a>
@@ -123,9 +123,8 @@
 {% else %}
     <p class="center-align">Your bag is empty.</p>
     <p class="center-align">
-        <a href="{% url 'products' %}" class="btn">
-            <span class="material-icons-outlined">chevron_left</span>
-            <span>Keep Shopping</span>
+        <a href="{% url 'products' %}" class="btn-small">
+            <span>Browse Marketplace</span>
         </a>
     </p>
 {% endif %}
