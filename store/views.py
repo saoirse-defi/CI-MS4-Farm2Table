@@ -107,26 +107,14 @@ def view_store(request, store_id):  # allows for store lookup based on store_id
     store_products = Product.objects.all().filter(seller_store=store)
 
     if store.user == current_user:
-        if request.method == 'POST':
-            form = StoreRegisterForm(request.POST, request.FILES, instance=store)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Store successfully updated!')
-                return redirect(reverse('my_store')
-            else:
-                messages.error(request,
-                               f'Failed to update {store.name}, '
-                               'please ensure the form is valid.')
-        else:
-            template = 'store/store.html'
-            context = {
-                'store': store,
-                'store_orders': store_orders,
-                'store_products': store_products,
-                'form': form,
-                'current_user': current_user,
-            }
-            return render(request, template, context)
+        template = 'store/store.html'
+        context = {
+            'store': store,
+            'store_orders': store_orders,
+            'store_products': store_products,
+            'current_user': current_user,
+        }
+        return render(request, template, context)
     else:
         template = 'store/store_customer.html'
         context = {
@@ -147,9 +135,9 @@ def edit_store(request, store_id):
 
     store = get_object_or_404(Store, pk=store_id)
 
-    if request.method == 'POST':
-        form = StoreUpdateForm(request.POST, instance=store)
-        if store.user == current_user:
+    if current_user == store.user:
+        if request.method == 'POST':
+            form = StoreRegisterForm(request.POST, request.FILES, instance=store)
             if form.is_valid():
                 form.save()
                 messages.success(request,
@@ -157,11 +145,12 @@ def edit_store(request, store_id):
                 return redirect(reverse('view_store', args=[store.store_id, ]))
             else:
                 messages.error(request, 'Please review store\'s details as '
-                               'there appears to be an error.')
-    else:
-        form = StoreRegisterForm(instance=store)
+                            'there appears to be an error.')
+        else:
+            form = StoreRegisterForm(instance=store)
+            messages.info(request, f'You are editing {store.name}')
 
-    template = 'store/store.html'
+    template = 'store/edit_store.html'
     context = {
         'form': form,
         'store': store,

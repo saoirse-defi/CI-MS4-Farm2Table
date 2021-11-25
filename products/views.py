@@ -210,20 +210,23 @@ def add_product(request):
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-        #if my_store is not None:
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.seller_store = my_store
-            product.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse(
-                            'product_detail', args=[product.sku, ]))
-        else:
-            messages.error(request,
-                            'Failed to add product.'
-                            'Please ensure the form is valid.')
+        if my_store is not None:
+            if form.is_valid():
+                product = form.save(commit=False)
+                product.seller_store = my_store
+                product.save()
+                messages.success(request, 'Successfully added product!')
+                return redirect(reverse(
+                                'product_detail', args=[product.sku, ]))
+            else:
+                messages.error(request,
+                                'Failed to add product.'
+                                'Please ensure the form is valid.')
+        messages.error(request,
+                       'You cannot add a product to this '
+                       'store as you are not the owner.')
     else:
-        form = ProductForm()
+        form = ProductForm(request.POST)
 
     template = 'products/add_product.html'
     context = {
@@ -254,8 +257,8 @@ def edit_product(request, product_id):
                 return redirect(reverse('product_detail', args=[product_id]))
             else:
                 messages.error(request,
-                            f'Failed to update {product.name},'
-                            'please ensure the form is valid.')
+                               f'Failed to update {product.name}, '
+                               'please ensure the form is valid.')
         else:
             form = ProductForm(instance=product)
             messages.info(request, f'You are editing {product.name}')
