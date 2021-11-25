@@ -64,7 +64,7 @@ def create_store(request):
     return render(request, template, context)
 
 
-def my_store(request):
+def my_store(request):  # allows store to be accessed from base.html
     try:
         current_user = UserProfile.objects.get(user=request.user)
     except Exception as e:
@@ -95,7 +95,7 @@ def my_store(request):
         return redirect('view_profile')
 
 
-def view_store(request, store_id):
+def view_store(request, store_id):  # allows for store lookup based on store_id
     try:
         current_user = UserProfile.objects.get(user=request.user)
     except Exception as e:
@@ -106,18 +106,23 @@ def view_store(request, store_id):
     store_orders = Order.objects.all().filter(seller_store=store)
     store_products = Product.objects.all().filter(seller_store=store)
 
-    form = StoreUpdateForm(instance=store)
-
     if store.user == current_user:
-        template = 'store/store.html'
-        context = {
-            'store': store,
-            'store_orders': store_orders,
-            'store_products': store_products,
-            'form': form,
-            'current_user': current_user,
-        }
-        return render(request, template, context)
+        if request.method == 'POST':
+            form = StoreRegisterForm(request.POST, request.FILES, instance=store)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Store successfully updated!')
+                return redirect(reverse('my_store')
+        else:
+            template = 'store/store.html'
+            context = {
+                'store': store,
+                'store_orders': store_orders,
+                'store_products': store_products,
+                'form': form,
+                'current_user': current_user,
+            }
+            return render(request, template, context)
     else:
         template = 'store/store_customer.html'
         context = {
