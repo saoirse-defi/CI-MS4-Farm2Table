@@ -55,20 +55,19 @@
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
             </fieldset>
     
-            <div class="submit-button">
+            <div class="submit-button center-align">
                 <p class="small">
                     <span class="material-icons-outlined">credit_card</span>
                     <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
                 </p>
                 <a href="{% url 'view_bag' %}" class="btn-small">
-                    <span class="material-icons-outlined">chevron_left</span>
                     <span class="bold">Adjust Bag</span>
                 </a>
                 <button id="submit-button" class="btn-small">
-                    <span class="bold">Complete Order</span>
-                    <span class="material-icons-outlined">lock</span>
+                    <span class="bold">Finalize Payment</span>
                 </button>
             </div>
+            <br>
         </form>
     </div>
     <div class="col s12 l6">
