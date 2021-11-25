@@ -172,31 +172,26 @@
             {% elif message.tags == 'error'%}
                 <script>M.toast({html: "{{message}}", classes: 'red', displayLength:4000});</script>
             {% elif message.level == 50 %}
-            <script>
-                var wishlist_html = '<div class="wishlist-modal">'+
-                            '            <h4>{{ message }}</h4>'+
-                            '        </div>';
-                M.toast({html: wishlist_html, classes: 'gold', displayLength:4000});
-            </script>
+                <script>M.toast({html: "{{ message }}", classes: 'pink', displayLength:4000});</script>
             {% elif message.level == 60 %}
             <script>
                 var add_to_bag_html = '<div class="bag-modal">'+
-                            '            <h4>{{ message }}</h4>'+
-                            '            <p>Your Bag: ({{ product_count }}) Items</p>'+
+                            '            <h5 class="center-align">{{ message }}</h5>'+
+                            '            <p class="center-align">Your bag contains ({{ product_count }}) items</p>'+
                             '            <div class="bag-notification-wrapper">'+
                             '                {% for item in bag_items %}'+
                             '                    <div class="row">'+
-                            '                        <div class="col s4">'+
+                            '                        <div class="col s8">'+
                             '                            {% if item.product.image %}'+
-                            '                                <img class="card-img" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">'+
+                            '                                <img class="card-img-toast" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">'+
                             '                            {% else %}'+
-                            '                                <img class="card-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">'+
+                            '                                <img class="card-img-toast" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">'+
                             '                            {% endif %}'+
                             '                        </div>'+
-                            '                        <div class="col s8 right">'+
+                            '                        <div class="col s4 right">'+
                             '                            <p class="center-align"><strong>{{ item.product.name }}</strong></p>'+
                             '                            <p class="center-align">Size:'+
-                            '                            {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>'+
+                            '                            {% if item.product.has_sizes %}{{ item.size|upper }}g{% else %}N/A{% endif %}</p>'+
                             '                            <p class="center-align">Qty: {{ item.quantity }}</p>'+
                             '                            <p class="center-align">Price: {{ item.price }}</p>'+
                             '                        </div>'+
