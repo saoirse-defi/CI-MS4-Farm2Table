@@ -27,27 +27,8 @@
                 <a class="waves-effect waves-light btn-small" href="{% url 'seller_product_management' %}">Manage Products</a><br><br>
                 <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Listing</a><br><br>
                 <a class="waves-effect waves-light btn-small modal-trigger" href="#store-details">Store Details</a><br><br>
-                <a class="waves-effect waves-light btn-small modal-trigger" href="#store-image-upload">Edit Store</a>
+                <a class="waves-effect waves-light btn-small" href="{% url 'edit_store' store.store_id %}">Edit Store</a>
             </p>
-        </div>
-        <div id="store-image-upload" class="modal">
-            <form action="{% url 'edit_store' store.store_id %}" method="POST" id="store-update-form">
-                <div class="modal-content">
-                    <h4>Edit Store Profile</h4>
-                    <p>These details will be accessible by all users.</p>
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
-                    <div class="modal-footer">
-                        <button class="btn-small" type="submit">Save</button>
-                    </div>
-                </div>
-            </form>
         </div>
         <div id="store-details" class="modal">
             <div class="modal-content">
