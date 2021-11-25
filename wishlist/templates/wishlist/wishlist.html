@@ -28,12 +28,13 @@
                                 <span class="new badge green category" data-badge-caption="{{ item.product.category.name }}"></span>
                             </a>
                             {% endif %}
-                            {% if item.product.rating %}
-                                <small><span class="material-icons-outlined">star</span>{{ item.product.rating }} / 5</small>
+                            {% if product.rating %}
+                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
                             {% else %}
-                                <small>No Rating</small>
+                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
                             {% endif %}
                     </div>
+                    <br>
                     <div class="card-footer">
                         <h6 class="center-align">{{ item.product.name }}</h6>
                         <p class="center-align">€{{ item.product.price }}</p>

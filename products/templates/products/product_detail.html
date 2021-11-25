@@ -20,9 +20,9 @@
         <div class="product-details">
             <div class="col s6 left">
                 {% if product.rating %}
-                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                    <span class="new badge purple left" data-badge-caption="{{ product.rating }} / 5.0"></span>
                 {% else %}
-                    <small><span class="material-icons-outlined">star</span>No Rating</small>
+                    <span class="new badge purple left" data-badge-caption="No Rating"></span>
                 {% endif %}
             </div>
             <div class="col s6 right">
@@ -33,13 +33,13 @@
             <h4 class="center-align">{{ product.name }}
             {% if wishlist_id is not None %}
                 <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                    <span class="material-icons-outlined">
+                    <span class="material-icons-outlined" style="color: red;">
                         favorite
                     </span>
                 </a>
             {% else %}
                 <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
-                    <span class="material-icons-outlined">
+                    <span class="material-icons-outlined" style="color: red;">
                         favorite_border
                     </span>
                 </a>

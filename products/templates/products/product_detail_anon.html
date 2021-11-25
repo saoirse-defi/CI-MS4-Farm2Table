@@ -16,9 +16,9 @@
         <div class="product-details">
             <div class="col s6 left">
                 {% if product.rating %}
-                    <small><span class="material-icons-outlined">star</span>{{ product.rating }} / 5</small>
+                    <span class="new badge purple left" data-badge-caption="{{ product.rating }} / 5.0"></span>
                 {% else %}
-                    <small><span class="material-icons-outlined">star</span>No Rating</small>
+                    <span class="new badge purple left" data-badge-caption="No Rating"></span>
                 {% endif %}
             </div>
             <div class="col s6 right">
@@ -27,21 +27,23 @@
                 </a>
             </div>
             <br>
-            <h4 class="center-align">{{ product.name }}{% if current_user %}
-                {% if wishlist_id is not None %}
-                    <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
-                        <span class="material-icons-outlined">
-                            favorite
-                        </span>
-                    </a>
-                    {% else %}
-                    <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
-                        <span class="material-icons-outlined">
-                            favorite_border
-                        </span>
-                    </a>
+            <h4 class="center-align">{{ product.name }}
+                {% if current_user %}
+                    {% if wishlist_id is not None %}
+                        <a class="wishlist-btn" href="{% url 'delete_from_wishlist' wishlist_id %}">
+                            <span class="material-icons-outlined">
+                                favorite
+                            </span>
+                        </a>
+                        {% else %}
+                        <a class="wishlist-btn" href="{% url 'add_to_wishlist' product.sku %}">
+                            <span class="material-icons-outlined">
+                                favorite_border
+                            </span>
+                        </a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}</h4>
+            </h4>
             <p class="center-align">€{{ product.price }}</p>
             <p class="center-align">Product Description:</p>
             <p class="center-align">{{ product.description }}</p>
@@ -91,7 +93,7 @@
             <p class="center-align">
                 {% if store.image %}
                     <a href="{% url 'view_store' store.store_id %}">
-                        <img class="card-img responsive" src="{{ store.image }}" alt="{{store.name}}"/>
+                        <img class="card-img responsive" src="{{ store.image.url }}" alt="{{store.name}}"/>
                     </a>
                 {% else %}
                     <a href="{% url 'view_store' store.store_id %}">
