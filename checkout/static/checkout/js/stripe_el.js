@@ -92,23 +92,4 @@ form.addEventListener('submit', function(event) {
             }
         }
     });
-
-    stripe.createToken(card).then(function(result) {
-        if(result.error){
-            var error_div = document.getElementById('card-errors');
-            var html = `<span class="material-icons-outlined">
-                            close
-                        </span>
-                        <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            card.update({
-                disabled: false
-            });
-            $('#submit-button').addEventListener('disabled', false);
-        }else{
-            if(result.paymentIntent.status === 'succeeded'){
-                form.submit();
-            }
-        }
-    });
 })});
