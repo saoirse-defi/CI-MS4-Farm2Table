@@ -109,17 +109,15 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li>
-                    <a class="btn-small" href="{% url 'view_bag' %}">
-                        <div class="center-align">
-                            <div><span class="material-icons-outlined">shopping_cart</span></div>
-                            <p id="cart-total">
-                                {% if grand_total %}
-                                €{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                €0.00
-                                {% endif %}
-                            </p>
-                        </div>
+                    <a class="btn" href="{% url 'view_bag' %}">
+                        <span class="material-icons-outlined">shopping_cart</span>
+                        <span>
+                            {% if grand_total %}
+                            €{{ grand_total|floatformat:2 }}
+                            {% else %}
+                            €0.00
+                            {% endif %}
+                        </span>
                     </a>
                 </li>
             {% else %}
@@ -174,7 +172,7 @@
             {% elif message.level == 50 %}
                 <script>M.toast({html: "{{ message }}", classes: 'pink', displayLength:4000});</script>
             {% elif message.level == 60 %}
-            <script>
+            <script> // custom html from bag modal to be passed to Materialized toast function
                 var add_to_bag_html = '<div class="bag-modal">'+
                             '            <h5 class="center-align">{{ message }}</h5>'+
                             '            <p class="center-align">Your bag contains ({{ product_count }}) items</p>'+
