@@ -3,20 +3,20 @@
     <ul id="nav-list center-align">
       {% if request.user.is_authenticated %}
         <li>
-          <a class="btn-small" href="{% url 'local_producers' %}">Local</a>
+          <a class="waves-effect waves-light btn-small" href="{% url 'local_producers' %}">Local</a>
         </li>
       {% endif %}
       <li class="custom-only-item">
-        <a class="btn-small" href="{% url 'all_stores' %}">All Stores</a>
+        <a class="waves-effect waves-light btn-small" href="{% url 'all_stores' %}">All Stores</a>
       </li>
       <li class="mobile-only-item">
-        <a class='dropdown-trigger btn-small' href='#' data-target='category-dropdown'>Categories</a>
+        <a class='dropdown-trigger waves-effect waves-light btn-small' href='#' data-target='category-dropdown'>Categories</a>
         <ul class="dropdown-content" id="category-dropdown">
           <br>
           {% for c in categories %}
             <li>
               <div class="valign-wrapper">
-                <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
+                <a class="waves-effect waves-light btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
               </div>
             </li>
           {% endfor %}
@@ -24,7 +24,7 @@
       </li>
       {% for c in categories %}
         <li class="desktop-only-item">
-          <a class="btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
+          <a class="waves-effect waves-light btn-small" href="{% url 'products' %}?category={{ c.category_id }}">{{ c.name }}</a>
         </li>
       {% endfor %}
     </ul>

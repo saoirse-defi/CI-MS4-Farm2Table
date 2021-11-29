@@ -19,8 +19,8 @@
 
 <div class="product-container col s12">
         {% for product in products %}
-            <div class="product-card">
-                <a href="{% url 'product_detail' product.sku %}">
+            <a href="{% url 'product_detail' product.sku %}">
+                <div class="product-card">
                         <div class="card-header">
                             {% if product.image %}
                                 <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -45,8 +45,8 @@
                         <h6 class="center-align">{{ product.name }}</h6>
                         <p class="center-align">€{{ product.price }}</p>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
         {% empty %}
             <h3>Unfortunately this category currently contains no products.</h3>
         {% endfor %}

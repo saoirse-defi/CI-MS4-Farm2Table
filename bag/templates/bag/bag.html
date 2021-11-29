@@ -49,7 +49,7 @@
                         {% if item.product.has_sizes %}
                         <input type="hidden" name="product_size" value="{{ item.size }}">
                         {% endif %}
-                        <button class="btn-small" type="submit">Update</button>
+                        <button class="waves-effect waves-light btn-small" type="submit">Update</button>
                     </form>
                 </td>
                 <td>
@@ -61,7 +61,7 @@
                         {% if item.product.has_sizes %}
                         <input type="hidden" name="product_size" value="{{ item.size }}">
                         {% endif %}
-                        <button class=" btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
+                        <button class="waves-effect waves-light btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
                     </form>
                 </td>
             </tr>
@@ -86,7 +86,7 @@
                     {% if item.product.has_sizes %}
                     <input type="hidden" name="product_size" value="{{ item.size }}">
                     {% endif %}
-                    <button class="btn-small" type="submit">Update</button>
+                    <button class="waves-effect waves-light btn-small" type="submit">Update</button>
                 </form>
                 <p>Subtotal: €{{ item.product.price|calc_subtotal:item.quantity|calc_total_with_size:item.size}}</p>
                 <form class="form remove-form" method="POST" action="{% url 'remove_from_bag' item.product.sku %}">
@@ -94,7 +94,7 @@
                     {% if item.product.has_sizes %}
                     <input type="hidden" name="product_size" value="{{ item.size }}">
                     {% endif %}
-                    <button class=" btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
+                    <button class="waves-effect waves-light btn-small remove-item" id="remove_{{ item.product_id }}" type="submit" data-product_size="{{ item.size }}"><span class="material-icons-outlined">delete</span></button>
                 </form><br>
             </div>
             {% endfor %}
@@ -110,10 +110,10 @@
             </p>
         {% endif %}
         <div class="center-align">
-            <a href="{% url 'products' %}" class="btn-small">
+            <a href="{% url 'products' %}" class="waves-effect waves-light btn-small">
                 <span>Keep Shopping</span>
             </a>
-            <a href="{% url 'checkout' %}" class="btn-small">
+            <a href="{% url 'checkout' %}" class="waves-effect waves-light btn-small">
                 <span>Proceed to Payment</span>
             </a>
         </div>
@@ -121,7 +121,7 @@
 {% else %}
     <p class="center-align">Your bag is empty.</p>
     <p class="center-align">
-        <a href="{% url 'products' %}" class="btn-small">
+        <a href="{% url 'products' %}" class="waves-effect waves-light btn-small">
             <span>Browse Marketplace</span>
         </a>
     </p>

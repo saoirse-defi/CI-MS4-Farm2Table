@@ -7,7 +7,7 @@
     <div class="col s12">
         <div class="center-align">
             <h3>{{ my_store.name }} Product Management</h3>
-            <a class="btn-small" href="{% url 'add_product' %}">Create Listing</a>
+            <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Listing</a>
         </div>
     </div>
 </div>
@@ -26,8 +26,8 @@
                         </div>
                     <div class="card-body">
                         <div class="product-button-container center-align">
-                            <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
-                            <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+                            <a class="waves-effect waves-light btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
+                            <a class="waves-effect waves-light btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
                         </div>
                     </div>
                     <div class="card-footer">

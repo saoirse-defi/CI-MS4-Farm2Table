@@ -407,6 +407,10 @@ input:-webkit-autofill:active{
     margin: auto;
 }
 
+#mobile-menu{
+    background-color: #a5d6a7;
+}
+
 .mobile-bag{
     display: none;
 }

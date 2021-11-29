@@ -12,8 +12,8 @@
             {% endif %}
         </div>
         <div class="product-button-container center-align">
-            <a class="btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
-            <a class="btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+            <a class="waves-effect waves-light btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
+            <a class="waves-effect waves-light btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
         </div>
     </div>
     <div class="col s12 m4">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col s12" id="product-detail-btn-container">
-                        <input type="submit" class="btn-small" value="Add to Bag">
+                        <input type="submit" class="waves-effect waves-light btn-small" value="Add to Bag">
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}"/>
                     {% endwith %}
