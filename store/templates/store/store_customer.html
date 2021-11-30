@@ -16,10 +16,12 @@
             {% endif %}
         </div>
         <div class="col s12 l5">
+            <div class="mobile-hr"><hr></div>
             <h4 class="center-align">{{store.name}}'s Store</h4><br>
             <p class="center-align">{{store.description}}</p>
         </div>
         <div class="col s12 l3">
+            <div class="mobile-hr"><hr></div>
             <div class="store-details center-align">
                 <h5>Location/Contact</h5>
                 <h6><small>Email:</small>  {{ store.user }}</h6>
@@ -32,6 +34,7 @@
         </div>
     </div>
     <div class="row">
+        <div class="mobile-hr"><hr></div>
         <p class="center-align">Active Listings:</p>
         <div class="container" id="seller-listings-grid">
         {% for product in store_products %}
@@ -67,6 +70,7 @@
         {% endfor %}
     </div>
     <div class="row">
+        <div class="mobile-hr"><hr></div>
         <div class="col s12">
             <div class="row">
                 <p class="center-align">Order History:</p>

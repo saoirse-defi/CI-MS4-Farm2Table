@@ -18,11 +18,13 @@
             </p>
         </div>
         <div class="col s12 l5">
+            <div class="mobile-hr"><hr></div>
             <h4 class="center-align">{{store.name}}'s Dashboard</h4><br>
             <p class="center-align">Store Bio:</p>
             <p class="center-align">{{store.description}}</p>
         </div>
         <div class="col s12 l3">
+            <div class="mobile-hr"><hr></div>
             <p class="center-align">
                 <a class="waves-effect waves-light btn-small" href="{% url 'seller_product_management' %}">Manage Products</a><br><br>
                 <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Listing</a><br><br>
@@ -43,6 +45,7 @@
         </div>
     </div>
     <div class="row">
+        <div class="mobile-hr"><hr></div>
         <p class="center-align">Order History:</p>
         <div class="order-history table-responsive">
             <table class="table">
@@ -83,6 +86,7 @@
         </div>
     </div>
     <div class="row">
+        <div class="mobile-hr"><hr></div>
         <p class="center-align">Active Listings:</p>
         <div class="container" id="seller-listings-grid">
             {% for product in store_products %}
@@ -118,6 +122,7 @@
         </div>
     </div>
     <div class="row center-align">
+        <div class="mobile-hr"><hr></div>
         <a class="waves-effect waves-light btn-small red" href="{% url 'delete_store' store.store_id %}">Delete Store</a>
     </div>
 {% endblock %}
