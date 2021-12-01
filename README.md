@@ -540,13 +540,17 @@ else:
 
 [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet)
 
+## Database Schema
+
+![DB Schema](/wireframes/schema/thevegable-schema-db.png)
+
 ## Wireframes
 
 ### Desktop Wireframes
 
 ![Index](/wireframes/index.html.png)
 ![Login](wireframes/Login.png)
-![Product Detail](wireframes/Product Detail.png)
+![Product Detail](wireframes/Product-Detail.png)
 ![Profile](wireframes/profile.png)
 ![Signup](wireframes/Signup.png)
 ![Store](wireframes/Store.png)
