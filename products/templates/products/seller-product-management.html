@@ -15,8 +15,8 @@
     <div class="grid-container col s12">
         {% for product in products %}
             {% if product.seller_store == my_store %}
-                <a href="{% url 'product_detail' product.sku %}">
                     <div class="product-card">
+                        <a href="{% url 'product_detail' product.sku %}">
                             <div class="card-header">
                                 {% if product.image %}
                                     <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -24,18 +24,18 @@
                                     <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 {% endif %}
                             </div>
-                        <div class="card-body">
-                            <div class="product-button-container center-align">
-                                <a class="waves-effect waves-light btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
-                                <a class="waves-effect waves-light btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+                            <div class="card-body">
+                                <div class="product-button-container center-align">
+                                    <a class="waves-effect waves-light btn-small green" href="{% url 'edit_product' product.sku %}">Edit</a>
+                                    <a class="waves-effect waves-light btn-small red" href="{% url 'delete_product' product.sku %}">Delete</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <h6 class="center-align">{{ product.name }}</h6>
-                            <p class="center-align">€{{ product.price }}</p>
-                        </div>
+                            <div class="card-footer">
+                                <h6 class="center-align">{{ product.name }}</h6>
+                                <p class="center-align">€{{ product.price }}</p>
+                            </div>
+                        </a>   
                     </div>
-                </a>
             {% else %}
                 <h3>Unfortunately you do not have access to this store.</h3>
             {% endif %}
