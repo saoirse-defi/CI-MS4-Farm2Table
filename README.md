@@ -349,6 +349,10 @@ Unfortunately due to the lack of Materialize support for Crispy Forms, the place
 
 There were a few bugs during development but they were mainly due to a lack of Django understanding.
 
+##### CSS Grid Leaving Gaps
+
+This specific bug I believe was caused due to the use of Materialize within the project. By surrounding the entire product card in an anchor tag, it caused Materialize to put the anchor tag in the 1st slot & the product card in the 2nd slot. Once the anchor tag was placed within the outer product-card div, the bug resolved itself.
+
 ## Deployment
 
 ### Github Pages Deployment Procedure
