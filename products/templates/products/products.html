@@ -20,32 +20,32 @@
     <div class="grid-container col s12">
         {% for product in products %}
             <div class="product-card center-align">
-                <a href="{% url 'product_detail' product.sku %}">
-                    <div class="card-header">
+                <div class="card-header">
+                    <a href="{% url 'product_detail' product.sku %}">
                         {% if product.image %}
                             <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
                         {% else %}
                             <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         {% endif %}
-                    </div>
-                    <div class="card-body">
-                        {% if product.category %}
-                            <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
-                            </a>
-                            {% endif %}
-                            {% if product.rating %}
-                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
-                            {% else %}
-                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
-                            {% endif %}
-                    </div>
-                    <br>
-                    <div class="card-footer">
-                        <h6 class="center-align">{{ product.name }}</h6>
-                        <p class="center-align">€{{ product.price }}</p>
-                    </div>
-                </a>
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if product.category %}
+                        <a href="{% url 'products' %}?category={{ product.category.id }}">
+                            <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
+                        </a>
+                    {% endif %}
+                    {% if product.rating %}
+                        <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
+                    {% else %}
+                        <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
+                    {% endif %}
+                </div>
+                <br>
+                <div class="card-footer">
+                    <h6 class="center-align">{{ product.name }}</h6>
+                    <p class="center-align">€{{ product.price }}</p>
+                </div>
             </div>
         {% empty %}
             <h3>Unfortunately this category currently contains no products.</h3>

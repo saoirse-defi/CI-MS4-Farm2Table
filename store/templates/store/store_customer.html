@@ -39,31 +39,31 @@
         <div class="container" id="seller-listings-grid">
         {% for product in store_products %}
             <div class="product-card">
-                <a href="{% url 'product_detail' product.sku %}">
-                        <div class="card-header">
-                            {% if product.image %}
-                                <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            {% else %}
-                                <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                            {% endif %}
-                        </div>
-                    <div class="card-body">
-                        {% if product.category %}
-                            <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
-                            </a>
-                            {% endif %}
-                            {% if product.rating %}
-                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
-                            {% else %}
-                                <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
-                            {% endif %}
-                    </div>
-                    <div class="card-footer">
-                        <h6 class="center-align">{{ product.name }}</h6>
-                        <p class="center-align">€{{ product.price }}</p>
-                    </div>
-                </a>
+                <div class="card-header">
+                    <a href="{% url 'product_detail' product.sku %}">
+                        {% if product.image %}
+                            <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if product.category %}
+                        <a href="{% url 'products' %}?category={{ product.category.id }}">
+                            <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
+                        </a>
+                        {% endif %}
+                        {% if product.rating %}
+                            <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="{{ product.rating }} / 5.0"></span>
+                        {% else %}
+                            <span class="new badge purple left" style="margin-top: 6px;" data-badge-caption="No Rating"></span>
+                        {% endif %}
+                </div>
+                <div class="card-footer">
+                    <h6 class="center-align">{{ product.name }}</h6>
+                    <p class="center-align">€{{ product.price }}</p>
+                </div>
             </div>
         {% empty %}
             <h5 class="center-align">This store is currently empty.</h5>

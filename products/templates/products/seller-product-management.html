@@ -16,13 +16,14 @@
         {% for product in products %}
             {% if product.seller_store == my_store %}
                     <div class="product-card">
-                        <a href="{% url 'product_detail' product.sku %}">
                             <div class="card-header">
-                                {% if product.image %}
-                                    <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                {% endif %}
+                                <a href="{% url 'product_detail' product.sku %}">
+                                    {% if product.image %}
+                                        <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    {% else %}
+                                        <img class="card-img responsive" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    {% endif %}
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="product-button-container center-align">
@@ -33,8 +34,7 @@
                             <div class="card-footer">
                                 <h6 class="center-align">{{ product.name }}</h6>
                                 <p class="center-align">€{{ product.price }}</p>
-                            </div>
-                        </a>   
+                            </div>  
                     </div>
             {% else %}
                 <h3>Unfortunately you do not have access to this store.</h3>
