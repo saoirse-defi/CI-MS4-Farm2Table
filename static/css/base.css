@@ -199,8 +199,8 @@ form{
 }
 
 .product-card{
-    width: 250px;
-    height: 365px;
+    width: 275px;
+    height: 375px;
     border-radius: 8px;
     background-color: #eaeab4;
     border: 0.5px solid black;
@@ -208,8 +208,8 @@ form{
 }
 
 .product-card:hover{
-    width: 250px;
-    height: 365px;
+    width: 275px;
+    height: 375px;
     border-radius: 8px;
     background-color: #eaeab4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -251,6 +251,13 @@ form{
     height: 250px;
 }
 
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+}
+
 #seller-listings-grid{
     margin: 0 auto;
     display: grid;
@@ -270,7 +277,7 @@ form{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
-    align-items: stretch;
+    justify-items: center;
 }
 
 .wishlist-container{
@@ -380,14 +387,6 @@ input:-webkit-autofill:active{
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
-}
-
-.stripe-style-input{
-
-}
-
-#listing-card{
-
 }
 
 #profile-update-form .form-control {

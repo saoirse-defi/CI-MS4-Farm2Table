@@ -11,7 +11,7 @@
     {% endif %}
 </div>
 <div class="row">
-    <div class="local-seller-container col s12">
+    <div class="grid-container col s12">
         {% if local_stores %}
             {% for store in local_stores %}
                 <a href="{% url 'view_store' store.store_id %}">
