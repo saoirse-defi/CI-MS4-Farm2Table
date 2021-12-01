@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
-from .forms import WishlistForm
 from .models import Wishlist
 from profile.models import UserProfile
 from products.models import Product
 
 # Create your views here
+
 
 def wishlist(request):
     profile = get_object_or_404(UserProfile, user=request.user)

@@ -11,4 +11,3 @@ class MediaStorage(S3Boto3Storage):
     """ Storage class for media files, AWS s3 bucket. """
     location = settings.MEDIAFILES_LOCATION
 
-

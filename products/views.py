@@ -220,8 +220,8 @@ def add_product(request):
                                 'product_detail', args=[product.sku, ]))
             else:
                 messages.error(request,
-                                'Failed to add product.'
-                                'Please ensure the form is valid.')
+                               'Failed to add product.'
+                               'Please ensure the form is valid.')
         messages.error(request,
                        'You cannot add a product to this '
                        'store as you are not the owner.')
@@ -235,7 +235,6 @@ def add_product(request):
     return render(request, template, context)
 
 
-#@store_owner_required
 @login_required
 def edit_product(request, product_id):
     """ Edits an existing product the profile has created. """
@@ -274,7 +273,6 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
-#@store_owner_required(product_id)
 @login_required
 def delete_product(request, product_id):
     """ Deletes product from the store if user has access. """

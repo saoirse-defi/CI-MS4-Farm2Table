@@ -39,8 +39,8 @@ class Store(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
 
-    def __str__(self):  # works as expected
-        return self.name
+    def __str__(self):
+        return str(self.name)
 
 
 class County(models.Model):
@@ -48,5 +48,5 @@ class County(models.Model):
 
     name = models.CharField(max_length=254, blank=False)
 
-    def __str__(self):  # works as expected
-        return self.name
+    def __str__(self):
+        return str(self.name)

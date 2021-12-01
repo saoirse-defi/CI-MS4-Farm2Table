@@ -16,15 +16,17 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
-    
+
     def _send_confirmation_email(self, order):
         """ Sends the user a confirmation email. """
         customer_email = order.email
         subject = render_to_string(
-            'checkout/templates/checkout/confirmation_emails/confirmation_email_subject.txt',
+            'checkout/templates/checkout/confirmation_emails'
+            '/confirmation_email_subject.txt',
             {'order': order})
         body = render_to_string(
-            'checkout/templates/checkout/confirmation_emails/confirmation_email_body.txt',
+            'checkout/templates/checkout/confirmation_emails'
+            '/confirmation_email_body.txt',
             {'order': order,
              'contact_email': settings.DEFAULT_FROM_EMAIL})
         
@@ -58,7 +60,7 @@ class StripeWH_Handler:
 
         # Update profile information if save_data is checked
         profile = None
-        username = indent.metadata.username
+        username = intent.metadata.username
 
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
@@ -147,8 +149,6 @@ class StripeWH_Handler:
             content=(f'Webhook received: {event["type"]} | SUCCESS: '
                      'Created order in webhook'),
             status=200)
-
-
 
     def handle_payment_intent_failed(self, event):
         """Handle a generic/unknown/unexpected webhook event"""

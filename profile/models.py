@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
 
-import store.models
-
 
 class UserProfile(models.Model):
     """
@@ -31,7 +29,7 @@ class UserProfile(models.Model):
                                         null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.shipping_name)
 
 
 @receiver(post_save, sender=User)
