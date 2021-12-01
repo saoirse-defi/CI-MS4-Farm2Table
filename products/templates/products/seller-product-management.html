@@ -10,13 +10,13 @@
             <a class="waves-effect waves-light btn-small" href="{% url 'add_product' %}">Create Listing</a>
         </div>
     </div>
-</div>
+</div><br>
 <div class="row">
     <div class="grid-container col s12">
         {% for product in products %}
             {% if product.seller_store == my_store %}
-                <div class="product-card">
-                    <a href="{% url 'product_detail' product.sku %}">
+                <a href="{% url 'product_detail' product.sku %}">
+                    <div class="product-card">
                             <div class="card-header">
                                 {% if product.image %}
                                     <img class="card-img responsive" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -34,8 +34,8 @@
                             <h6 class="center-align">{{ product.name }}</h6>
                             <p class="center-align">€{{ product.price }}</p>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             {% else %}
                 <h3>Unfortunately you do not have access to this store.</h3>
             {% endif %}
