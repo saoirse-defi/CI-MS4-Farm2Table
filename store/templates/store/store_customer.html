@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-body">
                     {% if product.category %}
-                        <a href="{% url 'products' %}?category={{ product.category.id }}">
+                        <a href="{% url 'products' %}?category={{ product.category.category_id }}">
                             <span class="new badge green category" data-badge-caption="{{ product.category.name }}"></span>
                         </a>
                         {% endif %}
