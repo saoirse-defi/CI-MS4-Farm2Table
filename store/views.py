@@ -35,27 +35,32 @@ def create_store(request):
         store = None
         print(e)
 
-    if request.method == 'POST':
-        form = StoreRegisterForm(request.POST, request.FILES)
-        if store is not None:
-            messages.error(request,
-                           'Organisation creation failed, '
-                           'you can only have 1 store linked '
-                           'to each account.')
-            return redirect(reverse('view_store',
-                                    args=[store.store_id, ]))
-        else:
-            if form.is_valid():
-                store = form.save(commit=False)
-                store.user = current_user
-                store.save()
-                messages.success(request, 'Store Organisation Created!')
-                return redirect(reverse('view_store', args=[store.store_id, ]))
-            else:
-                messages.error(request, 'Organisation creation failed, '
-                               'please check form details.')
+    if current_user.shipping_name is None:
+        messages.error(request, 'Please fill out user profile '
+                       'before creating a sales organisation.')
+        return redirect(reverse('view_profile'))
     else:
-        form = StoreRegisterForm()
+        if request.method == 'POST':
+            form = StoreRegisterForm(request.POST, request.FILES)
+            if store is not None:
+                messages.error(request,
+                               'Organisation creation failed, '
+                               'you can only have 1 store linked '
+                               'to each account.')
+                return redirect(reverse('view_store',
+                                        args=[store.store_id, ]))
+            else:
+                if form.is_valid():
+                    store = form.save(commit=False)
+                    store.user = current_user
+                    store.save()
+                    messages.success(request, 'Store Organisation Created!')
+                    return redirect(reverse('view_store', args=[store.store_id, ]))
+                else:
+                    messages.error(request, 'Organisation creation failed, '
+                                'please check form details.')
+        else:
+            form = StoreRegisterForm()
 
     template = "store/create_store.html"
     context = {
