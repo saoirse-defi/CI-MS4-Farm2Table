@@ -232,6 +232,10 @@ form{
     background-color: #eaeab4;
 }
 
+.card-footer{
+    padding-top: 10px;
+}
+
 .category{
     margin-top: 5px;
     margin-right: 10px;
