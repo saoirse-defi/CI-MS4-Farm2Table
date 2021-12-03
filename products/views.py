@@ -197,7 +197,6 @@ def product_detail(request, product_id):
 
 @store_required
 @login_required
-# @superuser_required
 def add_product(request):
     """ Add a product to the store. """
     try:
