@@ -67,7 +67,7 @@
                         </li>
                         <li>
                             <a class="waves-effect waves-light btn" href="{% url 'view_bag' %}">
-                                <span class="material-icons-outlined">shopping_cart</span>
+                                <span class="material-icons-outlined icons-text">shopping_cart</span>
                                 <span>
                                     {% if grand_total %}
                                     €{{ grand_total|floatformat:2 }}
@@ -85,10 +85,9 @@
                             <a href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
-                </ul>
+                    </ul>
             </div>
         </nav>
-        
         <ul class="sidenav" id="mobile-menu">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
@@ -109,8 +108,8 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li>
-                    <a class="btn" href="{% url 'view_bag' %}">
-                        <span class="material-icons-outlined">shopping_cart</span>
+                    <a class="waves-effect waves-light btn-small right" href="{% url 'view_bag' %}">
+                        <span class="material-icons-outlined icons-text">shopping_cart</span>
                         <span>
                             {% if grand_total %}
                             €{{ grand_total|floatformat:2 }}
