@@ -7,6 +7,8 @@ body{
     background-color: #a5d6a7;
     font-family: 'Lato', sans-serif;
     padding-bottom: 100px;
+    max-width: 85%;
+    margin: 0 auto;
 }
 
 span.badge{
@@ -337,7 +339,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px #d8d8d8 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #a5d6a7 inset !important;
 }
 
 ::-webkit-input-placeholder {
@@ -428,7 +430,7 @@ input:-webkit-autofill:active{
 
 @media (min-width: 1200px) {
     .container{
-        max-width: 90%;
+        width: 90%;
     }
 }
 
@@ -439,6 +441,15 @@ input:-webkit-autofill:active{
 
     .mobile-only-item{
         display: block;
+    }
+
+    body{
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .container{
+        width: 100%;
     }
 
 }
