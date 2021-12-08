@@ -32,6 +32,7 @@ def store_required(func):
         except Exception as e:
             user = None
             store = None
+            print(e)
 
         if store is not None:
             return func(request)
@@ -51,13 +52,14 @@ def store_owner_required(func, product_id):
         except Exception as e:
             user = None
             store = None
+            print(e)
 
         if store is not None:
             if product.seller_store != store:
                 return func(request, *args, **kwargs)
             else:
                 messages.error(request,
-                            "You can only edit your own products.")
+                               "You can only edit your own products.")
                 return redirect(reverse('products'))
         else:
             messages.error(request,

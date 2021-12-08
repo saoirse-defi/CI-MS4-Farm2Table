@@ -8,7 +8,12 @@ class ProductForm(forms.ModelForm):
     """ Form for store owners to create product listings. """
     class Meta:
         model = Product
-        exclude = ('seller_store', 'rating', 'sku', 'image_url', 'has_sizes', 'organic')
+        exclude = ('seller_store',
+                   'rating',
+                   'sku',
+                   'image_url',
+                   'has_sizes',
+                   'organic')
 
     image = forms.ImageField(label='Image', required=False,
                              widget=ProductClearableFileUnit)
@@ -41,4 +46,3 @@ class ProductForm(forms.ModelForm):
                         c.name) for c in categories]
 
         self.fields['category'].choices = cat_choices
-
