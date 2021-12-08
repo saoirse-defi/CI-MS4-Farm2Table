@@ -206,7 +206,7 @@ form{
     width: 275px;
     height: 375px;
     border-radius: 8px;
-    background-color: #eaeab4;
+    background-color: #faebd7;
     border: 0.5px solid black;
     border-left: 1px solid black;
 }
@@ -215,7 +215,7 @@ form{
     width: 275px;
     height: 375px;
     border-radius: 8px;
-    background-color: #eaeab4;
+    background-color: #faebd7;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
