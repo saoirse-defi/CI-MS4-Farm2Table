@@ -11,6 +11,10 @@ body{
     margin: 0 auto;
 }
 
+.container{
+    width: 100%;
+}
+
 span.badge{
     margin-left: 8px !important;
 }
@@ -80,12 +84,6 @@ img{
 	left: 0;
 	position: fixed;
 	z-index: -1;
-}
-
-.container{
-    margin: 0 10px 0 10px;
-    max-width: 1280px;
-    width: 90%;
 }
 
 form{
@@ -428,10 +426,8 @@ input:-webkit-autofill:active{
     display: none;
 }
 
-@media (min-width: 1200px) {
-    .container{
-        width: 90%;
-    }
+@media (max-width: 1200px) {
+    
 }
 
 @media (max-width: 1065px) {
@@ -444,12 +440,8 @@ input:-webkit-autofill:active{
     }
 
     body{
-        max-width: 100%;
-        margin: 0;
-    }
-
-    .container{
-        width: 100%;
+        max-width: 95%;
+        margin: 0 auto;
     }
 
 }
