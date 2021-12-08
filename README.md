@@ -10,6 +10,15 @@ With my final milestone project for Code Institute, I will attempt to tackle thi
 
 ### Notes for Assessment Team
 
+#### PEP8 Validation Errors
+
+The codebase has been written to comply with the PEP8 validation standard. Unfortunately certain validation errors couldn't be corrected.
+
+##### Line Too Long
+
+Only a handful of these validation errors are still present. The remaining lines of code that are recieving this error couldn't be shortened any further without introducing new validation errors.
+
+
 
 ### Future Features
 
