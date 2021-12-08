@@ -105,6 +105,9 @@ Currently, I have identified 3 possible streams of income this project would be 
 |Seller|See the pricing of other producers|Regulate my pricing accordingly|
 |Seller|Update listings|Change product descriptions, availability or pricing|
 |Seller|Provide delivery options to the customer|Avoid the customer having to collect the order|
+|Seller|Take electronic payment|Reach a larger customer base|
+|Seller|Views all of my orders in one place|Keep track of the business at a granular level|
+|Seller|Secure Authentication|Have peace of mind in relation to the security of the account|
 |  |  |  |
 |Buyer|To view all listings in one marketplace|Find the best price or closest producer|
 |Buyer|View individual product details|Make an informed purchase|
