@@ -19,7 +19,6 @@ The codebase has been written to comply with the PEP8 validation standard. Unfor
 Only a handful of these validation errors are still present. The remaining lines of code that are recieving this error couldn't be shortened any further without introducing new validation errors.
 
 
-
 ### Future Features
 
 This section will outline potential features which I would like to implement in the future.
@@ -349,6 +348,44 @@ As the application began to take shape with all major components in place, the u
 | Stripe | After an order has been placed, the payment should be confirmed. | A payment is processed whenever an order is placed. | pass |
 
 
+### Testing Screenshots
+
+#### All Stores
+
+![All Stores](readme-files/testing-screenshots/allStores.JPG)
+
+#### County Search
+
+![County Search](readme-files/testing-screenshots/countySearch.JPG)
+
+#### Email Already Registered
+
+![Email Already Registered](readme-files/testing-screenshots/emailAlreadyRegistered.JPG)
+
+#### Local Store Page with Location Set
+
+![#### Local Store Page with Location Set](readme-files/testing-screenshots/localCountySet.JPG)
+
+#### Local Store Page with Location Not Set
+
+![Local Store Page with Location Not Set](readme-files/testing-screenshots/localNoCountySet.JPG)
+
+#### Valid Password
+
+![Valid Password](readme-files/testing-screenshots/validPassword.JPG)
+
+#### Valid User
+
+![Valid User](readme-files/testing-screenshots/validUser.JPG)
+
+#### Order Confirmed
+
+![Order Confirmed](readme-files/testing-screenshots/orderConfirmed.JPG)
+
+#### Order Appears On Profile
+
+![Order Appears On Profile](readme-files/testing-screenshots/orderAppearsOnProfile.JPG)
+
 ## Bugs Discovered
 
 ### Unsolved Bugs
@@ -554,26 +591,26 @@ else:
 
 ## Database Schema
 
-![DB Schema](/wireframes/schema/thevegable-schema-db.png)
+![DB Schema](readme-files/schema/thevegtable-db.png)
 
 ## Wireframes
 
 ### Desktop Wireframes
 
-![Index](/wireframes/index.html.png)
-![Login](wireframes/Login.png)
-![Product Detail](wireframes/Product-Detail.png)
-![Profile](wireframes/profile.png)
-![Signup](wireframes/Signup.png)
-![Store](wireframes/Store.png)
+![Index](/readme-files/wireframes/index.html.png)
+![Login](readme-files/wireframes/Login.png)
+![Product Detail](readme-files/wireframes/Product-Detail.png)
+![Profile](readme-files/wireframes/profile.png)
+![Signup](readme-files/wireframes/Signup.png)
+![Store](readme-files/wireframes/Store.png)
 
 ### Mobile Wireframes
 
-![Mobile Index](wireframes/Mobile-Homepage.png)
-![Mobile Product Detail](wireframes/Mobile-Product-Detail.png)
-![Mobile Profile](wireframes/Mobile-Profile.png)
-![Mobile Store](wireframes/Store.png)
-![Mobile Wishlist](wireframes/Mobile-Wishlist.png)
+![Mobile Index](readme-files/wireframes/Mobile-Homepage.png)
+![Mobile Product Detail](readme-files/wireframes/Mobile-Product-Detail.png)
+![Mobile Profile](readme-files/wireframes/Mobile-Profile.png)
+![Mobile Store](readme-files/wireframes/Store.png)
+![Mobile Wishlist](readme-files/wireframes/Mobile-Wishlist.png)
 
 
 
