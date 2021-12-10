@@ -1,6 +1,4 @@
-import uuid
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -10,6 +8,7 @@ urlpatterns = [
     path('<uuid:store_id>/', views.view_store, name='view_store'),
     path('my_store/', views.my_store, name='my_store'),
     path('edit_store/<uuid:store_id>/', views.edit_store, name='edit_store'),
-    path('delete_store/<uuid:store_id>/', views.delete_store, name='delete_store'),
+    path('delete_store/<uuid:store_id>/',
+         views.delete_store, name='delete_store'),
     path('local_producers/', views.local_producers, name='local_producers'),
 ]
