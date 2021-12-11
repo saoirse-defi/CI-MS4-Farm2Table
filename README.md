@@ -10,6 +10,11 @@ With my final milestone project for Code Institute, I will attempt to tackle thi
 
 ### Notes for Assessment Team
 
+#### Admin Login Credentials
+
+Email: exam@codeinstitute.com
+Password: admin
+
 #### PEP8 Validation Errors
 
 The codebase has been written to comply with the PEP8 validation standard. Unfortunately certain validation errors couldn't be corrected.
