@@ -290,6 +290,35 @@ By using the Lottie animation player, we can bring beautiful animations into our
 The CSS style rules have been [Autoprefixed](https://autoprefixer.github.io/) to maintain uniformity of style rules across all browsers.
 
 
+## Database Design
+
+For this application, a relational database was requested. I decided to use Postgres to handle the data as Heroku provides a plugin that it easy to use.
+
+
+### Inheritance Flow
+
+##### User > UserProfile > Store > Product
+
+##### User > UserProfile > Wishlist
+
+#### Django User Model
+
+Django provides a preset User model in order to faciliate authentication and store session data. The majority of models recieve some inheritance from the Django User model.
+
+#### UserProfile
+
+This model inherits directly from Django's User model. This allows the user to attach key information to their profile such as phone number, address & Eircode.
+
+#### Store
+
+Once the UserProfile details have been submitted, a sales organisation can be created. Once a store is been established, products can be created within that sales organisation.
+
+
+#### Wishlist
+
+This model tracks items that have been favourited by the user and is inherited from the UserProfile.
+
+
 ## Testing
 
 ### Security features
