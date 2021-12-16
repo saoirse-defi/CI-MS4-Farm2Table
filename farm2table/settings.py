@@ -30,7 +30,7 @@ if os.environ.get('OS_ENVIRON_NAME') == 'gitpod':
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    DEBUG = False
+    DEBUG = True
     ALLOWED_HOSTS = ['thevegtable.herokuapp.com']
 
 
